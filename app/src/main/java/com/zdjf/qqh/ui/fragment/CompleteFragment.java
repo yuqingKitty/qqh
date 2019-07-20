@@ -23,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * 贷款大全fenzhi
+ * 贷款大全v1.0
  */
 public class CompleteFragment extends BaseFragment<CompletePresenter> implements ICompleteView, BaseQuickAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
     @BindView(R.id.product_list)
