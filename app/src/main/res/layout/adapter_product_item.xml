@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_FFFFFF"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_47">
+
+        <ImageView
+            android:id="@+id/iv_product_icon"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:src="@mipmap/icon_product_default"/>
+
+        <TextView
+            android:id="@+id/tv_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_product_icon"
+            android:layout_alignBottom="@id/iv_product_icon"
+            android:layout_marginLeft="@dimen/dp8"
+            android:text="小赢卡贷"
+            android:textColor="@color/color_2D2A3B"
+            android:textSize="@dimen/sp_13" />
+
+        <TextView
+            android:id="@+id/tv_product_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp8"
+            android:paddingRight="@dimen/dp8"
+            android:paddingTop="@dimen/dp2"
+            android:paddingBottom="@dimen/dp2"
+            android:background="@drawable/product_tag_bg"
+            android:layout_alignBottom="@id/tv_product_name"
+            android:layout_toRightOf="@id/tv_product_name"
+            android:layout_marginLeft="@dimen/dp8"
+            android:text="新口子"
+            android:textColor="@color/color_FF6621"
+            android:textSize="@dimen/sp_12" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16"
+        android:background="@color/color_EEEEEE"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_75">
+
+        <LinearLayout
+            android:id="@+id/ll_loan_range"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_loan_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000~5000"
+                android:textColor="@color/color_FC564A"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp4"
+                android:text="@string/most_loan"
+                android:textColor="@color/color_717171"
+                android:textSize="@dimen/sp_13"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ll_loan_range"
+            android:layout_toLeftOf="@id/tv_apply"
+            android:layout_alignBottom="@id/ll_loan_range"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_loan_term"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="借款期限3～12月"
+                android:textColor="@color/color_181001"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_market_phrases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp4"
+                android:text="2天放贷 日利率0.03%"
+                android:textColor="@color/color_717171"
+                android:textSize="@dimen/sp_13"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_apply"
+            android:layout_width="@dimen/dp_88"
+            android:layout_height="@dimen/dp_36"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dp_17"
+            android:layout_marginRight="@dimen/dp_16"
+            android:background="@drawable/loan_tag_selected_bg"
+            android:gravity="center"
+            android:text="@string/apply_now"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="@dimen/sp_14"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -17,51 +17,14 @@ public class CompleteProductBean extends BaseBean {
     }
 
     public class ProductBean {
-        private String id;
-        private String logoURL;
-        private String name;
-        private String marketPhrases;
-        private String link;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getLogoURL() {
-            return logoURL;
-        }
-
-        public void setLogoURL(String logoURL) {
-            this.logoURL = logoURL;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getMarketPhrases() {
-            return marketPhrases;
-        }
-
-        public void setMarketPhrases(String marketPhrases) {
-            this.marketPhrases = marketPhrases;
-        }
-
-        public String getLink() {
-            return link;
-        }
-
-        public void setLink(String link) {
-            this.link = link;
-        }
+        public String id;
+        public String logoURL;
+        public String name;
+        public String tagDesc;
+        public String loanRange;
+        public String loanTerm;
+        public String marketPhrases;
+        public String link;
     }
 
 }

@@ -2,9 +2,11 @@ package com.zdjf.qqh.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 
 import com.zdjf.qqh.R;
 import com.zdjf.qqh.data.commons.Constants;
@@ -21,16 +23,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnCheckedChanged;
 
 /**
- * 贷款大全v1.0.0
+ * 贷款大全
  */
-public class CompleteFragment extends BaseFragment<CompletePresenter> implements ICompleteView, BaseQuickAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
+public class CompleteFragment extends BaseFragment<CompletePresenter> implements ICompleteView, SwipeRefreshLayout.OnRefreshListener,
+        BaseQuickAdapter.RequestLoadMoreListener, CompleteAdapter.OnApplyClickListener {
+    @BindView(R.id.rb_comprehensive_sort)
+    RadioButton rb_comprehensive_sort;
+    @BindView(R.id.refresh_layout)
+    SwipeRefreshLayout mRefreshLayout;
     @BindView(R.id.product_list)
     RecyclerView mRecycleView;
 
-    @BindView(R.id.refresh_layout)
-    SwipeRefreshLayout mRefreshLayout;
     private CompleteAdapter mAdapter;
 
     @Override
@@ -40,15 +46,16 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        mAdapter = new CompleteAdapter(mActivity, new ArrayList<CompleteProductBean.ProductBean>());
-        mRecycleView.setLayoutManager(new GridLayoutManager(mActivity, 2));
-        mRecycleView.addItemDecoration(new CompleteDecoration(2, 14, 20));
+        mAdapter = new CompleteAdapter(mActivity, new ArrayList<CompleteProductBean.ProductBean>(), this);
+        mRecycleView.setLayoutManager(new LinearLayoutManager(mActivity));
+        mRecycleView.addItemDecoration(new CompleteDecoration(20, getResources().getColor(R.color.color_F2F6F8)));
         mRecycleView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(this);
         mAdapter.setOnLoadMoreListener(this, mRecycleView);
         mRefreshLayout.setOnRefreshListener(this);
         mRefreshLayout.setColorSchemeColors(mActivity.getResources().getColor(R.color.colorPrimary));
         mPresenter.initListData();
+
+        rb_comprehensive_sort.setChecked(true);
     }
 
     @Override
@@ -69,13 +76,6 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
     @Override
     public void hideLoading() {
         mLoading.dismissLoading();
-    }
-
-    @Override
-    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        //点击某一项
-        CompleteProductBean.ProductBean bean = (CompleteProductBean.ProductBean) adapter.getData().get(position);
-        mPresenter.recordProduct(bean.getId(), bean.getLink(), Constants.moduleName.Complete.getName(), "");
     }
 
     @Override
@@ -130,4 +130,27 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
             mActivity.initStatusBar(true);
         }
     }
+
+    @OnCheckedChanged({R.id.rb_comprehensive_sort, R.id.rb_interest_sort, R.id.rb_amount_sort})
+    void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            switch (buttonView.getId()) {
+                case R.id.rb_comprehensive_sort:
+                    mPresenter.initListData();
+                    break;
+                case R.id.rb_interest_sort:
+                    mPresenter.initListData();
+                    break;
+                case R.id.rb_amount_sort:
+                    mPresenter.initListData();
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void onApplyClicked(CompleteProductBean.ProductBean productBean) {
+        mPresenter.recordProduct(productBean.id, productBean.link, Constants.moduleName.Complete.getName(), "");
+    }
+
 }
