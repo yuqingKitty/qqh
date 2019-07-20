@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lLayout_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/alert_bg"
+    android:gravity="end"
+    android:orientation="vertical"
+    android:paddingBottom="40px"
+    android:paddingLeft="20px"
+    android:paddingRight="20px">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/layout_alertdialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:layout_marginTop="40px"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/dialog_icon"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            style="@style/TitleTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20px"
+            android:gravity="center"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/txt_msg"
+            style="@style/TitleTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20px"
+            android:gravity="center" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_alertdialog"
+        android:layout_marginTop="40px"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_neg"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0px"
+            android:layout_height="80px"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_negative_bg_selector"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:text="@string/cancel_string"
+            android:textColor="@color/subTextColor"
+            android:textSize="@dimen/main_text_size" />
+
+        <Button
+            android:id="@+id/btn_pos"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0px"
+            android:layout_height="80px"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_positive_bg_selector"
+            android:gravity="center"
+            android:minHeight="0dp"
+            android:text="@string/confirm_string"
+            android:textColor="@color/white"
+            android:textSize="@dimen/main_text_size" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <ImageView
+        android:id="@+id/close_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="20px"
+        android:visibility="invisible" />
+</com.zhy.autolayout.AutoRelativeLayout>

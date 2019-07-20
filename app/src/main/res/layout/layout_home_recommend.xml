@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20px"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/recommend_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="26px"
+        android:layout_marginTop="26px"
+        android:drawableLeft="@mipmap/home_icon_recommend"
+        android:drawablePadding="18px"
+        android:gravity="center_vertical"
+        android:text="@string/today_recommend"
+        android:textColor="@color/mainTextColor"
+        android:textSize="@dimen/middle_text_size" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/lineColor" />
+
+    <com.zdjf.qqh.ui.customview.MyRecyclerView
+        android:id="@+id/recommend_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</com.zhy.autolayout.AutoLinearLayout>

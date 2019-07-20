@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.zdjf.qqh">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 安装apk权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <application
+        android:name="com.zdjf.qqh.application.BaseApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="icon,label,theme,allowBackup">
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 主界面-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <!-- 登陆-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设置-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 修改密码-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.ChangePwdActivity"
+            android:screenOrientation="portrait" />
+        <!-- 重置密码-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.ForgetPwdActivity"
+            android:screenOrientation="portrait" />
+        <!-- 注册界面-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <!-- 协议界面-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.ProtocolActivity"
+            android:screenOrientation="portrait" />
+        <!-- 意见反馈-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <!-- 关于客服-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 联系客服-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.CustomerServiceActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.WebActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!-- 设置昵称-->
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.SetNicknameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.WebAPPActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设计稿尺寸 -->
+        <meta-data
+            android:name="design_width"
+            android:value="750" />
+        <meta-data
+            android:name="design_height"
+            android:value="1334" />
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5ce3c5f44ca35710390002e9" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.zdjf.qqh.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

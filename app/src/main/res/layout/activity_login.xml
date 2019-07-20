@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/login_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="74px"
+        android:layout_marginRight="60px"
+        android:src="@mipmap/signin_icon_cancel" />
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="128px"
+        android:layout_height="128px"
+        android:layout_below="@id/login_close"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100px"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_launcher" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_logo"
+        android:layout_marginLeft="80px"
+        android:layout_marginTop="138px"
+        android:layout_marginRight="80px"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34px"
+            android:layout_marginBottom="20px"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="22px"
+                android:src="@mipmap/signin_icon_user" />
+
+            <View
+                android:layout_width="3px"
+                android:layout_height="36px"
+                android:layout_marginRight="22px"
+                android:background="@color/colorPrimary" />
+
+            <EditText
+                android:id="@+id/phone_et"
+                style="@style/TitleTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/login_phone_string"
+                android:inputType="phone"
+                android:textColorHint="@color/hintTextColor" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/lineColor" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34px"
+            android:layout_marginTop="40px"
+            android:layout_marginBottom="20px"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="22px"
+                android:src="@mipmap/icon_mask" />
+
+            <View
+                android:layout_width="3px"
+                android:layout_height="36px"
+                android:layout_marginRight="22px"
+                android:background="@color/colorPrimary" />
+
+            <EditText
+                android:id="@+id/pwd_et"
+                style="@style/TitleTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/login_pwd_string"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:textColorHint="@color/hintTextColor" />
+
+            <CheckBox
+                android:id="@+id/show_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20px"
+                android:button="@drawable/show_pwd_selector"
+                android:visibility="visible" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/lineColor" />
+
+        <Button
+            android:id="@+id/login_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="90px"
+            android:layout_marginTop="100px"
+            android:background="@drawable/button_selector"
+            android:enabled="false"
+            android:minHeight="0dp"
+            android:text="@string/login_btn_string"
+            android:textColor="@color/white"
+            android:textSize="@dimen/middle_text_size" />
+
+        <TextView
+            android:id="@+id/forget_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingTop="20px"
+            android:text="@string/login_forget_string"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/small_text_size" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_no_account"
+            android:textColor="@color/smallTextColor"
+            android:textSize="@dimen/small_text_size" />
+
+        <TextView
+            android:id="@+id/to_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_to_register"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/small_text_size" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,146 @@
+import com.android.build.gradle.internal.dsl.SigningConfig
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.zdjf.qqh"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "debug", "release"
+        ndk {
+            abiFilters "armeabi"
+        }
+    }
+    buildTypes {
+        release {
+            //混淆
+            minifyEnabled true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->    //批量修改Apk名字
+                variant.outputs.all { output ->
+                    if (!variant.buildType.isDebuggable()) {
+                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
+                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
+                    }
+                }
+            }
+            signingConfig getSignInfo("../app/sign.properties")
+        }
+        debug {
+            minifyEnabled false
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->    //批量修改Apk名字
+                variant.outputs.all { output ->
+                    if (!variant.buildType.isDebuggable()) {
+                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
+                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
+                    }
+                }
+            }
+//            signingConfig getSignInfo("../app/sign.properties")
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        tencent { dimension "default" }
+        huawei { dimension "default" }
+        xiaomi { dimension "default" }
+        qh360 { dimension "default" }
+        ali { dimension "default" }
+        app { dimension "default" }
+        oppo { dimension "default" }
+        vivo { dimension "default" }
+        meizu { dimension "default" }
+        lenove { dimension "default" }
+    }
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+def getSignInfo(propFileName) {
+    SigningConfig signingConfig = new SigningConfig("signInfo")
+    File propFile = file(propFileName)
+    if (propFile.exists()) {
+        Properties props = new Properties()
+        props.load(new FileInputStream(propFile))
+        signingConfig.storeFile = file(props['STORE_FILE'])
+        signingConfig.storePassword = props['STORE_PASSWORD']
+        signingConfig.keyAlias = props['KEY_ALIAS']
+        signingConfig.keyPassword = props['KEY_PASSWORD']
+        println('signConfig is exits')
+    } else {
+        println('sign config is null')
+        signingConfig = null
+    }
+    return signingConfig
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //RX系列大家族套餐
+    implementation "io.reactivex.rxjava2:rxjava:2.1.1"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    implementation "com.github.VictorAlbertos.RxCache:runtime:1.8.1-2.x"
+    implementation 'com.github.VictorAlbertos.Jolyglot:gson:0.0.3'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+
+    implementation 'com.youth.banner:banner:1.4.10'
+    //权限
+    implementation 'com.yanzhenjie:permission:2.0.0-rc5'
+    //屏幕适配
+    implementation 'com.zhy:autolayout:1.4.5'
+    //适配器
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //沉浸式
+    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
+    //图片加载
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    implementation 'me.jessyan:progressmanager:1.5.0'
+    //阿里云
+    implementation 'com.aliyun.dpa:oss-android-sdk:+'
+    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    implementation 'com.squareup.okio:okio:1.9.0'
+    //友盟统计
+    implementation 'com.umeng.sdk:common:1.5.0'
+    implementation 'com.umeng.sdk:analytics:7.5.3'
+    //web
+    implementation 'com.just.agentweb:agentweb:4.0.2'
+    implementation 'com.just.agentweb:download:4.0.2'
+}

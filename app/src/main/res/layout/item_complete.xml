@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="20px"
+    android:paddingLeft="20px"
+    android:paddingRight="20px"
+    android:paddingTop="20px">
+
+    <ImageView
+        android:id="@+id/product_icon"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_toRightOf="@id/product_icon"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/mainTextColor"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/product_publicity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_name"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="18px"
+        android:layout_toRightOf="@id/product_icon"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/smallTextColor"
+        android:textSize="11sp" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

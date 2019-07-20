@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.youth.banner.Banner
+        android:id="@+id/home_banner"
+        android:layout_width="match_parent"
+        android:layout_height="260px"
+        app:delay_time="3000"
+        app:indicator_drawable_selected="@drawable/indicator_drawable_selected"
+        app:indicator_drawable_unselected="@drawable/indicator_drawable_unselected" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/home_recommend_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/contour_down_shape"
+        android:paddingTop="30px"
+        android:paddingBottom="30px"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/recommend_01"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/icon_01"
+            android:gravity="center"
+            android:text="金牌推荐"
+            android:textColor="@color/mainTextColor" />
+
+        <TextView
+            android:id="@+id/recommend_02"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/icon_02"
+            android:gravity="center"
+            android:text="大额放款"
+            android:textColor="@color/mainTextColor" />
+
+        <TextView
+            android:id="@+id/recommend_03"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/icon_03"
+            android:gravity="center"
+            android:text="七天周转"
+            android:textColor="@color/mainTextColor" />
+
+        <TextView
+            android:id="@+id/recommend_04"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/icon_04"
+            android:gravity="center"
+            android:text="容易放款"
+            android:textColor="@color/mainTextColor" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="18px"
+        android:paddingTop="12px"
+        android:paddingRight="18px"
+        android:paddingBottom="12px">
+
+        <TextView
+            android:id="@+id/apply_notification_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/mainTextColor"
+            android:textSize="@dimen/small_text_size" />
+
+        <ViewFlipper
+            android:id="@+id/home_view_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:autoStart="true"
+            android:flipInterval="3000"
+            android:inAnimation="@anim/anim_come_in"
+            android:outAnimation="@anim/anim_get_out" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <include layout="@layout/layout_home_recommend" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/pager_tab"
+        android:layout_width="match_parent"
+        android:layout_height="90px"
+        android:layout_marginTop="20px"
+        android:background="@color/white"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorHeight="2dp"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextAppearance="@style/video_text"
+        app:tabTextColor="@color/mainTextColor" />
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="14px"
+    android:paddingTop="14px">
+
+    <ImageView
+        android:id="@+id/product_icon"
+        android:layout_width="126px"
+        android:layout_height="126px"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="24px"
+        android:layout_marginRight="24px"
+        android:background="@drawable/image_border"
+        android:padding="2px"
+        android:scaleType="fitXY"
+        app:layout_auto_basewidth="height" />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/product_icon"
+        android:layout_toRightOf="@id/product_icon"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/product_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingRight="20px">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="@dimen/title_text_size" />
+
+                <TextView
+                    android:id="@+id/label1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12px"
+                    android:background="@mipmap/home_icon_label"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/label2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:background="@mipmap/home_icon_label"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:background="@drawable/apply_btn_bg_selector"
+                android:includeFontPadding="false"
+                android:paddingBottom="10px"
+                android:paddingLeft="46px"
+                android:paddingRight="46px"
+                android:paddingTop="10px"
+                android:text="@string/apply"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/main_text_size" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <TextView
+            android:id="@+id/product_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/product_layout"
+            android:layout_marginTop="12px"
+            android:includeFontPadding="false"
+            android:textColor="@color/subTextColor"
+            android:textSize="@dimen/main_text_size" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/product_intro"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="14px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/limit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@string/limit"
+                android:textColor="@color/subTextColor"
+                android:textSize="@dimen/main_text_size" />
+
+            <TextView
+                android:id="@+id/product_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:textColor="@color/introTextColor"
+                android:textSize="@dimen/middle_text_size" />
+
+            <TextView
+                android:id="@+id/deadline_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="34px"
+                android:includeFontPadding="false"
+                android:text="@string/deadline"
+                android:textColor="@color/subTextColor"
+                android:textSize="@dimen/main_text_size" />
+
+            <TextView
+                android:id="@+id/product_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:textColor="@color/introTextColor"
+                android:textSize="@dimen/middle_text_size" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_icon"
+        android:layout_marginBottom="22px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="63px"
+        android:layout_marginTop="36px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/product_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:includeFontPadding="false"
+            android:textColor="@color/mainTextColor"
+            android:textSize="@dimen/small_text_size" />
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

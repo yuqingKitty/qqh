@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zdjf.qqh.ui.customview.TopBarView
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_title="@string/about_us"
+        app:show_close="visible" />
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="128px"
+        android:layout_height="128px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="110px"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/version_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="42px"
+        android:textColor="@color/subTextColor"
+        android:textSize="@dimen/main_text_size" />
+
+    <TextView
+        android:id="@+id/company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90px"
+        android:background="@color/white"
+        android:drawableRight="@mipmap/mine_icon_arrow_gray"
+        android:paddingLeft="37px"
+        android:paddingTop="30px"
+        android:paddingRight="30px"
+        android:paddingBottom="30px"
+        android:text="公司介绍"
+        android:textColor="@color/mainTextColor"
+        android:textSize="@dimen/sp_15" />
+
+</com.zhy.autolayout.AutoLinearLayout>

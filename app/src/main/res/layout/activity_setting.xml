@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zdjf.qqh.ui.customview.TopBarView
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_title="@string/setting"
+        app:show_close="visible"
+        app:title_text_color="@color/mainTextColor" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/head_view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:background="@drawable/contour_up_down_shape"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="12px"
+        android:paddingLeft="40px"
+        android:paddingRight="30px"
+        android:paddingTop="12px">
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/setting_head_string" />
+
+        <ImageView
+            android:id="@+id/head_view"
+            android:layout_width="98px"
+            android:layout_height="98px"
+            android:layout_marginRight="28px"
+            android:scaleType="fitXY"
+            android:src="@mipmap/setup_head"
+            app:layout_auto_basewidth="height" />
+
+        <ImageView
+            android:layout_width="20px"
+            android:layout_height="30px"
+            android:src="@mipmap/mine_icon_arrow_gray" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/set_nickname_layout"
+        android:layout_width="match_parent"
+        android:layout_height="98px"
+        android:background="@drawable/contour_down_shape"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="12px"
+        android:paddingLeft="40px"
+        android:paddingRight="30px"
+        android:paddingTop="12px">
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/setting_nickname_string" />
+
+        <TextView
+            android:id="@+id/nickname_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="28px"
+            android:textColor="@color/color_A8A8A8"
+            android:textSize="@dimen/sp_16" />
+
+        <ImageView
+            android:layout_width="20px"
+            android:layout_height="30px"
+            android:src="@mipmap/mine_icon_arrow_gray" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="98px"
+        android:background="@drawable/contour_down_shape"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="12px"
+        android:paddingLeft="40px"
+        android:paddingRight="30px"
+        android:paddingTop="12px">
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/setting_phone_string" />
+
+        <TextView
+            android:id="@+id/phone_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_A8A8A8"
+            android:textSize="@dimen/sp_16" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:id="@+id/edit_pwd"
+        style="@style/TitleTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="90px"
+        android:background="@drawable/contour_down_shape"
+        android:drawablePadding="28px"
+        android:drawableRight="@mipmap/mine_icon_arrow_gray"
+        android:gravity="center_vertical"
+        android:paddingBottom="12px"
+        android:paddingLeft="40px"
+        android:paddingRight="30px"
+        android:paddingTop="12px"
+        android:text="@string/setting_login_pwd_string"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/logout_view"
+        android:layout_width="match_parent"
+        android:layout_height="108px"
+        android:layout_marginTop="80px"
+        android:background="@drawable/contour_up_down_shape"
+        android:gravity="center"
+        android:text="@string/setting_logout"
+        android:textColor="@color/mainTextColor"
+        android:textSize="@dimen/main_text_size" />
+
+</com.zhy.autolayout.AutoLinearLayout>

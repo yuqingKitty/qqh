@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">取钱花</string>
+    <string name="home">首页</string>
+    <string name="complete">贷款大全</string>
+    <string name="mine">我的</string>
+
+    <string name="submit">提交</string>
+
+    <string name="today_recommend">今日推荐</string>
+    <string name="deadline">期限：</string>
+    <string name="limit">额度：</string>
+    <string name="apply">申请</string>
+    <string name="to_login">立即登录</string>
+
+    <string name="setting">设置</string>
+    <string name="feedback">意见反馈</string>
+    <string name="service">联系客服</string>
+    <string name="wx_accounts">微信公众号</string>
+    <string name="about_us">关于我们</string>
+    <string name="change_pwd">修改密码</string>
+
+    <string name="loading_string">正在加载中</string>
+    <string name="nomore_string">没有更多了</string>
+    <string name="fail_string">加载失败,点击重试</string>
+    <string name="setting_logout">退出登录</string>
+    <string name="setting_login_pwd_string">修改密码</string>
+    <string name="setting_phone_string">手机号</string>
+    <string name="setting_nickname_string">用户名</string>
+    <string name="setting_head_string">头像</string>
+    <string name="cancel_string">取消</string>
+    <string name="confirm_string">确定</string>
+    <string name="default_dialog_title">提示</string>
+    <string name="logout_msg">您确定要退出登录吗？</string>
+    <string name="edit_old_pwd_string">原密码\u3000</string>
+    <string name="edit_old_pwd_hint_string">请输入原密码</string>
+    <string name="forget_new_pwd_string">新密码\u3000</string>
+    <string name="edit_new_pwd_hint_string">请输入6–20位新密码</string>
+    <string name="forget_confirm_pwd_string">再次确认</string>
+    <string name="edit_confirm_pwd_hint_string">请再次输入新的密码</string>
+    <string name="login_phone_string">请输入手机号码</string>
+    <string name="login_pwd_string">请输入密码</string>
+    <string name="login_btn_string">立即登录</string>
+    <string name="login_forget_string">忘记密码</string>
+    <string name="login_no_account">还没有账号？</string>
+    <string name="login_to_register">快速注册</string>
+    <string name="register_phone_string">手机号</string>
+    <string name="register_hint_phone_string">请输入注册手机号</string>
+    <string name="register_verification_code_string">验证码</string>
+    <string name="register_hint_verification_string">请输入短信验证码</string>
+    <string name="register_send_verification_string">发送验证码</string>
+    <string name="register_pwd_string">密码\u3000</string>
+    <string name="register_hint_pwd_string">请设置6–20位密码</string>
+    <string name="register_string">立即注册</string>
+    <string name="register_read">&#160;&#160;我已阅读并同意</string>
+    <string name="register_protocol">《注册服务协议》</string>
+    <string name="register_account">已有账号？</string>
+    <string name="register_to_login">快速登录</string>
+    <string name="forget_pwd_title">找回密码</string>
+    <string name="forget_phone_string">手机号\u3000</string>
+    <string name="forget_verification_code_string">验证码\u3000</string>
+    <string name="forget_new_pwd_hint_string">请输入新的登录密码</string>
+    <string name="forget_confirm_pwd_hint_string">请确认新的登录密码</string>
+    <string name="feedback_title">意见反馈</string>
+    <string name="feedback_hint">如果有产品使用问题，请在这里大声吐槽…</string>
+    <string name="feedback_contact_hint">手机号/邮箱（选填，方便我们联系您）</string>
+
+    <string name="official_accounts">添加取钱花微信号</string>
+    <string name="copy">点击复制</string>
+    <string name="qq_service">QQ客服：</string>
+    <string name="phone_service">电话客服：</string>
+    <string name="work_time">客服工作时间：</string>
+    <string name="no_network">暂无网络，请刷新后重试！</string>
+    <string name="edit_nickname">昵称</string>
+    <string name="edit_nickname_hint">设置16个字符以内昵称</string>
+    <string name="copy_success">【取钱花】公众号已复制成功~</string>
+    <string name="step"><![CDATA[打开微信>点击搜索框>粘贴>搜一搜]]></string>
+    <string name="attention">点击公众号即可关注！</string>
+    <string name="open_wx">打开微信</string>
+
+
+    <string name="loan_record">申请记录</string>
+    <string name="message_center">消息中心</string>
+    <string name="my_service">专属客服</string>
+
+</resources>

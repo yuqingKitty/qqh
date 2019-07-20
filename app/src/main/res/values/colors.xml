@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3886F8</color>
+    <color name="colorPrimaryDark">#0068ff</color>
+    <color name="colorAccent">#3886F8</color>
+    <color name="blueTextColor">#1E8AFC</color>
+    <color name="mainBackgroundColor">#F2F2F2</color>
+    <color name="lineColor">#DDDDDD</color>
+
+    <color name="defaultText">#7F7F7F</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white60s">#99ffffff</color>
+    <color name="mainTextColor">#181001</color>
+    <color name="subTextColor">#666666</color>
+    <color name="introTextColor">#FE5C0D</color>
+    <color name="headBgColor">#50ffffff</color>
+    <color name="dialog_negative_btn_bg">#DDDDDD</color>
+    <color name="dialog_negative_btn_pressed">#C7C7C7</color>
+    <color name="hintTextColor">#AAAAAA</color>
+    <color name="smallTextColor">#999999</color>
+    <color name="officialAccounts">#898989</color>
+    <color name="imageBg">#D6D6D6</color>
+    <color name="noticeRed">#F40101</color>
+
+
+    <color name="color_A8A8A8">#A8A8A8</color>
+    <color name="color_FFC71D">#FFC71D</color>
+    <color name="color_DDDEE3">#DDDEE3</color>
+    <color name="color_FFFFFF">#FFFFFF</color>
+    <color name="color_EEEEEE">#EEEEEE</color>
+    <color name="color_181001">#181001</color>
+
+</resources>
