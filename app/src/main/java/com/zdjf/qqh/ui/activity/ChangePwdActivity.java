@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.zdjf.qqh.R;
 import com.zdjf.qqh.presenter.ChangePwdPresenter;
 import com.zdjf.qqh.ui.base.BaseActivity;
+import com.zdjf.qqh.ui.customview.TopBarView;
 import com.zdjf.qqh.utils.AddSpaceTextWatcher;
 import com.zdjf.qqh.utils.EditTextUtil;
 import com.zdjf.qqh.view.IChangePwdView;
@@ -46,6 +47,7 @@ public class ChangePwdActivity extends BaseActivity<ChangePwdPresenter> implemen
 
     @Override
     protected void initView() {
+        ((TopBarView)findViewById(R.id.top_view)).setTitleBold();
         AddSpaceTextWatcher asEditTexts = new AddSpaceTextWatcher(mOldPwdEt, 20, false);
         asEditTexts.setButtonListen(mEditPwdBtn, mNewPwdEt, mConfirmPwdEt);
     }

@@ -274,6 +274,8 @@ public class HomeBean extends BaseBean {
          */
         private String marketPhrases;
 
+        private String tagDesc;
+
         private List<labelBean> labels;
 
         public String getProductId() {
@@ -386,6 +388,14 @@ public class HomeBean extends BaseBean {
 
         public void setMarketPhrases(String marketPhrases) {
             this.marketPhrases = marketPhrases;
+        }
+
+        public String getTagDesc() {
+            return tagDesc;
+        }
+
+        public void setTagDesc(String tagDesc) {
+            this.tagDesc = tagDesc;
         }
     }
 

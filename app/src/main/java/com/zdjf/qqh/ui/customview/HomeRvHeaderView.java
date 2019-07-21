@@ -3,14 +3,12 @@ package com.zdjf.qqh.ui.customview;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -19,10 +17,8 @@ import com.zdjf.qqh.R;
 import com.zdjf.qqh.application.BaseApplication;
 import com.zdjf.qqh.data.commons.Constants;
 import com.zdjf.qqh.data.entity.HomeBean;
-import com.zdjf.qqh.data.entity.RxBusMessage;
-import com.zdjf.qqh.ui.adapter.RecommendProductAdapter;
+import com.zdjf.qqh.ui.adapter.HomeRecommendProductAdapter;
 import com.zdjf.qqh.utils.GlideImageLoader;
-import com.zdjf.qqh.utils.rxbus.RxBus;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.youth.banner.Banner;
@@ -33,27 +29,22 @@ import com.youth.banner.listener.OnBannerListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.zdjf.qqh.data.commons.Constants.RXBUS_TO_COMPLETE_KEY;
+import butterknife.OnClick;
 
 /**
  * 首页list头部控件
  */
-public class HomeRvHeaderView extends LinearLayout {
-    private Context mContext;
-    private Banner mBanner;
-    private RecyclerView mRecyclerView;
-    private TabLayout mTabLayou;
-    private TextView mApplyTv;
-    private ViewFlipper mFlipperView;
-    private List<HomeBean.ProductBean> mCategoryist = new ArrayList<>();
-    private RecommendProductAdapter mRecommendAdapter;
-    private TabChangeListener mListener;
-    private ClickProductListener mProcuctListener;
+public class HomeRvHeaderView extends LinearLayout implements View.OnClickListener {
     private View mView;
-    private List<HomeBean.BannerBean> mBannerList;
-    private List<HomeBean.NoticeBean> mNoticesList;
-    private List<HomeBean.ProductBean> mCategoryList;
-    private List<HomeBean.TypeBean> mTabListList;
+    private Banner mBanner;
+    private ViewFlipper mFlipperView;
+    private List<TextView> typeTextViewList;
+    private RecyclerView homeRecommendRecyclerView;
+
+    private Context mContext;
+    private List<HomeBean.ProductBean> recommendProductList = new ArrayList<>();
+    private HomeRecommendProductAdapter homeRecommendProductAdapter;
+    private ClickHomeHeadListener clickHomeHeadListener;
 
     public HomeRvHeaderView(Context context) {
         this(context, null);
@@ -71,9 +62,8 @@ public class HomeRvHeaderView extends LinearLayout {
         initView();
     }
 
-    public void setListener(TabChangeListener listener, ClickProductListener productListener, OnBannerListener bannerListener) {
-        mListener = listener;
-        mProcuctListener = productListener;
+    public void setListener(ClickHomeHeadListener clickHomeHeadListener, OnBannerListener bannerListener) {
+        this.clickHomeHeadListener = clickHomeHeadListener;
         if (mBanner != null) {
             mBanner.setOnBannerListener(bannerListener);
         }
@@ -81,32 +71,37 @@ public class HomeRvHeaderView extends LinearLayout {
 
     private void initView() {
         mBanner = findViewById(R.id.home_banner);
-        mRecyclerView = findViewById(R.id.recommend_list);
         mFlipperView = findViewById(R.id.home_view_flipper);
-        mTabLayou = findViewById(R.id.pager_tab);
-        mApplyTv = findViewById(R.id.apply_notification_tv);
-        mRecommendAdapter = new RecommendProductAdapter(mContext, mCategoryist);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-        mRecyclerView.addItemDecoration(new HomeGridRvItemDecoration(mContext, 1, 30, R.color.lineColor));
-        mRecyclerView.setAdapter(mRecommendAdapter);
-        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
+        TextView tv_home_type_first = findViewById(R.id.tv_home_type_first);
+        TextView tv_home_type_sec = findViewById(R.id.tv_home_type_sec);
+        TextView tv_home_type_third = findViewById(R.id.tv_home_type_third);
+        homeRecommendRecyclerView = findViewById(R.id.home_recommend_list);
+        typeTextViewList = new ArrayList<>();
+        typeTextViewList.add(tv_home_type_first);
+        typeTextViewList.add(tv_home_type_sec);
+        typeTextViewList.add(tv_home_type_third);
+        for (TextView textView : typeTextViewList){
+            textView.setOnClickListener(this);
+        }
+        findViewById(R.id.tv_loan_all).setOnClickListener(this);
+
+        homeRecommendProductAdapter = new HomeRecommendProductAdapter(mContext, recommendProductList);
+        homeRecommendRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        DividerItemDecoration divider = new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL);
+        divider.setDrawable(mContext.getResources().getDrawable(R.drawable.divider));
+        homeRecommendRecyclerView.addItemDecoration(divider);
+        homeRecommendRecyclerView.setAdapter(homeRecommendProductAdapter);
+        homeRecommendRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (BaseApplication.isLogin((Activity) mContext, true, true)) {
-                    if (mCategoryList != null && mCategoryList.size() > position) {
-                        if (mProcuctListener != null) {
-                            mProcuctListener.onProductClick(((HomeBean.ProductBean) adapter.getData().get(position)).getProductId(), ((HomeBean.ProductBean) adapter.getData().get(position)).getLink(),
+                    if (recommendProductList != null && recommendProductList.size() > position) {
+                        if (clickHomeHeadListener != null) {
+                            clickHomeHeadListener.onRecommendProductClick(((HomeBean.ProductBean) adapter.getData().get(position)).getProductId(), ((HomeBean.ProductBean) adapter.getData().get(position)).getLink(),
                                     Constants.moduleName.Recommend.getName(), position);
                         }
                     }
                 }
-            }
-        });
-
-        findViewById(R.id.home_recommend_layout).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RxBus.getInstanceBus().post(new RxBusMessage<>(RXBUS_TO_COMPLETE_KEY));
             }
         });
     }
@@ -115,38 +110,24 @@ public class HomeRvHeaderView extends LinearLayout {
      * 设置数据
      *
      * @param banner   banner数据
-     * @param notices  公告数据
-     * @param category 推荐数据
-     * @param tabList  类型数据
+     * @param noticeList  公告数据
+     * @param typeBeanList  类型数据
+     * @param recommendList 推荐数据
      */
-    public void setData(@NonNull List<HomeBean.BannerBean> banner, @NonNull List<HomeBean.NoticeBean> notices, @NonNull List<HomeBean.ProductBean> category, @NonNull List<HomeBean.TypeBean> tabList, String num) {
-        mBannerList = banner;
-        mNoticesList = notices;
-        mCategoryList = category;
-        mTabListList = tabList;
-        if (num.length() > 4) {
-            String title = num.substring(0, 4);
-            String nu = num.substring(4);
-            String apply = title + "<br><font color='#FE5C0D'>" + nu + "</font>";
-            mApplyTv.setText(Html.fromHtml(apply));
-        } else {
-            mApplyTv.setText(num);
-        }
+    public void setData(@NonNull List<HomeBean.BannerBean> banner, @NonNull List<HomeBean.NoticeBean> noticeList,
+                        @NonNull List<HomeBean.TypeBean> typeBeanList, @NonNull List<HomeBean.ProductBean> recommendList) {
+        // 广告位
         mBanner.setIndicatorGravity(BannerConfig.CENTER)
                 .setImages(banner)
                 .setBannerAnimation(Transformer.Default)
                 .setImageLoader(new GlideImageLoader())
                 .start();
 
-        //设置公告
-        if (notices.size() > 0) {
-            for (HomeBean.NoticeBean noticeBean : notices) {
+        // 设置公告
+        if (noticeList.size() > 0) {
+            for (HomeBean.NoticeBean noticeBean : noticeList) {
                 View flipperView = LayoutInflater.from(mContext).inflate(R.layout.layout_home_view_flipper, null);
-                ImageView icon = flipperView.findViewById(R.id.notice_icon);
-                TextView name = flipperView.findViewById(R.id.notice_name);
-                TextView phone = flipperView.findViewById(R.id.notice_phone);
-                TextView price = flipperView.findViewById(R.id.notice_price);
-                TextView date = flipperView.findViewById(R.id.notice_date);
+                TextView notice_desc = flipperView.findViewById(R.id.notice_desc);
 
                 flipperView.setTag(noticeBean);
                 flipperView.setOnClickListener(new View.OnClickListener() {
@@ -154,17 +135,13 @@ public class HomeRvHeaderView extends LinearLayout {
                     public void onClick(View v) {
                         if (BaseApplication.isLogin((Activity) mContext, true, true)) {
                             HomeBean.NoticeBean bean = (HomeBean.NoticeBean) v.getTag();
-                            if (mProcuctListener != null) {
-                                mProcuctListener.onProductClick(bean.getProductId(), bean.getLink(), Constants.moduleName.Notice.getName(), -1);
+                            if (clickHomeHeadListener != null) {
+                                clickHomeHeadListener.onRecommendProductClick(bean.getProductId(), bean.getLink(), Constants.moduleName.Notice.getName(), -1);
                             }
                         }
                     }
                 });
-                GlideImageLoader.setRoundedCorner(mContext, noticeBean.getLogoUrl(), icon, 2);
-                name.setText(noticeBean.getName());
-                phone.setText(noticeBean.getPhone());
-                price.setText(noticeBean.getMoney());
-                date.setText(noticeBean.getTime());
+                notice_desc.setText(noticeBean.getName());
 
                 if (mFlipperView == null) {
                     if (mView != null) {
@@ -175,7 +152,7 @@ public class HomeRvHeaderView extends LinearLayout {
                     mFlipperView.addView(flipperView);
                 }
             }
-            if (notices.size() <= 1) {
+            if (noticeList.size() <= 1) {
                 if (mFlipperView != null) {
                     mFlipperView.stopFlipping();
                 } else {
@@ -189,47 +166,48 @@ public class HomeRvHeaderView extends LinearLayout {
             }
         }
 
-        if (category.size() > 0) {
-            mCategoryist.clear();
-            mCategoryist.addAll(category);
-            mRecommendAdapter.notifyDataSetChanged();
+        // 首页三个图标类型
+        for (int i = 0; i < typeBeanList.size(); i++){
+            typeTextViewList.get(i).setText(typeBeanList.get(i).getName());
         }
 
-        if (tabList.size() > 0) {
-            mTabLayou.setVisibility(VISIBLE);
-            mTabLayou.removeAllTabs();
-            for (int i = 0; i < tabList.size(); i++) {
-                mTabLayou.addTab(mTabLayou.newTab().setText(tabList.get(i).getName()));
-            }
-            mTabLayou.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                @Override
-                public void onTabSelected(TabLayout.Tab tab) {
-                    if (mListener != null) {
-                        mListener.tabChange(tab.getPosition());
-                    }
-                }
-
-                @Override
-                public void onTabUnselected(TabLayout.Tab tab) {
-
-                }
-
-                @Override
-                public void onTabReselected(TabLayout.Tab tab) {
-
-                }
-            });
-        } else {
-            mTabLayou.setVisibility(GONE);
+        if (recommendList.size() > 0) {
+            recommendProductList.clear();
+            recommendProductList.addAll(recommendList);
+            homeRecommendProductAdapter.notifyDataSetChanged();
         }
     }
 
-    public interface TabChangeListener {
-        void tabChange(int position);
+    @Override
+    public void onClick(View v) {
+        if (clickHomeHeadListener == null)
+            return;
+        switch (v.getId()) {
+            case R.id.tv_home_type_first:
+                // 无视黑白
+                clickHomeHeadListener.onTypeClicked(0);
+                break;
+            case R.id.tv_home_type_sec:
+                // 极速下款
+                clickHomeHeadListener.onTypeClicked(1);
+                break;
+            case R.id.tv_home_type_third:
+                // 反馈
+                clickHomeHeadListener.onTypeClicked(2);
+                break;
+            case R.id.tv_loan_all:
+                // 全部
+                clickHomeHeadListener.onLoanAllClicked();
+                break;
+            default:
+                break;
+        }
     }
 
-    public interface ClickProductListener {
-        void onProductClick(String productId, String url, String moduleName, int moduleOrder);
+    public interface ClickHomeHeadListener {
+        void onTypeClicked(int position);
+        void onRecommendProductClick(String productId, String url, String moduleName, int moduleOrder);
+        void onLoanAllClicked();
     }
 
     public void startScroll() {

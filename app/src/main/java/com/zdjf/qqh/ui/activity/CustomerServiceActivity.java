@@ -1,8 +1,6 @@
 package com.zdjf.qqh.ui.activity;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,67 +10,33 @@ import com.zdjf.qqh.R;
 import com.zdjf.qqh.data.entity.ServiceBean;
 import com.zdjf.qqh.presenter.ServicePresenter;
 import com.zdjf.qqh.ui.base.BaseActivity;
-import com.zdjf.qqh.ui.customview.CustomDialog;
+import com.zdjf.qqh.ui.customview.TopBarView;
 import com.zdjf.qqh.utils.GlideImageLoader;
-import com.zdjf.qqh.utils.RegexUtil;
 import com.zdjf.qqh.view.IServiceView;
 import com.umeng.analytics.MobclickAgent;
-import com.yanzhenjie.permission.Action;
-import com.yanzhenjie.permission.AndPermission;
-import com.yanzhenjie.permission.Permission;
 import com.zhy.autolayout.AutoLinearLayout;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.OnLongClick;
-
-import static com.zdjf.qqh.utils.EditTextUtil.copyString;
 
 /**
- * 联系客服
+ * 专属客服
  */
 public class CustomerServiceActivity extends BaseActivity<ServicePresenter> implements IServiceView<ServiceBean> {
-    @BindView(R.id.phone_num)
-    TextView mPhoneNumTv;
-    /**
-     * 公众号
-     */
-    @BindView(R.id.account_tv)
-    TextView mAccountTv;
-    /**
-     * 二维码
-     */
-    @BindView(R.id.qr_code_iv)
-    ImageView mQRCode;
-    /**
-     * QQ客服布局
-     */
-    @BindView(R.id.qq_service_layout)
-    LinearLayout mQQService;
-    /**
-     * QQ号
-     */
-    @BindView(R.id.qq_accounts)
-    TextView mQqAccounts;
-    /**
-     * 工作时间
-     */
-    @BindView(R.id.work_time)
-    TextView mWorkTime;
-    /**
-     * 客服电话
-     */
-    @BindView(R.id.phone_layout)
-    LinearLayout phone_layout;
-
     @BindView(R.id.content_layout)
-    AutoLinearLayout mContentLayout;
+    LinearLayout mContentLayout;
+    @BindView(R.id.tv_service_name)
+    TextView tv_service_name;
+    @BindView(R.id.tv_service_number)
+    TextView tv_service_number;
+    @BindView(R.id.tv_service_level)
+    TextView tv_service_level;
+    @BindView(R.id.iv_qr_code)
+    ImageView iv_qr_code;
+    @BindView(R.id.tv_weixin)
+    TextView tv_weixin;
     @BindView(R.id.view_error)
     AutoLinearLayout mNotNetLayout;
-
-    private CustomDialog mDialog;
 
     @Override
     protected void initPresenter(Intent intent) {
@@ -81,11 +45,12 @@ public class CustomerServiceActivity extends BaseActivity<ServicePresenter> impl
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_service;
+        return R.layout.activity_custom_service;
     }
 
     @Override
     protected void initView() {
+        ((TopBarView)findViewById(R.id.top_view)).setTitleBold();
         mPresenter.getData();
     }
 
@@ -110,73 +75,14 @@ public class CustomerServiceActivity extends BaseActivity<ServicePresenter> impl
 
     @Override
     public void getDataSuccess(ServiceBean bean) {
-        mPhoneNumTv.setText(bean.getPhone());
-        mAccountTv.setText(bean.getWeixin());
-        mQqAccounts.setText(bean.getQq());
-        mWorkTime.setText(bean.getWork());
-        GlideImageLoader.setImg(this, bean.getQrCode(), mQRCode, R.mipmap.bitmap_wechat, R.mipmap.bitmap_wechat);
+        tv_service_name.setText(bean.name);
+        tv_service_number.setText("工号：" + bean.workNumber);
+        tv_service_level.setText("职位：" + bean.level);
+        tv_weixin.setText("微信号：" + bean.weixin);
+        GlideImageLoader.setImg(this, bean.qrCode, iv_qr_code, R.mipmap.bitmap_wechat, R.mipmap.bitmap_wechat);
         mContentLayout.setVisibility(View.VISIBLE);
         mNotNetLayout.setVisibility(View.GONE);
 
-    }
-
-    /**
-     * 点击复制
-     */
-    @OnClick(R.id.copy_btn)
-    void click() {
-        String account = mAccountTv.getText().toString();
-        if (!TextUtils.isEmpty(account)) {
-            copyString(this, account);
-        }
-    }
-
-    /**
-     * 长按qq复制
-     */
-    @OnLongClick(R.id.qq_service_layout)
-    boolean longQqClick() {
-        String qqAccount = mQqAccounts.getText().toString();
-        if (!TextUtils.isEmpty(qqAccount)) {
-            copyString(this, qqAccount);
-        }
-        return true;
-    }
-
-    /**
-     * 点击电话
-     */
-    @OnClick(R.id.phone_layout)
-    void phoneClick() {
-        final String phoneNum = mPhoneNumTv.getText().toString();
-        if (TextUtils.isEmpty(phoneNum) || (!RegexUtil.isMobileSimple(phoneNum) && !RegexUtil.isTel(phoneNum))) {
-            return;
-        }
-
-        AndPermission.with(this).runtime().permission(Permission.CALL_PHONE).onGranted(new Action<List<String>>() {
-            @Override
-            public void onAction(List<String> data) {
-                if (mDialog == null) {
-                    mDialog = new CustomDialog(CustomerServiceActivity.this);
-                }
-                mDialog.builder().setTitle("拨打：" + phoneNum + "?")
-                        .setNegativeButton("", null)
-                        .setPositiveButton("", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent();
-                                intent.setAction(Intent.ACTION_CALL);
-                                intent.setData(Uri.parse("tel:" + phoneNum));
-                                CustomerServiceActivity.this.startActivity(intent);
-                            }
-                        }).show();
-            }
-        }).onDenied(new Action<List<String>>() {
-            @Override
-            public void onAction(List<String> data) {
-                showToast("权限获取失败");
-            }
-        }).start();
     }
 
     @Override
@@ -192,7 +98,7 @@ public class CustomerServiceActivity extends BaseActivity<ServicePresenter> impl
         mPresenter.getData();
     }
 
-    private String pageTitle = "联系客服";
+    private String pageTitle = "专属客服";
 
     @Override
     protected void onResume() {

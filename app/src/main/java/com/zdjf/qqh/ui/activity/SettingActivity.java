@@ -22,6 +22,7 @@ import com.zdjf.qqh.presenter.SettingPresenter;
 import com.zdjf.qqh.ui.base.BaseActivity;
 import com.zdjf.qqh.ui.customview.ActionSheetDialog;
 import com.zdjf.qqh.ui.customview.CustomDialog;
+import com.zdjf.qqh.ui.customview.TopBarView;
 import com.zdjf.qqh.utils.GlideImageLoader;
 import com.zdjf.qqh.utils.ImageUtil;
 import com.zdjf.qqh.utils.IntentUtil;
@@ -84,6 +85,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements I
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((TopBarView)findViewById(R.id.top_view)).setTitleBold();
         if (savedInstanceState != null) {
             String hearFilePath = savedInstanceState.getString("hearFile", "");
             if (!TextUtils.isEmpty(hearFilePath)) {

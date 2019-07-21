@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20px"
-    android:background="@android:color/white"
+    android:background="@color/color_FFFFFF"
+    android:paddingLeft="@dimen/dp_16"
+    android:paddingRight="@dimen/dp_16"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/recommend_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="26px"
-        android:layout_marginTop="26px"
-        android:drawableLeft="@mipmap/home_icon_recommend"
-        android:drawablePadding="18px"
-        android:gravity="center_vertical"
-        android:text="@string/today_recommend"
-        android:textColor="@color/mainTextColor"
-        android:textSize="@dimen/middle_text_size" />
-
-    <View
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/line_height"
-        android:background="@color/lineColor" />
+        android:layout_height="wrap_content"
+        android:background="@color/color_FFFFFF">
+
+        <ImageView
+            android:id="@+id/iv_recommend_icon"
+            android:layout_width="@dimen/dp4"
+            android:layout_height="@dimen/dp_14"
+            android:layout_centerVertical="true"
+            android:background="@color/color_FFC71D" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp6"
+            android:layout_toRightOf="@id/iv_recommend_icon"
+            android:text="@string/today_recommend"
+            android:textColor="@color/color_181001"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <com.zdjf.qqh.ui.customview.MyRecyclerView
-        android:id="@+id/recommend_list"
+        android:id="@+id/home_recommend_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</com.zhy.autolayout.AutoLinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp4"/>
+</LinearLayout>

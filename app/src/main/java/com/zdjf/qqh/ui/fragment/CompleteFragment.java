@@ -15,6 +15,7 @@ import com.zdjf.qqh.presenter.CompletePresenter;
 import com.zdjf.qqh.ui.adapter.CompleteAdapter;
 import com.zdjf.qqh.ui.base.BaseFragment;
 import com.zdjf.qqh.ui.customview.CompleteDecoration;
+import com.zdjf.qqh.ui.customview.TopBarView;
 import com.zdjf.qqh.utils.IntentUtil;
 import com.zdjf.qqh.view.ICompleteView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -28,8 +29,10 @@ import butterknife.OnCheckedChanged;
 /**
  * 贷款大全
  */
-public class CompleteFragment extends BaseFragment<CompletePresenter> implements ICompleteView, SwipeRefreshLayout.OnRefreshListener,
-        BaseQuickAdapter.RequestLoadMoreListener, CompleteAdapter.OnApplyClickListener {
+public class CompleteFragment extends BaseFragment<CompletePresenter> implements ICompleteView, BaseQuickAdapter.OnItemClickListener,
+        SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
+    @BindView(R.id.top_view)
+    TopBarView mTopView;
     @BindView(R.id.rb_comprehensive_sort)
     RadioButton rb_comprehensive_sort;
     @BindView(R.id.refresh_layout)
@@ -46,10 +49,11 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        mAdapter = new CompleteAdapter(mActivity, new ArrayList<CompleteProductBean.ProductBean>(), this);
+        mTopView.setTitleBold();
+        mAdapter = new CompleteAdapter(mActivity, new ArrayList<CompleteProductBean.ProductBean>());
         mRecycleView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mRecycleView.addItemDecoration(new CompleteDecoration(20, getResources().getColor(R.color.color_F2F6F8)));
         mRecycleView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(this);
         mAdapter.setOnLoadMoreListener(this, mRecycleView);
         mRefreshLayout.setOnRefreshListener(this);
         mRefreshLayout.setColorSchemeColors(mActivity.getResources().getColor(R.color.colorPrimary));
@@ -76,6 +80,13 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
     @Override
     public void hideLoading() {
         mLoading.dismissLoading();
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        //点击某一项
+        CompleteProductBean.ProductBean bean = (CompleteProductBean.ProductBean) adapter.getData().get(position);
+        mPresenter.recordProduct(bean.id, bean.link, Constants.moduleName.Complete.getName(), "");
     }
 
     @Override
@@ -146,11 +157,6 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
                     break;
             }
         }
-    }
-
-    @Override
-    public void onApplyClicked(CompleteProductBean.ProductBean productBean) {
-        mPresenter.recordProduct(productBean.id, productBean.link, Constants.moduleName.Complete.getName(), "");
     }
 
 }

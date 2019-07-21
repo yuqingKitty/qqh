@@ -67,13 +67,13 @@ public class MainActivity extends BaseFragmentActivity {
                     //点击首页
                     selectTab(0);
                     break;
-                case R.id.mine_btn:
-                    //点击个人中心
-                    selectTab(2);
-                    break;
                 case R.id.complete_btn:
                     //点击贷超大全
                     selectTab(1);
+                    break;
+                case R.id.mine_btn:
+                    //点击个人中心
+                    selectTab(2);
                     break;
             }
         }
@@ -126,5 +126,20 @@ public class MainActivity extends BaseFragmentActivity {
             }
         });
         rxBus.addSubscription(this, disposable);
+    }
+
+    public void setFragment(int pos){
+        selectTab(pos);
+        switch (pos){
+            case 0:
+                mHomeBtn.setChecked(true);
+                break;
+            case 1:
+                mCompleteBtn.setChecked(true);
+                break;
+            case 2:
+                mMineBtn.setChecked(true);
+                break;
+        }
     }
 }
