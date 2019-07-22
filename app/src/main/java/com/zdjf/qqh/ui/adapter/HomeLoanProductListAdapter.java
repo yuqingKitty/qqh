@@ -26,10 +26,8 @@ public class HomeLoanProductListAdapter extends BaseAdapter<HomeBean.ProductBean
         helper.setText(R.id.tv_product_name, item.getName())
                 .setText(R.id.tv_product_tag, item.getTagDesc())
                 .setText(R.id.tv_loan_range, item.getLoanRange())
-                .setText(R.id.tv_loan_term, "借款期限"+item.getLoanTerm())
+                .setText(R.id.tv_loan_term, "借款期限" + item.getLoanTerm())
                 .setText(R.id.tv_market_phrases, item.getMarketPhrases());
-
-
 
     }
 }

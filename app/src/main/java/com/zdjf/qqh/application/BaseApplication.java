@@ -16,6 +16,8 @@ import com.zdjf.qqh.utils.ToastCompat;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
+import cn.jpush.android.api.JPushInterface;
+
 import static com.zdjf.qqh.data.commons.Constants.HIDE_LOG;
 import static com.zdjf.qqh.data.commons.Constants.IS_RELEASE;
 import static com.zdjf.qqh.data.commons.Constants.LOGIN_SAVE_KEY;
@@ -45,6 +47,7 @@ public class BaseApplication extends Application {
         }
         UMConfigure.setEncryptEnabled(IS_RELEASE);
         registerActivityLifecycleCallbacks(ActivityLifecycleHelper.build());
+        JPushInterface.init(this);
     }
 
     /**

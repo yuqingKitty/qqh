@@ -100,6 +100,8 @@
                 android:text="借款期限3～12月"
                 android:textColor="@color/color_181001"
                 android:textSize="@dimen/sp_16"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textStyle="bold"/>
 
             <TextView
