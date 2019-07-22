@@ -21,6 +21,7 @@ public class PushMessageReceiver  extends JPushMessageReceiver {
     @Override
     public void onNotifyMessageOpened(Context context, NotificationMessage message) {
         Log.e(TAG,"[onNotifyMessageOpened] "+message);
+        context.startActivity(new Intent(context, MainActivity.class));
     }
 
     @Override
