@@ -8,13 +8,14 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.zdjf.qqh.ui.activity.AboutUsActivity;
 import com.zdjf.qqh.ui.activity.ChangePwdActivity;
 import com.zdjf.qqh.ui.activity.CustomerServiceActivity;
-import com.zdjf.qqh.ui.activity.FeedbackActivity;
 import com.zdjf.qqh.ui.activity.ForgetPwdActivity;
+import com.zdjf.qqh.ui.activity.HomeTypeProductActivity;
 import com.zdjf.qqh.ui.activity.LoginActivity;
 import com.zdjf.qqh.ui.activity.MainActivity;
+import com.zdjf.qqh.ui.activity.MessageCenterActivity;
+import com.zdjf.qqh.ui.activity.MyLoanRecordActivity;
 import com.zdjf.qqh.ui.activity.ProtocolActivity;
 import com.zdjf.qqh.ui.activity.RegisterActivity;
 import com.zdjf.qqh.ui.activity.SetNicknameActivity;
@@ -24,6 +25,7 @@ import com.zdjf.qqh.ui.activity.WebActivity;
 
 import static com.zdjf.qqh.data.commons.Constants.CHOOSE_PICTURE;
 import static com.zdjf.qqh.data.commons.Constants.CMSTYPE_INTENT_KEY;
+import static com.zdjf.qqh.data.commons.Constants.EXTRA_TYPE;
 import static com.zdjf.qqh.data.commons.Constants.PHOTO_REQUEST_RESULT;
 import static com.zdjf.qqh.data.commons.Constants.TITLE_INTENT_KEY;
 
@@ -104,12 +106,19 @@ public class IntentUtil {
     }
 
     /**
-     * 意见反馈
-     *
+     * 申请记录
      * @param context
      */
-    public static void toFeedbackActivity(Activity context) {
-        context.startActivity(new Intent(context, FeedbackActivity.class));
+    public static void toMyLoanReordActivity(Activity context) {
+        context.startActivity(new Intent(context, MyLoanRecordActivity.class));
+    }
+
+    /**
+     * 消息中心
+     * @param context
+     */
+    public static void toMessageCenterActivity(Activity context) {
+        context.startActivity(new Intent(context, MessageCenterActivity.class));
     }
 
     /**
@@ -119,15 +128,6 @@ public class IntentUtil {
      */
     public static void toServiceActivity(Activity context) {
         context.startActivity(new Intent(context, CustomerServiceActivity.class));
-    }
-
-    /**
-     * 客服
-     *
-     * @param context
-     */
-    public static void toAboutUsActivity(Activity context) {
-        context.startActivity(new Intent(context, AboutUsActivity.class));
     }
 
     /**
@@ -199,6 +199,19 @@ public class IntentUtil {
         Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
         openAlbumIntent.setType("image/*");
         activity.startActivityForResult(openAlbumIntent, CHOOSE_PICTURE);
+    }
+
+    /**
+     * 跳转首页类型
+     * @param context
+     * @param title
+     * @param type
+     */
+    public static void toHomeTypeProductActivity(Activity context, String title, int type) {
+        Intent intent = new Intent(context, HomeTypeProductActivity.class);
+        intent.putExtra(TITLE_INTENT_KEY, title);
+        intent.putExtra(EXTRA_TYPE, type);
+        context.startActivity(intent);
     }
 
 

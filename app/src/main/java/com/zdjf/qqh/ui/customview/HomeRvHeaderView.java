@@ -38,6 +38,7 @@ public class HomeRvHeaderView extends LinearLayout implements View.OnClickListen
     private View mView;
     private Banner mBanner;
     private ViewFlipper mFlipperView;
+    private TextView tv_home_type_first, tv_home_type_sec, tv_home_type_third;
     private List<TextView> typeTextViewList;
     private RecyclerView homeRecommendRecyclerView;
 
@@ -72,9 +73,9 @@ public class HomeRvHeaderView extends LinearLayout implements View.OnClickListen
     private void initView() {
         mBanner = findViewById(R.id.home_banner);
         mFlipperView = findViewById(R.id.home_view_flipper);
-        TextView tv_home_type_first = findViewById(R.id.tv_home_type_first);
-        TextView tv_home_type_sec = findViewById(R.id.tv_home_type_sec);
-        TextView tv_home_type_third = findViewById(R.id.tv_home_type_third);
+        tv_home_type_first = findViewById(R.id.tv_home_type_first);
+        tv_home_type_sec = findViewById(R.id.tv_home_type_sec);
+        tv_home_type_third = findViewById(R.id.tv_home_type_third);
         homeRecommendRecyclerView = findViewById(R.id.home_recommend_list);
         typeTextViewList = new ArrayList<>();
         typeTextViewList.add(tv_home_type_first);
@@ -185,15 +186,15 @@ public class HomeRvHeaderView extends LinearLayout implements View.OnClickListen
         switch (v.getId()) {
             case R.id.tv_home_type_first:
                 // 无视黑白
-                clickHomeHeadListener.onTypeClicked(0);
+                clickHomeHeadListener.onTypeClicked(tv_home_type_first.getText().toString(), 0);
                 break;
             case R.id.tv_home_type_sec:
                 // 极速下款
-                clickHomeHeadListener.onTypeClicked(1);
+                clickHomeHeadListener.onTypeClicked(tv_home_type_sec.getText().toString(),1);
                 break;
             case R.id.tv_home_type_third:
                 // 反馈
-                clickHomeHeadListener.onTypeClicked(2);
+                clickHomeHeadListener.onTypeClicked(tv_home_type_third.getText().toString(),2);
                 break;
             case R.id.tv_loan_all:
                 // 全部
@@ -205,7 +206,7 @@ public class HomeRvHeaderView extends LinearLayout implements View.OnClickListen
     }
 
     public interface ClickHomeHeadListener {
-        void onTypeClicked(int position);
+        void onTypeClicked(String title, int type);
         void onRecommendProductClick(String productId, String url, String moduleName, int moduleOrder);
         void onLoanAllClicked();
     }

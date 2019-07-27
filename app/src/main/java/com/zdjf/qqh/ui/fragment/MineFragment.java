@@ -28,9 +28,8 @@ import static com.zdjf.qqh.data.commons.Constants.RXBUS_LOGIN_SUCCESS_KEY;
 import static com.zdjf.qqh.data.commons.Constants.RXBUS_LOGOUT_SUCCESS_KEY;
 import static com.zdjf.qqh.data.commons.Constants.RXBUS_NICKNAME_SUCCESS_KEY;
 import static com.zdjf.qqh.data.commons.Constants.RXBUS_UPLOAAD_SUCCESS_KEY;
-import static com.zdjf.qqh.utils.EditTextUtil.copyStringUnshowToast;
-import static com.zdjf.qqh.utils.IntentUtil.toAboutUsActivity;
-import static com.zdjf.qqh.utils.IntentUtil.toFeedbackActivity;
+import static com.zdjf.qqh.utils.IntentUtil.toMessageCenterActivity;
+import static com.zdjf.qqh.utils.IntentUtil.toMyLoanReordActivity;
 import static com.zdjf.qqh.utils.IntentUtil.toServiceActivity;
 import static com.zdjf.qqh.utils.IntentUtil.toSettingActivity;
 
@@ -47,7 +46,6 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
     @BindView(R.id.mine_head)
     ImageView mUserHead;
     private UserBean mUserBean;
-    WxAccountsFragment wxFragment;
 
     @Override
     protected void initPresenter() {
@@ -90,15 +88,17 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
                 }
                 break;
             case R.id.tv_loan_record:
-                //关于
-                toAboutUsActivity(mActivity);
-                mPresenter.simpleRecord("", Constants.moduleName.AboutUs.getName(), "");
+                //申请记录
+                if (BaseApplication.isLogin(mActivity, true, true)) {
+                    toMyLoanReordActivity(mActivity);
+                    mPresenter.simpleRecord("", Constants.moduleName.MyLoanRecord.getName(), "");
+                }
                 break;
             case R.id.tv_message_center:
-                //反馈
+                // 消息中心
                 if (BaseApplication.isLogin(mActivity, true, true)) {
-                    toFeedbackActivity(mActivity);
-                    mPresenter.simpleRecord("", Constants.moduleName.Feedback.getName(), "");
+                    toMessageCenterActivity(mActivity);
+                    mPresenter.simpleRecord("", Constants.moduleName.MessageCenter.getName(), "");
                 }
                 break;
             case R.id.tv_my_service:
@@ -106,14 +106,6 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
                 toServiceActivity(mActivity);
                 mPresenter.simpleRecord("", Constants.moduleName.Service.getName(), "");
                 break;
-//            case R.id.to_wx:
-//                //微信公众号
-//                copyStringUnshowToast(mActivity, "JYCSPRO");
-//                if (wxFragment == null) {
-//                    wxFragment = WxAccountsFragment.newInstance(null);
-//                }
-//                wxFragment.show(getChildFragmentManager(), "wx");
-//                break;
             default:
                 break;
         }

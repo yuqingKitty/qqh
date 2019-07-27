@@ -42,6 +42,7 @@ public class Constants {
     public static final String TITLE_INTENT_KEY = "title";
 
     public static final String PHOTO_JPG_FORMAT = ".jpg";
+    public static final String EXTRA_TYPE = "extra_type";
     /**
      * 选择照片回调
      */
@@ -67,7 +68,7 @@ public class Constants {
     public static final String FEEDBACK_IMG = "dc/feed_back/"; //用户反馈地址
 
     public enum moduleName {
-        TypeProduct("0"), Banner("1"), Notice("2"), Type("3"), Recommend("4"), ScrollBottom("5"), AboutUs("6"), Service("7"), Setting("8"), Feedback("9"), Complete("10");
+        TypeProduct("0"), Banner("1"), Notice("2"), Type("3"), Recommend("4"), ScrollBottom("5"), MyLoanRecord("6"), Service("7"), Setting("8"), MessageCenter("9"), Complete("10");
 
         private String name;
 

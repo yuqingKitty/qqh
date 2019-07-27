@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FFFFFF"
+    android:orientation="vertical">
+
+    <com.zdjf.qqh.ui.customview.TopBarView
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_title="@string/loan_record"
+        app:show_close="visible"
+        app:title_text_color="@color/mainTextColor" />
+
+    <LinearLayout
+        android:id="@+id/ll_loan_empty"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_250"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:drawableTop="@mipmap/icon_no_loan_record"
+            android:drawablePadding="@dimen/dp_19"
+            android:gravity="center_horizontal"
+            android:text="@string/no_loan_record"
+            android:textColor="@color/color_717171"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_loan_record"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_250">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_loan_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_recommend_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/my_recommend_product"
+            android:textColor="@color/color_181001"
+            android:textSize="@dimen/sp_15" />
+        <View
+            android:layout_width="@dimen/dp_46"
+            android:layout_height="@dimen/dp1"
+            android:layout_toLeftOf="@id/tv_recommend_tip"
+            android:layout_marginRight="@dimen/dp5"
+            android:layout_centerVertical="true"
+            android:background="@color/color_D8D8D8"/>
+
+        <View
+            android:layout_width="@dimen/dp_46"
+            android:layout_height="@dimen/dp1"
+            android:layout_toRightOf="@id/tv_recommend_tip"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_centerVertical="true"
+            android:background="@color/color_D8D8D8"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recommend_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

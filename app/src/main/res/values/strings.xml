@@ -92,4 +92,9 @@
     <string name="apply_now">立即申请</string>
     <string name="most_loan">最高可借(¥)</string>
 
+    <string name="no_loan_record">暂无申请记录</string>
+    <string name="my_recommend_product">试试这些通过率高的口子吧</string>
+    <string name="no_message">暂无消息记录</string>
+    <string name="apply_time">申请时间</string>
+
 </resources>

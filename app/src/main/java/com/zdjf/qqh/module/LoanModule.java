@@ -6,7 +6,10 @@ import com.zdjf.qqh.application.BaseApplication;
 import com.zdjf.qqh.data.entity.BaseBean;
 import com.zdjf.qqh.data.entity.CompleteProductBean;
 import com.zdjf.qqh.data.entity.HomeBean;
+import com.zdjf.qqh.data.entity.HomeTypeProductBean;
 import com.zdjf.qqh.data.entity.LoginBean;
+import com.zdjf.qqh.data.entity.MessageCenterBean;
+import com.zdjf.qqh.data.entity.MyLoanRecordBean;
 import com.zdjf.qqh.data.entity.ProtocolBean;
 import com.zdjf.qqh.data.entity.ServiceBean;
 import com.zdjf.qqh.data.entity.StatisticsBean;
@@ -294,4 +297,75 @@ public class LoanModule {
     private static RequestBody getRequestBody(Map<String, Object> params) {
         return RequestBody.create(MediaType.parse("Content-Type, application/json"), GsonUtil.mapToJson(params));
     }
+
+    /**
+     * 申请记录
+     * @param params
+     * @param observer
+     */
+    public void getMyLoanRecordList(Map<String, Object> params, Observer observer) {
+        Observable<MyLoanRecordBean> observable = LOAN_SERVICE.getMyLoanRecordList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(observer);
+    }
+
+    /**
+     * 申请记录-推荐列表
+     * @param params
+     * @param observer
+     */
+    public void getMyRecommendProductList(Map<String, Object> params, Observer observer) {
+        Observable<MyLoanRecordBean> observable = LOAN_SERVICE.getMyRecommendProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(observer);
+    }
+
+    /**
+     * 消息中心
+     * @param params
+     * @param observer
+     */
+    public void getMessageCenterList(Map<String, Object> params, Observer observer) {
+        Observable<MessageCenterBean> observable = LOAN_SERVICE.getMessageCenterList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(observer);
+    }
+
+    /**
+     * 首页类型页面-广告
+     * @param params
+     * @param observer
+     */
+    public void getHomeTypeAdList(Map<String, Object> params, Observer observer) {
+        Observable<HomeTypeProductBean> observable = LOAN_SERVICE.getHomeTypeAdList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(observer);
+    }
+
+    /**
+     * 首页类型页面-产品列表
+     * @param params
+     * @param observer
+     */
+    public void getHomeTypeProductList(Map<String, Object> params, Observer observer) {
+        Observable<HomeTypeProductBean> observable = LOAN_SERVICE.getHomeTypeProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(observer);
+    }
+
 }

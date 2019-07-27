@@ -262,8 +262,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     }
 
     @Override
-    public void onTypeClicked(int position) {
-        showToast(""+position);
+    public void onTypeClicked(String title, int type) {
+        IntentUtil.toHomeTypeProductActivity(getActivity(), title, type);
     }
 
     @Override
