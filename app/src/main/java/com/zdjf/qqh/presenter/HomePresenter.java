@@ -12,88 +12,36 @@ import com.zdjf.qqh.utils.LogUtil;
 import com.zdjf.qqh.view.IHomeView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.observers.DisposableObserver;
 
 public class HomePresenter extends BasePresenter<IHomeView> {
+    private int pageNumber = 1;
+    private int pageSize = 10;
 
     public HomePresenter(Activity context, IHomeView view) {
         super(context, view);
     }
 
     /**
-     * 加载数据
+     * 加载头部数据
      */
-    public void loadData() {
+    public void loadHeadData() {
         obtainView().showLoading();
-        getHeadData(false);
-    }
-
-    /**
-     * 加载列表
-     *
-     * @param typeId   产品id
-     * @param pageNo   页数
-     * @param pageSize 大小
-     */
-    public void loadList(String typeId, int pageNo, int pageSize) {
-        obtainView().showLoading();
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("typeId", typeId);
-        params.put("pageNo", pageNo + 1);
-        params.put("pageSize", pageSize);
-        mModel.getProductList(params, new DisposableObserver<HomeBean>() {
-
-            @Override
-            public void onNext(HomeBean homeBean) {
-                if (parse(mContext, homeBean)) {
-                    if (homeBean.getProductVOs().size() == 0) {
-                        obtainView().noListData();
-                    } else {
-                        obtainView().fillList(homeBean);
-                    }
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtil.e(e.toString());
-                obtainView().ShowToast("网络异常");
-                obtainView().hideLoading();
-                obtainView().getListFailed();
-                obtainView().showErrorView("");
-            }
-
-            @Override
-            public void onComplete() {
-                obtainView().getListFinish();
-            }
-        });
-    }
-
-    /**
-     * 刷新数据
-     */
-    public void refreshData() {
-        getHeadData(true);
+        getHeadData();
     }
 
     /**
      * 获取头部信息
-     *
-     * @param isRefresh
      */
-    private void getHeadData(final boolean isRefresh) {
+    private void getHeadData() {
         mModel.getHomeData(new HashMap<String, Object>(), new DisposableObserver<HomeBean>() {
             @Override
             public void onNext(HomeBean homeBean) {
                 if (parse(mContext, homeBean)) {
-                    if (isRefresh) {
-                        obtainView().onRefreshData(homeBean);
-                    } else {
-                        obtainView().fillData(homeBean);
-                    }
+                    obtainView().fillHeadData(homeBean);
                 }
             }
 
@@ -102,35 +50,66 @@ public class HomePresenter extends BasePresenter<IHomeView> {
                 LogUtil.e(e.toString());
                 obtainView().ShowToast("网络异常");
                 obtainView().hideLoading();
-                obtainView().getHeadFinish();
-                obtainView().onRefreshFinish();
+                obtainView().onHeadRefreshFinish();
                 obtainView().showErrorView("");
             }
 
             @Override
             public void onComplete() {
-                obtainView().getHeadFinish();
-                obtainView().onRefreshFinish();
+                obtainView().onHeadRefreshFinish();
                 obtainView().hideLoading();
             }
         });
     }
 
-    public void loadMore(final String typeId, final int pageNo, final int pageSize) {
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("typeId", typeId);
-        params.put("pageNo", pageNo + 1);
+    /**
+     * 初始化数据
+     */
+    public void initProductListData() {
+        pageNumber = 1;
+        getHomeProductList(pageNumber, pageSize);
+    }
+
+    /**
+     * 加载更多
+     */
+    public void loadProductMoreData() {
+        getHomeProductList(pageNumber, pageSize);
+    }
+
+    /**
+     * 加载列表
+     */
+    private void getHomeProductList(final int number, final int pageSize) {
+        obtainView().showLoading();
+        Map<String, Object> params = new HashMap<>();
+        params.put("typeId", "1");
+        params.put("pageNo", number);
         params.put("pageSize", pageSize);
-        mModel.getProductList(params, new DisposableObserver<HomeBean>() {
+        mModel.getHomeProductList(params, new DisposableObserver<HomeBean>() {
 
             @Override
             public void onNext(HomeBean homeBean) {
                 if (parse(mContext, homeBean)) {
-                    if (homeBean.getProductVOs() == null || homeBean.getProductVOs().size() == 0) {
-                        obtainView().hasNoMoreData();
+                    List<HomeBean.ProductBean> listBean = homeBean.getProductVOs();
+                    if (listBean != null && listBean.size() > 0) {
+                        if (pageNumber == 1) {
+                            //刷新完成
+                            obtainView().refreshProductDataSuccess(listBean);
+                        } else {
+                            obtainView().loadProductDataSuccess(listBean);
+                        }
+                        if (listBean.size() < pageSize) {
+                            obtainView().noMoreProductData();
+                        }
+                        pageNumber += 1;
+                    } else if (pageNumber == 1) {
+                        obtainView().clearProductData();
                     } else {
-                        obtainView().appendMoreDataToView(homeBean);
+                        obtainView().noMoreProductData();
                     }
+                } else {
+                    obtainView().loadMordProductFail();
                 }
             }
 
@@ -139,11 +118,13 @@ public class HomePresenter extends BasePresenter<IHomeView> {
                 LogUtil.e(e.toString());
                 obtainView().ShowToast("网络异常");
                 obtainView().hideLoading();
+                obtainView().loadMordProductFail();
+                obtainView().showErrorView("");
             }
 
             @Override
             public void onComplete() {
-                obtainView().getListFinish();
+                obtainView().getHomeProductListFinish();
             }
         });
     }

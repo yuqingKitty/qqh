@@ -6,32 +6,16 @@ public class HomeBean extends BaseBean {
     private List<BannerBean> adList;
     private List<NoticeBean> noticeList;
     private List<TypeBean> typePOs;
-    /**
-     * 推荐list
-     */
-    private List<ProductBean> proRecommendVOs;
-    /**
-     * 列表list
-     */
-    private List<ProductBean> productVOs;
-    /**
-     * 已申请人数
-     */
-    private String number;
+    private List<ProductBean> proRecommendVOs;  // 推荐list
+    private List<ProductBean> productVOs;  // 列表list
 
     /**
      * banner
      */
     public class BannerBean {
         private String index;
-        /**
-         * 图片地址
-         */
         private String imageURL;
-        /**
-         * 链接跳转地址
-         */
-        private String srcURL;
+        private String srcURL; // 链接跳转地址
         private String width;
         private String height;
 
@@ -186,22 +170,10 @@ public class HomeBean extends BaseBean {
      */
     public class TypeBean {
         private String id;
-        /**
-         * 创建时间
-         */
-        private String createDate;
-        /**
-         * 排序
-         */
-        private String orderNumber;
-        /**
-         * 类型名字
-         */
-        private String name;
-        /**
-         * 是否启用
-         */
-        private String enableFlag;
+        private String createDate; // 创建时间
+        private String orderNumber;  // 排序
+        private String name; // 类型名字
+        private String enableFlag; // 是否启用
 
         public String getId() {
             return id;
@@ -247,33 +219,17 @@ public class HomeBean extends BaseBean {
     public static class ProductBean {
         private String id;
         private String productId;
-        //推荐排序
-        private int noticeIndex;
-        //列表排序
-        private String orderNumber;
+        private int noticeIndex; //推荐排序
+        private String orderNumber;  //列表排序
         private String name;
-        /**
-         * 金额区间
-         */
-        private String loanRange;
+        private String loanRange; // 金额区间
         private String logoUrl;
         private String link;
-
         private String des;
-        /**
-         * 天数区间
-         */
-        private String loanTerm;
-        /**
-         * 产品类型
-         */
-        private String productTypes;
+        private String loanTerm; //天数区间
+        private String productTypes; //产品类型
         private String number;
-        /**
-         * 营销短语
-         */
-        private String marketPhrases;
-
+        private String marketPhrases; // 营销短语
         private String tagDesc;
 
         private List<labelBean> labels;
@@ -472,11 +428,4 @@ public class HomeBean extends BaseBean {
         this.productVOs = productVOs;
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
 }

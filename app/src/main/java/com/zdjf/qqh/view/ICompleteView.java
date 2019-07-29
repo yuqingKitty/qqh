@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ICompleteView extends IBaseView {
     /**
-     * 获取列表成功
+     * 加载列表成功
      */
     void loadDataSuccess(List<CompleteProductBean.ProductBean> data);
 

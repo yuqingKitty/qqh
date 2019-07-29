@@ -1,48 +1,43 @@
 package com.zdjf.qqh.view;
 
 import com.zdjf.qqh.data.entity.BaseBean;
+import com.zdjf.qqh.data.entity.HomeBean;
+
+import java.util.List;
 
 public interface IHomeView<T extends BaseBean> extends IBaseView {
-    /**
-     * 添加更多数据（用于刷新）
-     *
-     * @param data
-     */
-    void appendMoreDataToView(T data);
+    void fillHeadData(T data); // 加载头部数据
+
+    void onHeadRefreshFinish();
 
     /**
-     * 没有更多
+     * 加载列表成功
      */
-    void hasNoMoreData();
+    void loadProductDataSuccess(List<HomeBean.ProductBean> data);
 
     /**
-     * 列表没有数据
+     * 刷新列表成功
      */
-    void noListData();
+    void refreshProductDataSuccess(List<HomeBean.ProductBean> data);
+
+    /**
+     * 没有更多数据
+     */
+    void noMoreProductData();
+
+    /**
+     * 清除数据
+     */
+    void clearProductData();
+
+    /**
+     * 加载更多失败
+     */
+    void loadMordProductFail();
+
+    void getHomeProductListFinish();
 
     void showErrorView(String throwable);
-
-    void fillData(T data);
-
-    void fillList(T data);
-
-    void getHeadFinish();
-
-    void getListFinish();
-
-    void onRefreshFinish();
-
-    /**
-     * 获取列表失败
-     */
-    void getListFailed();
-
-    /**
-     * 刷新
-     *
-     * @param data
-     */
-    void onRefreshData(T data);
 
     /**
      * 记录成功

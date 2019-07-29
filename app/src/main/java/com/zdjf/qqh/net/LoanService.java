@@ -32,6 +32,16 @@ public interface LoanService {
     Observable<HomeBean> getHomeData(@Header("source") String channel, @Header("user_id") String userId, @Body RequestBody body);
 
     /**
+     * 首页产品列表
+     *
+     * @param body
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=UTF-8"})
+    @POST("api/app/fast2/pub/getProductList")
+    Observable<HomeBean> getHomeProductList(@Header("source") String channel, @Header("user_id") String userId, @Body RequestBody body);
+
+    /**
      * 贷款大全
      *
      * @param body
@@ -40,16 +50,6 @@ public interface LoanService {
     @Headers({"Content-type:application/json;charset=UTF-8"})
     @POST("api/app/fast2/product/getProductList")
     Observable<CompleteProductBean> getLoanProductList(@Header("source") String channel, @Header("user_id") String userId, @Body RequestBody body);
-
-    /**
-     * 产品列表
-     *
-     * @param body
-     * @return
-     */
-    @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/pub/getProductList")
-    Observable<HomeBean> getProductList(@Header("source") String channel, @Header("user_id") String userId, @Body RequestBody body);
 
     /**
      * 注册

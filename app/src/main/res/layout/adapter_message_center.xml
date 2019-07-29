@@ -15,7 +15,7 @@
             android:layout_height="@dimen/dp_64"
             android:layout_marginLeft="@dimen/dp_16"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_product_default"/>
+            android:src="@mipmap/icon_msg_default"/>
 
         <TextView
             android:id="@+id/tv_message_title"

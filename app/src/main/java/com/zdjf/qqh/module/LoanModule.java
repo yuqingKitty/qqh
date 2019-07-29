@@ -64,8 +64,8 @@ public class LoanModule {
                 .subscribe(observer);
     }
 
-    public void getProductList(Map<String, Object> params, Observer observer) {
-        Observable<HomeBean> homeObservable = LOAN_SERVICE.getProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+    public void getHomeProductList(Map<String, Object> params, Observer observer) {
+        Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
         homeObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
