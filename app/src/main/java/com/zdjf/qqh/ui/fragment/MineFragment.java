@@ -29,7 +29,7 @@ import static com.zdjf.qqh.data.commons.Constants.RXBUS_LOGOUT_SUCCESS_KEY;
 import static com.zdjf.qqh.data.commons.Constants.RXBUS_NICKNAME_SUCCESS_KEY;
 import static com.zdjf.qqh.data.commons.Constants.RXBUS_UPLOAAD_SUCCESS_KEY;
 import static com.zdjf.qqh.utils.IntentUtil.toMessageCenterActivity;
-import static com.zdjf.qqh.utils.IntentUtil.toMyLoanReordActivity;
+import static com.zdjf.qqh.utils.IntentUtil.toMyLoanRecordActivity;
 import static com.zdjf.qqh.utils.IntentUtil.toServiceActivity;
 import static com.zdjf.qqh.utils.IntentUtil.toSettingActivity;
 
@@ -90,7 +90,7 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
             case R.id.tv_loan_record:
                 //申请记录
                 if (BaseApplication.isLogin(mActivity, true, true)) {
-                    toMyLoanReordActivity(mActivity);
+                    toMyLoanRecordActivity(mActivity);
                     mPresenter.simpleRecord("", Constants.moduleName.MyLoanRecord.getName(), "");
                 }
                 break;

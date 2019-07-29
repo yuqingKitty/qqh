@@ -71,9 +71,6 @@
             android:name="com.zdjf.qqh.ui.activity.ProtocolActivity"
             android:screenOrientation="portrait" />
         <!-- 意见反馈-->
-        <activity
-            android:name="com.zdjf.qqh.ui.activity.FeedbackActivity"
-            android:screenOrientation="portrait" />
         <!-- 消息中心-->
         <activity
             android:name="com.zdjf.qqh.ui.activity.MessageCenterActivity"

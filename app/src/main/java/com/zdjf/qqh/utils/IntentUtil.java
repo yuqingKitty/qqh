@@ -109,7 +109,7 @@ public class IntentUtil {
      * 申请记录
      * @param context
      */
-    public static void toMyLoanReordActivity(Activity context) {
+    public static void toMyLoanRecordActivity(Activity context) {
         context.startActivity(new Intent(context, MyLoanRecordActivity.class));
     }
 
