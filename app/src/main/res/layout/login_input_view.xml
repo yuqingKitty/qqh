@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_FFFFFF">
+
+    <ImageView
+        android:id="@+id/ivClearInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp_16"
+        android:padding="@dimen/dp5"
+        android:src="@mipmap/icon_delete" />
+
+    <EditText
+        android:id="@+id/edtRegisterPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp5"
+        android:layout_toLeftOf="@id/ivClearInput"
+        android:background="@android:color/transparent"
+        android:paddingBottom="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_12"
+        android:textColor="@color/color_181001"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/sp_18" />
+
+    <View
+        android:id="@+id/driver1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_below="@id/edtRegisterPhone" />
+
+</RelativeLayout>

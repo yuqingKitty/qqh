@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FFFFFF"
+    android:orientation="vertical">
+
+    <com.zdjf.qqh.ui.customview.TopBarView
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:show_close="visible"
+        app:title_text_color="@color/mainTextColor" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_launcher"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_48"
+        android:orientation="vertical">
+
+        <com.zdjf.qqh.ui.customview.LoginInputView
+            android:id="@+id/liv_login_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_64"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_marginLeft="@dimen/dp_45"
+            android:layout_marginRight="@dimen/dp_45"
+            android:gravity="center_vertical"
+            app:loginInputHint="@string/login_phone_string"
+            app:loginInputHintcolor="@color/color_CACACA"
+            app:loginInputIconDefault="true"
+            app:loginInputisDriver="false" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp_45"
+            android:layout_marginRight="@dimen/dp_45"
+            android:background="@color/color_EEEEEE" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_64"
+            android:layout_marginLeft="@dimen/dp_45"
+            android:layout_marginRight="@dimen/dp_45">
+
+            <TextView
+                android:id="@+id/tv_get_code"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_32"
+                android:background="@drawable/message_official_bg"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/get_sms_code"
+                android:textColor="@color/color_FFFFFF"
+                android:textSize="@dimen/sp_13" />
+
+            <com.zdjf.qqh.ui.customview.LoginInputView
+                android:id="@+id/liv_login_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_toLeftOf="@id/tv_get_code"
+                android:gravity="center_vertical"
+                app:loginInputHint="@string/input_sms_code"
+                app:loginInputHintcolor="@color/color_CACACA"
+                app:loginInputIconDefault="true"
+                app:loginInputisDriver="false" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp_45"
+            android:layout_marginRight="@dimen/dp_45"
+            android:background="@color/color_EEEEEE" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginLeft="@dimen/dp_45"
+        android:layout_marginRight="@dimen/dp_45"
+        android:gravity="center"
+        android:background="@drawable/login_btn_bg"
+        android:layout_marginTop="@dimen/dp_55"
+        android:textColor="@color/color_FFFFFF"
+        android:textSize="@dimen/sp_16"
+        android:text="@string/login"/>
+
+</LinearLayout>

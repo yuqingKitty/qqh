@@ -47,6 +47,9 @@
         <activity
             android:name="com.zdjf.qqh.ui.activity.LoginActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zdjf.qqh.ui.activity.LoginNewActivity"
+            android:screenOrientation="portrait" />
         <!-- 设置-->
         <activity
             android:name="com.zdjf.qqh.ui.activity.SettingActivity"

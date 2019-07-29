@@ -11,6 +11,7 @@
     <string name="limit">额度：</string>
     <string name="apply">申请</string>
     <string name="to_login">立即登录</string>
+    <string name="login">登录</string>
 
     <string name="setting">设置</string>
     <string name="feedback">意见反馈</string>
@@ -38,6 +39,8 @@
     <string name="forget_confirm_pwd_string">再次确认</string>
     <string name="edit_confirm_pwd_hint_string">请再次输入新的密码</string>
     <string name="login_phone_string">请输入手机号码</string>
+    <string name="get_sms_code">获取验证码</string>
+    <string name="input_sms_code">输入手机验证码</string>
     <string name="login_pwd_string">请输入密码</string>
     <string name="login_btn_string">立即登录</string>
     <string name="login_forget_string">忘记密码</string>

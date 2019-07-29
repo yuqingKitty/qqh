@@ -8,6 +8,7 @@
         </attr>
         <attr name="title_text_color" format="color" />
     </declare-styleable>
+
     <declare-styleable name="UpdateAppNumberProgressBar">
         <attr name="progress_current" format="integer"/>
         <attr name="progress_max" format="integer"/>
@@ -28,4 +29,23 @@
             <enum name="invisible" value="1"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="loinInput">
+        <!--Edit hint-->
+        <attr name="loginInputHint" format="reference|string"></attr>
+        <!--Edit color-->
+        <attr name="loginInputHintcolor" format="reference|integer"></attr>
+        <attr name="loginInputIconDefault" format="boolean"></attr>
+        <!--Edit loginInputDrawable-->
+        <attr name="loginInputDrawable" format="reference"></attr>
+        <attr name="loginInputDrawableTure" format="reference"></attr>
+        <attr name="loginInputDrawableFalse" format="reference"></attr>
+        <attr name="loginIpuntBackGround" format="reference|color"></attr>
+        <attr name="loginInputDrawPadding" format="reference|dimension"></attr>
+        <!--是否显示分割线-->
+        <attr name="loginInputisDriver" format="boolean"></attr>
+        <!--光标颜色-->
+        <attr name="login_padding_top" format="reference|dimension"></attr>
+    </declare-styleable>
+
 </resources>
