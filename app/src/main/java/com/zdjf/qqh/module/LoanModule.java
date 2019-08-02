@@ -38,10 +38,20 @@ public class LoanModule {
     }
 
     /**
-     * 获取首页信息
+     * 获取首页头部信息
      */
     public void getHomeData(Map<String, Object> params, Observer observer) {
         Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeData(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        homeObservable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(observer);
+    }
+
+    // 产品列表
+    public void getHomeProductList(Map<String, Object> params, Observer observer) {
+        Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
         homeObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -57,15 +67,6 @@ public class LoanModule {
      */
     public void getLoanProductList(Map<String, Object> params, Observer observer) {
         Observable<CompleteProductBean> homeObservable = LOAN_SERVICE.getLoanProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
-        homeObservable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(observer);
-    }
-
-    public void getHomeProductList(Map<String, Object> params, Observer observer) {
-        Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
         homeObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

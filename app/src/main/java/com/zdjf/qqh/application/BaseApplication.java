@@ -29,14 +29,16 @@ import static com.zdjf.qqh.utils.ScreenUtil.isMeizuFlymeOS;
 
 public class BaseApplication extends Application {
     public static boolean isMeizu = false;
+    public static String CHANNEL = "";
     private static UserBean mUserInfo;
     private static String token = "";
     private static String userId;
-    public static String CHANNEL = "";
+    private static BaseApplication instance;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         isMeizu = isMeizuFlymeOS();
         LogUtil.init(HIDE_LOG ? NOTHING : VERBOSE, "qqh");
         //友盟统计初始化
@@ -47,7 +49,14 @@ public class BaseApplication extends Application {
         }
         UMConfigure.setEncryptEnabled(IS_RELEASE);
         registerActivityLifecycleCallbacks(ActivityLifecycleHelper.build());
+
         JPushInterface.init(this);
+//        JVerificationInterface.setDebugMode(true);
+//        JVerificationInterface.init(this);
+    }
+
+    public static BaseApplication getContext() {
+        return instance;
     }
 
     /**

@@ -15,19 +15,19 @@ import java.util.List;
 /**
  * 首页推荐列表适配器
  */
-public class HomeRecommendProductAdapter extends BaseQuickAdapter<HomeBean.ProductBean, BaseViewHolder> {
+public class HomeRecommendProductAdapter extends BaseQuickAdapter<HomeBean.RecommendProductBean, BaseViewHolder> {
     private Context mContext;
 
-    public HomeRecommendProductAdapter(Context context, @Nullable List<HomeBean.ProductBean> data) {
+    public HomeRecommendProductAdapter(Context context, @Nullable List<HomeBean.RecommendProductBean> data) {
         super(R.layout.item_home_today_recommend, data);
         mContext = context;
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, HomeBean.ProductBean item) {
-        helper.setText(R.id.tv_recommend_name, item.getName())
-                .setText(R.id.tv_recommend_intro, item.getLoanRange());
+    protected void convert(BaseViewHolder helper, HomeBean.RecommendProductBean item) {
+        helper.setText(R.id.tv_recommend_name, item.name)
+                .setText(R.id.tv_recommend_intro, item.loanRange);
 
-        GlideImageLoader.setRoundedCorner(mContext, item.getLogoUrl(), (ImageView) helper.getView(R.id.iv_recommend_icon),10);
+        GlideImageLoader.setRoundedCorner(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_recommend_icon),10);
     }
 }

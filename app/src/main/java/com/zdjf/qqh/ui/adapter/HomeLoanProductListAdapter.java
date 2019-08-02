@@ -21,13 +21,13 @@ public class HomeLoanProductListAdapter extends BaseAdapter<HomeBean.ProductBean
 
     @Override
     protected void convert(BaseViewHolder helper, HomeBean.ProductBean item) {
-        GlideImageLoader.setRoundedCorner(mContext, item.getLogoUrl(), (ImageView) helper.getView(R.id.iv_product_icon), 10);
+        GlideImageLoader.setRoundedCorner(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_product_icon), 10);
 
-        helper.setText(R.id.tv_product_name, item.getName())
-                .setText(R.id.tv_product_tag, item.getTagDesc())
-                .setText(R.id.tv_loan_range, item.getLoanRange())
-                .setText(R.id.tv_loan_term, "借款期限" + item.getLoanTerm())
-                .setText(R.id.tv_market_phrases, item.getMarketPhrases());
+        helper.setText(R.id.tv_product_name, item.name)
+                .setText(R.id.tv_product_tag, item.loanRange)
+                .setText(R.id.tv_loan_range, item.loanRange)
+                .setText(R.id.tv_loan_term, "借款期限" + item.loanRange)
+                .setText(R.id.tv_market_phrases, item.loanRange);
 
     }
 }

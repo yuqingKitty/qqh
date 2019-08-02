@@ -17,7 +17,7 @@ import com.zdjf.qqh.presenter.HomePresenter;
 import com.zdjf.qqh.ui.activity.MainActivity;
 import com.zdjf.qqh.ui.adapter.HomeLoanProductListAdapter;
 import com.zdjf.qqh.ui.base.BaseFragment;
-import com.zdjf.qqh.ui.customview.HomeRvHeaderView;
+import com.zdjf.qqh.ui.customview.HomeHeaderView;
 import com.zdjf.qqh.ui.customview.TopBarView;
 import com.zdjf.qqh.utils.IntentUtil;
 import com.zdjf.qqh.utils.updateapp.UpdateDialogFragment;
@@ -41,7 +41,7 @@ import static com.zdjf.qqh.utils.updateapp.UpdateDialogFragment.INTENT_KEY;
  * @Time: 2018/6/27 14:31
  */
 public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeView<HomeBean>, BaseQuickAdapter.RequestLoadMoreListener,
-        SwipeRefreshLayout.OnRefreshListener, HomeRvHeaderView.ClickHomeHeadListener, OnBannerListener {
+        SwipeRefreshLayout.OnRefreshListener, HomeHeaderView.ClickHomeHeadListener, OnBannerListener {
     @BindView(R.id.top_view)
     TopBarView mTopView;
     @BindView(R.id.refresh_layout)
@@ -49,7 +49,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     @BindView(R.id.home_rv)
     RecyclerView mHomeRecycleView;
 
-    private HomeRvHeaderView mHeaderView;
+    private HomeHeaderView mHeaderView;
     private HomeLoanProductListAdapter homeLoanProductListAdapter;
     private List<HomeBean.BannerBean> adList;
 
@@ -69,7 +69,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         mRefreshLayout.setOnRefreshListener(this);
         mRefreshLayout.setColorSchemeColors(mActivity.getResources().getColor(R.color.colorPrimary));
 
-        mHeaderView = new HomeRvHeaderView(mActivity);
+        mHeaderView = new HomeHeaderView(mActivity);
         mHeaderView.setListener( this, this);
 
         homeLoanProductListAdapter = new HomeLoanProductListAdapter(mActivity, new ArrayList<HomeBean.ProductBean>());
@@ -80,8 +80,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         mHomeRecycleView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-                onRecommendProductClick(((HomeBean.ProductBean) adapter.getData().get(position)).getId()
-                        , ((HomeBean.ProductBean) adapter.getData().get(position)).getLink(), Constants.moduleName.TypeProduct.getName(), -1);
+                onRecommendProductClick(((HomeBean.ProductBean) adapter.getData().get(position)).id
+                        , ((HomeBean.ProductBean) adapter.getData().get(position)).link, Constants.moduleName.TypeProduct.getName(), -1);
             }
         });
         homeLoanProductListAdapter.disableLoadMoreIfNotFullPage();
@@ -115,8 +115,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
 
     @Override
     public void fillHeadData(HomeBean data) {
-        adList = data.getAdList();
-        mHeaderView.setData(data.getAdList(), data.getNoticeList(), data.getTypePOs(), data.getProRecommendVOs());
+        adList = data.getAdvertisementList();
+        mHeaderView.setData(data.getAdvertisementList(), data.getSystemNotifyList(), data.getProdTypeList(), data.getProdRecommendList());
     }
 
     @Override
@@ -263,8 +263,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     public void OnBannerClick(int position) {
         if (BaseApplication.isLogin(mActivity, true, true)) {
             if (adList != null && adList.size() > position) {
-                if (!TextUtils.isEmpty(adList.get(position).getSrcURL())) {
-                    IntentUtil.toAppWebView(mActivity, adList.get(position).getSrcURL(), "");
+                if (!TextUtils.isEmpty(adList.get(position).srcURL)) {
+                    IntentUtil.toAppWebView(mActivity, adList.get(position).srcURL, "");
                     mPresenter.simpleRecord("", Constants.moduleName.Banner.getName(), "");
                 }
             }

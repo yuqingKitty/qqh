@@ -36,7 +36,7 @@ public class GlideImageLoader extends ImageLoader {
         HomeBean.BannerBean bannerBean = (HomeBean.BannerBean) path;
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         //Glide 加载图片简单用法
-        setImg(context, bannerBean.getImageURL(), imageView, R.mipmap.bitmap_banner, R.mipmap.bitmap_banner);
+        setImg(context, bannerBean.imageURL, imageView, R.mipmap.bitmap_banner, R.mipmap.bitmap_banner);
     }
 
     /**

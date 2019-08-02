@@ -91,7 +91,7 @@ public class HomePresenter extends BasePresenter<IHomeView> {
             @Override
             public void onNext(HomeBean homeBean) {
                 if (parse(mContext, homeBean)) {
-                    List<HomeBean.ProductBean> listBean = homeBean.getProductVOs();
+                    List<HomeBean.ProductBean> listBean = homeBean.getProductList();
                     if (listBean != null && listBean.size() > 0) {
                         if (pageNumber == 1) {
                             //刷新完成

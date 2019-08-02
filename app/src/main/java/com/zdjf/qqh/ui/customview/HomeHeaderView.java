@@ -29,12 +29,10 @@ import com.youth.banner.listener.OnBannerListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.OnClick;
-
 /**
  * 首页list头部控件
  */
-public class HomeRvHeaderView extends LinearLayout implements View.OnClickListener {
+public class HomeHeaderView extends LinearLayout implements View.OnClickListener {
     private View mView;
     private Banner mBanner;
     private ViewFlipper mFlipperView;
@@ -43,19 +41,19 @@ public class HomeRvHeaderView extends LinearLayout implements View.OnClickListen
     private RecyclerView homeRecommendRecyclerView;
 
     private Context mContext;
-    private List<HomeBean.ProductBean> recommendProductList = new ArrayList<>();
+    private List<HomeBean.RecommendProductBean> recommendProductList = new ArrayList<>();
     private HomeRecommendProductAdapter homeRecommendProductAdapter;
     private ClickHomeHeadListener clickHomeHeadListener;
 
-    public HomeRvHeaderView(Context context) {
+    public HomeHeaderView(Context context) {
         this(context, null);
     }
 
-    public HomeRvHeaderView(Context context, AttributeSet attrs) {
+    public HomeHeaderView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public HomeRvHeaderView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HomeHeaderView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -98,7 +96,7 @@ public class HomeRvHeaderView extends LinearLayout implements View.OnClickListen
                 if (BaseApplication.isLogin((Activity) mContext, true, true)) {
                     if (recommendProductList != null && recommendProductList.size() > position) {
                         if (clickHomeHeadListener != null) {
-                            clickHomeHeadListener.onRecommendProductClick(((HomeBean.ProductBean) adapter.getData().get(position)).getProductId(), ((HomeBean.ProductBean) adapter.getData().get(position)).getLink(),
+                            clickHomeHeadListener.onRecommendProductClick(((HomeBean.RecommendProductBean) adapter.getData().get(position)).productId, ((HomeBean.RecommendProductBean) adapter.getData().get(position)).link,
                                     Constants.moduleName.Recommend.getName(), position);
                         }
                     }
@@ -113,10 +111,10 @@ public class HomeRvHeaderView extends LinearLayout implements View.OnClickListen
      * @param banner   banner数据
      * @param noticeList  公告数据
      * @param typeBeanList  类型数据
-     * @param recommendList 推荐数据
+     * @param recommendProductBeans 推荐数据
      */
     public void setData(@NonNull List<HomeBean.BannerBean> banner, @NonNull List<HomeBean.NoticeBean> noticeList,
-                        @NonNull List<HomeBean.TypeBean> typeBeanList, @NonNull List<HomeBean.ProductBean> recommendList) {
+                        @NonNull List<HomeBean.TypeBean> typeBeanList, @NonNull List<HomeBean.RecommendProductBean> recommendProductBeans) {
         // 广告位
         mBanner.setIndicatorGravity(BannerConfig.CENTER)
                 .setImages(banner)
@@ -129,20 +127,7 @@ public class HomeRvHeaderView extends LinearLayout implements View.OnClickListen
             for (HomeBean.NoticeBean noticeBean : noticeList) {
                 View flipperView = LayoutInflater.from(mContext).inflate(R.layout.layout_home_view_flipper, null);
                 TextView notice_desc = flipperView.findViewById(R.id.notice_desc);
-
-                flipperView.setTag(noticeBean);
-                flipperView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (BaseApplication.isLogin((Activity) mContext, true, true)) {
-                            HomeBean.NoticeBean bean = (HomeBean.NoticeBean) v.getTag();
-                            if (clickHomeHeadListener != null) {
-                                clickHomeHeadListener.onRecommendProductClick(bean.getProductId(), bean.getLink(), Constants.moduleName.Notice.getName(), -1);
-                            }
-                        }
-                    }
-                });
-                notice_desc.setText(noticeBean.getName());
+                notice_desc.setText(noticeBean.msg);
 
                 if (mFlipperView == null) {
                     if (mView != null) {
@@ -169,12 +154,12 @@ public class HomeRvHeaderView extends LinearLayout implements View.OnClickListen
 
         // 首页三个图标类型
         for (int i = 0; i < typeBeanList.size(); i++){
-            typeTextViewList.get(i).setText(typeBeanList.get(i).getName());
+            typeTextViewList.get(i).setText(typeBeanList.get(i).name);
         }
 
-        if (recommendList.size() > 0) {
+        if (recommendProductBeans.size() > 0) {
             recommendProductList.clear();
-            recommendProductList.addAll(recommendList);
+            recommendProductList.addAll(recommendProductBeans);
             homeRecommendProductAdapter.notifyDataSetChanged();
         }
     }
