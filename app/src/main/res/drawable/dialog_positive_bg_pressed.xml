@@ -8,6 +8,6 @@
         android:topRightRadius="5dp" />
 
     <!-- 填充 -->
-    <solid android:color="@color/colorPrimaryDark" />
+    <solid android:color="@color/color_FFC71D" />
 
 </shape>

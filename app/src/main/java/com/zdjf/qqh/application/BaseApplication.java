@@ -98,7 +98,7 @@ public class BaseApplication extends Application {
 
     public static void setUserHead(Context context, String userHead) {
         UserBean bean = getUserBean(context);
-        bean.setImageFast(userHead);
+        bean.setImageIcon(userHead);
         setUserInfo(context, bean);
     }
 

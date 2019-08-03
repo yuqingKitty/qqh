@@ -15,7 +15,7 @@ import java.util.Map;
 import io.reactivex.observers.DisposableObserver;
 
 public class LoginNewPresenter extends BasePresenter<ILoginNewView> {
-    private final String SMS_TYPE = "LOGIN";
+    private final String SMS_TYPE = "PASSWORD";
 
     public LoginNewPresenter(Activity context, ILoginNewView view) {
         super(context, view);
@@ -24,8 +24,8 @@ public class LoginNewPresenter extends BasePresenter<ILoginNewView> {
     public void getLoginSms(String phone) {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
-        params.put("smsPhone", phone);
-        params.put("smsType", SMS_TYPE);
+        params.put("phone", phone);
+        params.put("type", SMS_TYPE);
         mModel.sendSms(params, new DisposableObserver<BaseBean>() {
             @Override
             public void onNext(BaseBean o) {
@@ -51,14 +51,15 @@ public class LoginNewPresenter extends BasePresenter<ILoginNewView> {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
         params.put("phone", phone);
-        params.put("code", code);
+        params.put("captcha", code);
+        params.put("loginType", 1);
         mModel.userLogin(params, new DisposableObserver<LoginBean>() {
             @Override
             public void onNext(LoginBean bean) {
                 if (parse(mContext, bean)) {
                     BaseApplication.setToken(mContext, bean.getToken());
-                    BaseApplication.setUserId(mContext, String.valueOf(bean.getUserInfo().getUserId()));
-                    BaseApplication.setUserInfo(mContext, bean.getUserInfo());
+                    BaseApplication.setUserId(mContext, String.valueOf(bean.getUid()));
+                    BaseApplication.setUserInfo(mContext, bean.getUserVo());
                     obtainView().loginSuccess();
                 }
             }

@@ -397,14 +397,14 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements I
 
     @Override
     public void getUserInfoSuccess(LoginBean bean) {
-        UserBean userBean = bean.getUserInfo();
+        UserBean userBean = bean.getUserVo();
         if (userBean == null) {
             return;
         }
         mPhoneNum.setText(userBean.getDecryptPhone());
-        String userName = userBean.getNameFast();
+        String userName = userBean.getNickName();
         mUserName.setText(TextUtils.isEmpty(userName) ? "未设置昵称" : userName);
-        GlideImageLoader.setCircleImg(SettingActivity.this, userBean.getImageFast(), mHeadView, R.mipmap.setup_head, R.mipmap.setup_head);
+        GlideImageLoader.setCircleImg(SettingActivity.this, userBean.getImageIcon(), mHeadView, R.mipmap.setup_head, R.mipmap.setup_head);
     }
 
     @Override

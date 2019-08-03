@@ -91,36 +91,36 @@ public class LoginInputView extends RelativeLayout implements View.OnClickListen
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (edtRegisterPhone.getInputType() == InputType.TYPE_CLASS_NUMBER) {
-                    if (s == null || s.length() == 0) return;
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < s.length(); i++) {
-                        if (i != 3 && i != 8 && s.charAt(i) == ' ') {
-                            continue;
-                        } else {
-                            sb.append(s.charAt(i));
-                            if ((sb.length() == 4 || sb.length() == 9) && sb.charAt(sb.length() - 1) != ' ') {
-                                sb.insert(sb.length() - 1, ' ');
-                            }
-                        }
-                    }
-                    if (!sb.toString().equals(s.toString())) {
-                        int index = start + 1;
-                        if (sb.charAt(start) == ' ') {
-                            if (before == 0) {
-                                index++;
-                            } else {
-                                index--;
-                            }
-                        } else {
-                            if (before == 1) {
-                                index--;
-                            }
-                        }
-                        edtRegisterPhone.setText(sb.toString());
-                        edtRegisterPhone.setSelection(index);
-                    }
-                }
+//                if (edtRegisterPhone.getInputType() == InputType.TYPE_CLASS_NUMBER) {
+//                    if (s == null || s.length() == 0) return;
+//                    StringBuilder sb = new StringBuilder();
+//                    for (int i = 0; i < s.length(); i++) {
+//                        if (i != 3 && i != 8 && s.charAt(i) == ' ') {
+//                            continue;
+//                        } else {
+//                            sb.append(s.charAt(i));
+//                            if ((sb.length() == 4 || sb.length() == 9) && sb.charAt(sb.length() - 1) != ' ') {
+//                                sb.insert(sb.length() - 1, ' ');
+//                            }
+//                        }
+//                    }
+//                    if (!sb.toString().equals(s.toString())) {
+//                        int index = start + 1;
+//                        if (sb.charAt(start) == ' ') {
+//                            if (before == 0) {
+//                                index++;
+//                            } else {
+//                                index--;
+//                            }
+//                        } else {
+//                            if (before == 1) {
+//                                index--;
+//                            }
+//                        }
+//                        edtRegisterPhone.setText(sb.toString());
+//                        edtRegisterPhone.setSelection(index);
+//                    }
+//                }
             }
 
             @Override

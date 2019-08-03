@@ -10,9 +10,8 @@ import android.widget.Toast;
 
 import com.zdjf.qqh.ui.activity.ChangePwdActivity;
 import com.zdjf.qqh.ui.activity.CustomerServiceActivity;
-import com.zdjf.qqh.ui.activity.ForgetPwdActivity;
 import com.zdjf.qqh.ui.activity.HomeTypeProductActivity;
-import com.zdjf.qqh.ui.activity.LoginActivity;
+import com.zdjf.qqh.ui.activity.LoginNewActivity;
 import com.zdjf.qqh.ui.activity.MainActivity;
 import com.zdjf.qqh.ui.activity.MessageCenterActivity;
 import com.zdjf.qqh.ui.activity.MyLoanRecordActivity;
@@ -53,7 +52,7 @@ public class IntentUtil {
      * @param context
      */
     public static void toLoginActivity(Activity context) {
-        context.startActivity(new Intent(context, LoginActivity.class));
+        context.startActivity(new Intent(context, LoginNewActivity.class));
 
     }
 
@@ -73,15 +72,6 @@ public class IntentUtil {
      */
     public static void toChangePwdActivity(Activity context) {
         context.startActivity(new Intent(context, ChangePwdActivity.class));
-    }
-
-    /**
-     * 跳转忘记密码界面
-     *
-     * @param context
-     */
-    public static void toForgetPwdActivity(Activity context) {
-        context.startActivity(new Intent(context, ForgetPwdActivity.class));
     }
 
     /**

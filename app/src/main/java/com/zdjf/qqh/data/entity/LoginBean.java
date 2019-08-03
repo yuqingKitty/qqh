@@ -4,17 +4,17 @@ package com.zdjf.qqh.data.entity;
  * 登陆实体
  */
 public class LoginBean extends BaseBean {
-    private String userId;
+    private String uid;
     private String token;
     private String version;
-    private UserBean userInfo;
+    private UserBean userVo;
 
-    public String getUserId() {
-        return userId;
+    public String getUid() {
+        return uid;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getToken() {
@@ -33,11 +33,11 @@ public class LoginBean extends BaseBean {
         this.version = version;
     }
 
-    public UserBean getUserInfo() {
-        return userInfo;
+    public UserBean getUserVo() {
+        return userVo;
     }
 
-    public void setUserInfo(UserBean userInfo) {
-        this.userInfo = userInfo;
+    public void setUserVo(UserBean userVo) {
+        this.userVo = userVo;
     }
 }

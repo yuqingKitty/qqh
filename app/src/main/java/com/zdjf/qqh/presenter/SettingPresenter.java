@@ -98,7 +98,7 @@ public class SettingPresenter extends BasePresenter<ISettingView> {
         String userId = BaseApplication.getUserId(mContext);
         String token = BaseApplication.getToken(mContext);
         Map<String, Object> params = new HashMap<>();
-        params.put("userId", userId);
+        params.put("uid", userId);
         params.put("token", token);
         mModel.getUserInfo(params, new DisposableObserver<LoginBean>() {
 
@@ -131,7 +131,7 @@ public class SettingPresenter extends BasePresenter<ISettingView> {
         String userId = BaseApplication.getUserId(mContext);
         String token = BaseApplication.getToken(mContext);
         Map<String, Object> params = new HashMap<>();
-        params.put("userId", userId);
+        params.put("uid", userId);
         params.put("token", token);
         mModel.logout(params, new DisposableObserver<BaseBean>() {
             @Override

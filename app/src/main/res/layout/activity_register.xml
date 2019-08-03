@@ -138,7 +138,6 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="32px"
-                android:button="@drawable/show_pwd_selector"
                 android:visibility="visible" />
         </com.zhy.autolayout.AutoLinearLayout>
 

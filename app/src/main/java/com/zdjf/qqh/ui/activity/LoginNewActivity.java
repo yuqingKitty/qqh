@@ -62,7 +62,7 @@ public class LoginNewActivity extends BaseActivity<LoginNewPresenter> implements
 
     @OnClick({R.id.tv_get_code, R.id.btn_login})
     void click(View view) {
-        mPhone = liv_login_code.getEditRegisterPhone().replace(" ", "");
+        mPhone = liv_login_phone.getEditRegisterPhone().replace(" ", "");
         mCode = liv_login_code.getEditRegisterPhone().replace(" ", "");
         switch (view.getId()) {
             case R.id.tv_get_code:

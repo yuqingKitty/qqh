@@ -77,34 +77,39 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
         }
     }
 
-    @OnClick({R.id.iv_setting, R.id.tv_loan_record, R.id.tv_message_center, R.id.tv_my_service})
+    @OnClick({R.id.user_name, R.id.iv_setting, R.id.tv_loan_record, R.id.tv_message_center, R.id.tv_my_service})
     void click(View view) {
         switch (view.getId()) {
+            case R.id.user_name:
+                BaseApplication.isLogin(mActivity, true, false);
+                break;
             case R.id.iv_setting:
                 //设置
                 if (BaseApplication.isLogin(mActivity, true, true)) {
                     toSettingActivity(mActivity);
-                    mPresenter.simpleRecord("", Constants.moduleName.Setting.getName(), "");
+//                    mPresenter.simpleRecord("", Constants.moduleName.Setting.getName(), "");
                 }
                 break;
             case R.id.tv_loan_record:
                 //申请记录
                 if (BaseApplication.isLogin(mActivity, true, true)) {
                     toMyLoanRecordActivity(mActivity);
-                    mPresenter.simpleRecord("", Constants.moduleName.MyLoanRecord.getName(), "");
+//                    mPresenter.simpleRecord("", Constants.moduleName.MyLoanRecord.getName(), "");
                 }
                 break;
             case R.id.tv_message_center:
                 // 消息中心
                 if (BaseApplication.isLogin(mActivity, true, true)) {
                     toMessageCenterActivity(mActivity);
-                    mPresenter.simpleRecord("", Constants.moduleName.MessageCenter.getName(), "");
+//                    mPresenter.simpleRecord("", Constants.moduleName.MessageCenter.getName(), "");
                 }
                 break;
             case R.id.tv_my_service:
-                //客服
-                toServiceActivity(mActivity);
-                mPresenter.simpleRecord("", Constants.moduleName.Service.getName(), "");
+                if (BaseApplication.isLogin(mActivity, true, true)) {
+                    //客服
+                    toServiceActivity(mActivity);
+//                    mPresenter.simpleRecord("", Constants.moduleName.Service.getName(), "");
+                }
                 break;
             default:
                 break;
@@ -113,9 +118,9 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
 
     private void fillData() {
         if (mUserBean != null) {
-            String userName = mUserBean.getNameFast();
+            String userName = mUserBean.getNickName();
             mUserName.setText(TextUtils.isEmpty(userName) ? mUserBean.getDecryptPhone() : userName);
-            GlideImageLoader.setCircleImg(mActivity, mUserBean.getImageFast(), mUserHead, R.mipmap.icon_img_default, R.mipmap.icon_img_default);
+            GlideImageLoader.setCircleImg(mActivity, mUserBean.getImageIcon(), mUserHead, R.mipmap.icon_img_default, R.mipmap.icon_img_default);
         } else {
             mUserName.setText("立即登录");
             GlideImageLoader.setCircleImg(mActivity, R.mipmap.icon_img_default, mUserHead);
@@ -141,13 +146,13 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
                     case RXBUS_UPLOAAD_SUCCESS_KEY://上传头像成功
                         BaseApplication.setUserHead(mActivity, rxBusMessage.getMsg());
                         if (mUserBean != null) {
-                            mUserBean.setImageFast(rxBusMessage.getMsg());
+                            mUserBean.setImageIcon(rxBusMessage.getMsg());
                         }
-                        GlideImageLoader.setCircleImg(mActivity, mUserBean.getImageFast(), mUserHead, R.mipmap.icon_img_default, R.mipmap.icon_img_default);
+                        GlideImageLoader.setCircleImg(mActivity, mUserBean.getImageIcon(), mUserHead, R.mipmap.icon_img_default, R.mipmap.icon_img_default);
                         break;
                     case RXBUS_NICKNAME_SUCCESS_KEY://昵称设置成功
                         mUserBean = BaseApplication.getUserBean(mActivity);
-                        String userName = mUserBean.getNameFast();
+                        String userName = mUserBean.getNickName();
                         mUserName.setText(TextUtils.isEmpty(userName) ? mUserBean.getDecryptPhone() : userName);
                         break;
                 }

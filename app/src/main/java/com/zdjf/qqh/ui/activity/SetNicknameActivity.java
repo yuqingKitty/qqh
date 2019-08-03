@@ -45,7 +45,7 @@ public class SetNicknameActivity extends BaseActivity<SetNicknamePresenter> impl
     @Override
     public void changeSuccess(String nickname) {
         UserBean user = BaseApplication.getUserBean(this);
-        user.setNameFast(nickname);
+        user.setNickName(nickname);
         BaseApplication.setUserInfo(this, user);
         RxBusMessage message = new RxBusMessage<>(RXBUS_NICKNAME_SUCCESS_KEY);
         message.setMsg(nickname);

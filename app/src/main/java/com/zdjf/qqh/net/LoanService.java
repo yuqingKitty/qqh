@@ -79,7 +79,7 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/pub/getSendSms")
+    @POST("app/pub/sendSMS")
     Observable<BaseBean> getSendSms(@Header("source") String channel, @Header("uid") String userId, @Body RequestBody body);
 
     /**
@@ -89,7 +89,7 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/user/login")
+    @POST("app/user/login")
     Observable<LoginBean> login(@Header("source") String channel, @Header("uid") String userId, @Body RequestBody body);
 
     /**
@@ -99,7 +99,7 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/user/logout")
+    @POST("app/user/logout")
     Observable<LoginBean> logout(@Header("source") String channel, @Header("uid") String userId, @Body RequestBody body);
 
     /**
@@ -109,7 +109,7 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/user/getUserInfo")
+    @POST("app/user/getUserInfo")
     Observable<LoginBean> getUserInfo(@Header("source") String channel, @Header("uid") String userId, @Body RequestBody body);
 
     /**

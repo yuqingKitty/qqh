@@ -45,9 +45,6 @@
             android:screenOrientation="portrait" />
         <!-- 登陆-->
         <activity
-            android:name="com.zdjf.qqh.ui.activity.LoginActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.zdjf.qqh.ui.activity.LoginNewActivity"
             android:screenOrientation="portrait" />
         <!-- 设置-->
@@ -59,9 +56,6 @@
             android:name="com.zdjf.qqh.ui.activity.ChangePwdActivity"
             android:screenOrientation="portrait" />
         <!-- 重置密码-->
-        <activity
-            android:name="com.zdjf.qqh.ui.activity.ForgetPwdActivity"
-            android:screenOrientation="portrait" />
         <!-- 注册界面-->
         <activity
             android:name="com.zdjf.qqh.ui.activity.RegisterActivity"
