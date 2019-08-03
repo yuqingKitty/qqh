@@ -4,7 +4,7 @@ package com.zdjf.qqh.presenter;
 import android.app.Activity;
 
 import com.zdjf.qqh.application.BaseApplication;
-import com.zdjf.qqh.data.entity.CompleteProductBean;
+import com.zdjf.qqh.data.entity.CompleteBean;
 import com.zdjf.qqh.data.entity.StatisticsBean;
 import com.zdjf.qqh.ui.base.BasePresenter;
 import com.zdjf.qqh.utils.LogUtil;
@@ -21,32 +21,60 @@ import io.reactivex.observers.DisposableObserver;
  */
 public class CompletePresenter extends BasePresenter<ICompleteView> {
     private int pageNumber = 1;
-    private int pageSize = 20;
+    private int pageSize = 10;
 
     public CompletePresenter(Activity context, ICompleteView view) {
         super(context, view);
     }
 
-    /**
-     * 初始化数据
-     */
-    public void initListData() {
-        pageNumber = 1;
-        getData(pageNumber, pageSize);
+    public void initData(int sortRule){
+        getLoanSortLabelList();
+        initListData(sortRule);
     }
 
-    /**
-     * 获取数据
-     */
-    public void getData(final int number, final int pageSize) {
+    // 初始化产品列表
+    public void initListData(int sortRule) {
+        pageNumber = 1;
+        getData(pageNumber, pageSize, sortRule);
+    }
+
+    // 贷款大全排序标签
+    private void getLoanSortLabelList() {
+        mModel.getLoanSortLabelList(new HashMap<String, Object>(), new DisposableObserver<CompleteBean>() {
+            @Override
+            public void onNext(CompleteBean completeBean) {
+                if (parse(mContext, completeBean)) {
+                    List<CompleteBean.ProductSortLabel> listBean = completeBean.getProdSortLabelList();
+                    if (listBean != null && listBean.size() > 0) {
+                        obtainView().getProductSortLabelList(listBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                LogUtil.e(throwable.toString());
+                obtainView().ShowToast("网络异常");
+                obtainView().hideLoading();
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    private void getData(final int number, final int pageSize, int sortRule) {
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", number);
         params.put("pageSize", pageSize);
-        mModel.getLoanProductList(params, new DisposableObserver<CompleteProductBean>() {
+        params.put("sortRule", sortRule);
+        mModel.getLoanProductList(params, new DisposableObserver<CompleteBean>() {
             @Override
-            public void onNext(CompleteProductBean o) {
+            public void onNext(CompleteBean o) {
                 if (parse(mContext, o)) {
-                    List<CompleteProductBean.ProductBean> listBean = o.getProductList();
+                    List<CompleteBean.ProductBean> listBean = o.getProductList();
                     if (listBean != null && listBean.size() > 0) {
                         if (pageNumber == 1) {
                             //刷新完成
@@ -85,8 +113,8 @@ public class CompletePresenter extends BasePresenter<ICompleteView> {
     /**
      * 加载更多
      */
-    public void loadMoreData() {
-        getData(pageNumber, pageSize);
+    public void loadMoreData(int sortRule) {
+        getData(pageNumber, pageSize, sortRule);
     }
 
 

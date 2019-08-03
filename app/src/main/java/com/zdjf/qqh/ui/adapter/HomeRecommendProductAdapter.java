@@ -19,15 +19,15 @@ public class HomeRecommendProductAdapter extends BaseQuickAdapter<HomeBean.Recom
     private Context mContext;
 
     public HomeRecommendProductAdapter(Context context, @Nullable List<HomeBean.RecommendProductBean> data) {
-        super(R.layout.item_home_today_recommend, data);
+        super(R.layout.item_home_recommend_product, data);
         mContext = context;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, HomeBean.RecommendProductBean item) {
         helper.setText(R.id.tv_recommend_name, item.name)
-                .setText(R.id.tv_recommend_intro, item.loanRange);
-
-        GlideImageLoader.setRoundedCorner(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_recommend_icon),10);
+                .setText(R.id.tv_recommend_intro, item.des);
+        GlideImageLoader.setImg(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_recommend_icon),
+                R.mipmap.icon_product_default, R.mipmap.icon_product_default);
     }
 }

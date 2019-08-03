@@ -42,7 +42,7 @@ public class Constants {
     public static final String TITLE_INTENT_KEY = "title";
 
     public static final String PHOTO_JPG_FORMAT = ".jpg";
-    public static final String EXTRA_TYPE = "extra_type";
+    public static final String EXTRA_TYPE_ID = "extra_type_id";
     /**
      * 选择照片回调
      */

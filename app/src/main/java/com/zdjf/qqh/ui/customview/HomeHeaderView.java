@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -36,8 +37,7 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
     private View mView;
     private Banner mBanner;
     private ViewFlipper mFlipperView;
-    private TextView tv_home_type_first, tv_home_type_sec, tv_home_type_third;
-    private List<TextView> typeTextViewList;
+    private LinearLayout ll_home_type;
     private RecyclerView homeRecommendRecyclerView;
 
     private Context mContext;
@@ -71,17 +71,8 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
     private void initView() {
         mBanner = findViewById(R.id.home_banner);
         mFlipperView = findViewById(R.id.home_view_flipper);
-        tv_home_type_first = findViewById(R.id.tv_home_type_first);
-        tv_home_type_sec = findViewById(R.id.tv_home_type_sec);
-        tv_home_type_third = findViewById(R.id.tv_home_type_third);
+        ll_home_type = findViewById(R.id.ll_home_type);
         homeRecommendRecyclerView = findViewById(R.id.home_recommend_list);
-        typeTextViewList = new ArrayList<>();
-        typeTextViewList.add(tv_home_type_first);
-        typeTextViewList.add(tv_home_type_sec);
-        typeTextViewList.add(tv_home_type_third);
-        for (TextView textView : typeTextViewList){
-            textView.setOnClickListener(this);
-        }
         findViewById(R.id.tv_loan_all).setOnClickListener(this);
 
         homeRecommendProductAdapter = new HomeRecommendProductAdapter(mContext, recommendProductList);
@@ -108,9 +99,9 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
     /**
      * 设置数据
      *
-     * @param banner   banner数据
-     * @param noticeList  公告数据
-     * @param typeBeanList  类型数据
+     * @param banner                banner数据
+     * @param noticeList            公告数据
+     * @param typeBeanList          类型数据
      * @param recommendProductBeans 推荐数据
      */
     public void setData(@NonNull List<HomeBean.BannerBean> banner, @NonNull List<HomeBean.NoticeBean> noticeList,
@@ -152,9 +143,24 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
             }
         }
 
-        // 首页三个图标类型
-        for (int i = 0; i < typeBeanList.size(); i++){
-            typeTextViewList.get(i).setText(typeBeanList.get(i).name);
+        // 首页图标类型
+        ll_home_type.removeAllViews();
+        for (final HomeBean.TypeBean typeBean : typeBeanList) {
+            View typeView = LayoutInflater.from(mContext).inflate(R.layout.view_home_header_type, null);
+            ImageView iv_home_type = typeView.findViewById(R.id.iv_home_type);
+            TextView tv_home_type = typeView.findViewById(R.id.tv_home_type);
+            GlideImageLoader.setImg(mContext, typeBean.iconPath, iv_home_type, R.mipmap.home_type_first, R.mipmap.home_type_first);
+            tv_home_type.setText(typeBean.name);
+            typeView.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f));
+            ll_home_type.addView(typeView);
+            typeView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (clickHomeHeadListener != null) {
+                        clickHomeHeadListener.onTypeClicked(typeBean.name, Integer.valueOf(typeBean.locationNo));
+                    }
+                }
+            });
         }
 
         if (recommendProductBeans.size() > 0) {
@@ -169,18 +175,6 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
         if (clickHomeHeadListener == null)
             return;
         switch (v.getId()) {
-            case R.id.tv_home_type_first:
-                // 无视黑白
-                clickHomeHeadListener.onTypeClicked(tv_home_type_first.getText().toString(), 0);
-                break;
-            case R.id.tv_home_type_sec:
-                // 极速下款
-                clickHomeHeadListener.onTypeClicked(tv_home_type_sec.getText().toString(),1);
-                break;
-            case R.id.tv_home_type_third:
-                // 反馈
-                clickHomeHeadListener.onTypeClicked(tv_home_type_third.getText().toString(),2);
-                break;
             case R.id.tv_loan_all:
                 // 全部
                 clickHomeHeadListener.onLoanAllClicked();
@@ -192,7 +186,9 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
 
     public interface ClickHomeHeadListener {
         void onTypeClicked(String title, int type);
+
         void onRecommendProductClick(String productId, String url, String moduleName, int moduleOrder);
+
         void onLoanAllClicked();
     }
 

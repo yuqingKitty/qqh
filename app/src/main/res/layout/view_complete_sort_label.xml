@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_loan_sort_label"
+    android:layout_width="97dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/dp_25"
+    android:paddingTop="@dimen/dp7"
+    android:paddingBottom="@dimen/dp7"
+    android:background="@drawable/loan_tag_unselected_bg"
+    android:button="@null"
+    android:gravity="center"
+    android:text="@string/comprehensive_sort"
+    android:textColor="@color/color_FFC71D"
+    android:textSize="@dimen/sp_12" />

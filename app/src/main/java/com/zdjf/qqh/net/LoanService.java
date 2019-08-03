@@ -1,7 +1,7 @@
 package com.zdjf.qqh.net;
 
 import com.zdjf.qqh.data.entity.BaseBean;
-import com.zdjf.qqh.data.entity.CompleteProductBean;
+import com.zdjf.qqh.data.entity.CompleteBean;
 import com.zdjf.qqh.data.entity.HomeBean;
 import com.zdjf.qqh.data.entity.HomeTypeProductBean;
 import com.zdjf.qqh.data.entity.LoginBean;
@@ -44,18 +44,23 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("app/pub/sysUpdated")
+    @POST("app/pub/sysUpdate")
     Observable<UploadBean> sysUpdated(@Header("source") String channel, @Header("uid") String userId, @Body RequestBody body);
 
     /**
+     * 贷款大全排序标签
+     */
+    @Headers({"Content-type:application/json;charset=UTF-8"})
+    @POST("app/prod/sortLabelList")
+    Observable<CompleteBean> getLoanSortLabelList(@Header("source") String channel, @Header("uid") String userId, @Body RequestBody body);
+
+
+    /**
      * 贷款大全
-     *
-     * @param body
-     * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
     @POST("app/prod/list")
-    Observable<CompleteProductBean> getLoanProductList(@Header("source") String channel, @Header("uid") String userId, @Body RequestBody body);
+    Observable<CompleteBean> getLoanProductList(@Header("source") String channel, @Header("uid") String userId, @Body RequestBody body);
 
     /**
      * 注册

@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.zdjf.qqh.application.BaseApplication;
 import com.zdjf.qqh.data.entity.BaseBean;
-import com.zdjf.qqh.data.entity.CompleteProductBean;
+import com.zdjf.qqh.data.entity.CompleteBean;
 import com.zdjf.qqh.data.entity.HomeBean;
 import com.zdjf.qqh.data.entity.HomeTypeProductBean;
 import com.zdjf.qqh.data.entity.LoginBean;
@@ -60,13 +60,28 @@ public class LoanModule {
     }
 
     /**
+     * 贷款大全排序标签
+     *
+     * @param params
+     * @param observer
+     */
+    public void getLoanSortLabelList(Map<String, Object> params, Observer observer) {
+        Observable<CompleteBean> homeObservable = LOAN_SERVICE.getLoanSortLabelList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        homeObservable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(observer);
+    }
+
+    /**
      * 贷款大全
      *
      * @param params
      * @param observer
      */
     public void getLoanProductList(Map<String, Object> params, Observer observer) {
-        Observable<CompleteProductBean> homeObservable = LOAN_SERVICE.getLoanProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<CompleteBean> homeObservable = LOAN_SERVICE.getLoanProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
         homeObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

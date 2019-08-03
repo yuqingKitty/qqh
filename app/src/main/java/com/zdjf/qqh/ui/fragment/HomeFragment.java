@@ -15,7 +15,7 @@ import com.zdjf.qqh.data.entity.HomeBean;
 import com.zdjf.qqh.data.entity.UploadBean;
 import com.zdjf.qqh.presenter.HomePresenter;
 import com.zdjf.qqh.ui.activity.MainActivity;
-import com.zdjf.qqh.ui.adapter.HomeLoanProductListAdapter;
+import com.zdjf.qqh.ui.adapter.HomeProductListAdapter;
 import com.zdjf.qqh.ui.base.BaseFragment;
 import com.zdjf.qqh.ui.customview.HomeHeaderView;
 import com.zdjf.qqh.ui.customview.TopBarView;
@@ -50,7 +50,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     RecyclerView mHomeRecycleView;
 
     private HomeHeaderView mHeaderView;
-    private HomeLoanProductListAdapter homeLoanProductListAdapter;
+    private HomeProductListAdapter homeLoanProductListAdapter;
     private List<HomeBean.BannerBean> adList;
 
     @Override
@@ -72,7 +72,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         mHeaderView = new HomeHeaderView(mActivity);
         mHeaderView.setListener( this, this);
 
-        homeLoanProductListAdapter = new HomeLoanProductListAdapter(mActivity, new ArrayList<HomeBean.ProductBean>());
+        homeLoanProductListAdapter = new HomeProductListAdapter(mActivity, new ArrayList<HomeBean.ProductBean>());
         homeLoanProductListAdapter.addHeaderView(mHeaderView);
         mHomeRecycleView.setLayoutManager(new LinearLayoutManager(mActivity));
         mHomeRecycleView.setAdapter(homeLoanProductListAdapter);
@@ -222,8 +222,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     }
 
     @Override
-    public void onTypeClicked(String title, int type) {
-        IntentUtil.toHomeTypeProductActivity(getActivity(), title, type);
+    public void onTypeClicked(String title, int typeId) {
+        IntentUtil.toHomeTypeProductActivity(getActivity(), title, typeId);
     }
 
     @Override

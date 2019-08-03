@@ -42,48 +42,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_home_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_40"
-        android:layout_marginBottom="@dimen/dp_40">
-
-        <TextView
-            android:id="@+id/tv_home_type_first"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/home_type_first"
-            android:drawablePadding="@dimen/dp_14"
-            android:gravity="center"
-            android:text="无视黑白"
-            android:textColor="@color/mainTextColor"
-            android:textSize="@dimen/sp_15"/>
-
-        <TextView
-            android:id="@+id/tv_home_type_sec"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/home_type_sec"
-            android:drawablePadding="@dimen/dp_14"
-            android:gravity="center"
-            android:text="极速下款"
-            android:textColor="@color/mainTextColor"
-            android:textSize="@dimen/sp_15" />
-
-        <TextView
-            android:id="@+id/tv_home_type_third"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/home_type_third"
-            android:drawablePadding="@dimen/dp_14"
-            android:gravity="center"
-            android:text="不良征信"
-            android:textColor="@color/mainTextColor"
-            android:textSize="@dimen/sp_15" />
-
-    </LinearLayout>
+        android:layout_marginBottom="@dimen/dp_40"
+        android:orientation="horizontal"/>
 
     <include layout="@layout/layout_home_recommend" />
 
@@ -93,7 +57,7 @@
         android:layout_marginTop="@dimen/dp_38">
 
         <ImageView
-            android:id="@+id/iv_recommend_icon"
+            android:id="@+id/iv_loan_tag"
             android:layout_width="@dimen/dp4"
             android:layout_height="@dimen/dp_14"
             android:layout_marginLeft="@dimen/dp_16"
@@ -103,7 +67,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iv_recommend_icon"
+            android:layout_toRightOf="@id/iv_loan_tag"
             android:layout_marginLeft="@dimen/dp6"
             android:text="@string/hot_loan"
             android:textColor="@color/color_181001"

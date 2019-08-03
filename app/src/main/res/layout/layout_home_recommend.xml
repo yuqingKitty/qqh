@@ -13,7 +13,7 @@
         android:background="@color/color_FFFFFF">
 
         <ImageView
-            android:id="@+id/iv_recommend_icon"
+            android:id="@+id/iv_recommend_tag"
             android:layout_width="@dimen/dp4"
             android:layout_height="@dimen/dp_14"
             android:layout_centerVertical="true"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp6"
-            android:layout_toRightOf="@id/iv_recommend_icon"
+            android:layout_toRightOf="@id/iv_recommend_tag"
             android:text="@string/today_recommend"
             android:textColor="@color/color_181001"
             android:textSize="@dimen/sp_16"

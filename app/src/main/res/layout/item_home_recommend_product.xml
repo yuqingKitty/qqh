@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/iv_recommend_icon"
-        android:layout_width="@dimen/dp_51"
-        android:layout_height="@dimen/dp_51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:src="@mipmap/icon_product_default" />
 
@@ -43,7 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_23"
         android:drawableRight="@mipmap/icon_arrow_right"
         android:drawablePadding="@dimen/dp4"
         android:text="@string/get_money"

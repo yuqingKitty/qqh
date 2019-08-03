@@ -25,7 +25,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.zdjf.qqh.data.commons.Constants.EXTRA_TYPE;
+import static com.zdjf.qqh.data.commons.Constants.EXTRA_TYPE_ID;
 import static com.zdjf.qqh.data.commons.Constants.TITLE_INTENT_KEY;
 
 public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresenter> implements IHomeTypeProductView,
@@ -54,7 +54,7 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
     protected void initView() {
         if (getIntent() != null){
             String title = getIntent().getStringExtra(TITLE_INTENT_KEY);
-            type = getIntent().getIntExtra(EXTRA_TYPE, 0);
+            type = getIntent().getIntExtra(EXTRA_TYPE_ID, 0);
             ((TopBarView) findViewById(R.id.top_view)).setTitleContent(title);
         }
         ((TopBarView) findViewById(R.id.top_view)).setTitleBold();

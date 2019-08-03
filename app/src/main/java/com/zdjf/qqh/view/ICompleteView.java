@@ -1,19 +1,24 @@
 package com.zdjf.qqh.view;
 
-import com.zdjf.qqh.data.entity.CompleteProductBean;
+import com.zdjf.qqh.data.entity.CompleteBean;
 
 import java.util.List;
 
 public interface ICompleteView extends IBaseView {
     /**
+     * 获取排序列表
+     */
+    void getProductSortLabelList(List<CompleteBean.ProductSortLabel> data);
+
+    /**
      * 加载列表成功
      */
-    void loadDataSuccess(List<CompleteProductBean.ProductBean> data);
+    void loadDataSuccess(List<CompleteBean.ProductBean> data);
 
     /**
      * 刷新列表成功
      */
-    void refreshDataSuccess(List<CompleteProductBean.ProductBean> data);
+    void refreshDataSuccess(List<CompleteBean.ProductBean> data);
 
     /**
      * 没有更多数据

@@ -42,22 +42,25 @@ public class HomeBean extends BaseBean {
     public class RecommendProductBean {
         public String id;
         public String productId;
-        public int noticeIndex; //推荐排序
-        public String logoUrl;  //列表排序
+        public String logoUrl;
         public String name;
-        public String loanRange; // 金额区间
+        public String des;
         public String link;
     }
 
-    // 推荐产品
+    // 产品
     public class ProductBean {
         public String id;
         public String productId;
-        public int noticeIndex; //推荐排序
-        public String logoUrl;  //列表排序
+        public String logoUrl;
         public String name;
-        public String loanRange; // 金额区间
         public String link;
+        public String applyProductDesc;  // 今日申请人数
+        public String prodLoanRange;
+        public String prodLoanTerm;
+        public String prodLoanInterest;
+        public String prodLoanTime;
+        public String prodLoanFeature;
     }
 
     public List<BannerBean> getAdvertisementList() {

@@ -13,58 +13,14 @@
         app:bar_title="@string/complete"
         app:title_text_color="@color/mainTextColor" />
 
-    <RadioGroup
+    <LinearLayout
+        android:id="@+id/ll_sort_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_16"
-        android:layout_marginRight="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp6"
         android:layout_marginBottom="@dimen/dp6"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rb_comprehensive_sort"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp_32"
-            android:layout_weight="1"
-            android:button="@null"
-            android:background="@drawable/loan_tag_bg_selector"
-            android:paddingTop="@dimen/dp7"
-            android:paddingBottom="@dimen/dp7"
-            android:gravity="center"
-            android:text="@string/comprehensive_sort"
-            android:textColor="@drawable/loan_tag_text_selector"
-            android:textSize="@dimen/sp_12"/>
-        <RadioButton
-            android:id="@+id/rb_interest_sort"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp_32"
-            android:layout_weight="1"
-            android:button="@null"
-            android:background="@drawable/loan_tag_bg_selector"
-            android:paddingTop="@dimen/dp7"
-            android:paddingBottom="@dimen/dp7"
-            android:layout_marginLeft="@dimen/dp_25"
-            android:layout_marginRight="@dimen/dp_25"
-            android:gravity="center"
-            android:text="@string/interest_sort"
-            android:textColor="@drawable/loan_tag_text_selector"
-            android:textSize="@dimen/sp_12"/>
-        <RadioButton
-            android:id="@+id/rb_amount_sort"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp_32"
-            android:layout_weight="1"
-            android:button="@null"
-            android:background="@drawable/loan_tag_bg_selector"
-            android:paddingTop="@dimen/dp7"
-            android:paddingBottom="@dimen/dp7"
-            android:gravity="center"
-            android:text="@string/amount_sort"
-            android:textColor="@drawable/loan_tag_text_selector"
-            android:textSize="@dimen/sp_12"/>
-
-    </RadioGroup>
+        android:orientation="horizontal"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"

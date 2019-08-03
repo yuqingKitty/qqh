@@ -83,7 +83,7 @@ public class HomePresenter extends BasePresenter<IHomeView> {
     private void getHomeProductList(final int number, final int pageSize) {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
-        params.put("typeId", "1");
+        params.put("typeId", "-1");
         params.put("pageNo", number);
         params.put("pageSize", pageSize);
         mModel.getHomeProductList(params, new DisposableObserver<HomeBean>() {

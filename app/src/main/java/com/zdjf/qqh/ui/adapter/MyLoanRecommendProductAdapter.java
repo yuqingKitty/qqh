@@ -6,7 +6,6 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zdjf.qqh.R;
-import com.zdjf.qqh.data.entity.CompleteProductBean;
 import com.zdjf.qqh.data.entity.MyLoanRecordBean;
 import com.zdjf.qqh.utils.GlideImageLoader;
 

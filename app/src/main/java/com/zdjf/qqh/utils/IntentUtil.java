@@ -25,7 +25,7 @@ import com.zdjf.qqh.ui.activity.WebActivity;
 
 import static com.zdjf.qqh.data.commons.Constants.CHOOSE_PICTURE;
 import static com.zdjf.qqh.data.commons.Constants.CMSTYPE_INTENT_KEY;
-import static com.zdjf.qqh.data.commons.Constants.EXTRA_TYPE;
+import static com.zdjf.qqh.data.commons.Constants.EXTRA_TYPE_ID;
 import static com.zdjf.qqh.data.commons.Constants.PHOTO_REQUEST_RESULT;
 import static com.zdjf.qqh.data.commons.Constants.TITLE_INTENT_KEY;
 
@@ -210,7 +210,7 @@ public class IntentUtil {
     public static void toHomeTypeProductActivity(Activity context, String title, int type) {
         Intent intent = new Intent(context, HomeTypeProductActivity.class);
         intent.putExtra(TITLE_INTENT_KEY, title);
-        intent.putExtra(EXTRA_TYPE, type);
+        intent.putExtra(EXTRA_TYPE_ID, type);
         context.startActivity(intent);
     }
 
