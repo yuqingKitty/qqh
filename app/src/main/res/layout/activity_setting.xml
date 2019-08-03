@@ -109,22 +109,6 @@
     </com.zhy.autolayout.AutoLinearLayout>
 
     <TextView
-        android:id="@+id/edit_pwd"
-        style="@style/TitleTextStyle"
-        android:layout_width="match_parent"
-        android:layout_height="90px"
-        android:background="@drawable/contour_down_shape"
-        android:drawablePadding="28px"
-        android:drawableRight="@mipmap/mine_icon_arrow_gray"
-        android:gravity="center_vertical"
-        android:paddingBottom="12px"
-        android:paddingLeft="40px"
-        android:paddingRight="30px"
-        android:paddingTop="12px"
-        android:text="@string/setting_login_pwd_string"
-        android:visibility="gone"/>
-
-    <TextView
         android:id="@+id/logout_view"
         android:layout_width="match_parent"
         android:layout_height="108px"

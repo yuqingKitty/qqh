@@ -41,7 +41,7 @@ public class HomeTypeProductPresenter extends BasePresenter<IHomeTypeProductView
      */
     public void getHomeTypeProductList(int type, final int number, final int pageSize) {
         Map<String, Object> params = new HashMap<>();
-        params.put("type", type);
+        params.put("typeId", type);
         params.put("pageNo", number);
         params.put("pageSize", pageSize);
         mModel.getHomeTypeProductList(params, new DisposableObserver<HomeTypeProductBean>() {
@@ -96,7 +96,7 @@ public class HomeTypeProductPresenter extends BasePresenter<IHomeTypeProductView
      */
     public void getHomeTypeAdList(int type) {
         Map<String, Object> params = new HashMap<>();
-        params.put("type", type);
+        params.put("typeId", type);
         mModel.getHomeTypeAdList(params, new DisposableObserver<HomeTypeProductBean>() {
             @Override
             public void onNext(HomeTypeProductBean homeTypeProductBean) {
@@ -129,8 +129,6 @@ public class HomeTypeProductPresenter extends BasePresenter<IHomeTypeProductView
     public void recordProduct(String MessageId, final String url, String module_name, String module_order) {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
-        params.put("userId", BaseApplication.getUserId(mContext));
-        params.put("token", BaseApplication.getToken(mContext));
         params.put("MessageId", MessageId);
         params.put("module_name", module_name);
         params.put("module_order", module_order);

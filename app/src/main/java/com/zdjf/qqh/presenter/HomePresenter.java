@@ -83,7 +83,6 @@ public class HomePresenter extends BasePresenter<IHomeView> {
     private void getHomeProductList(final int number, final int pageSize) {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
-        params.put("typeId", "-1");
         params.put("pageNo", number);
         params.put("pageSize", pageSize);
         mModel.getHomeProductList(params, new DisposableObserver<HomeBean>() {
@@ -135,8 +134,6 @@ public class HomePresenter extends BasePresenter<IHomeView> {
     public void recordProduct(String productId, final String url, String module_name, String module_order) {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
-        params.put("userId", BaseApplication.getUserId(mContext));
-        params.put("token", BaseApplication.getToken(mContext));
         params.put("productId", productId);
         params.put("module_name", module_name);
         params.put("module_order", module_order);

@@ -124,8 +124,6 @@ public class CompletePresenter extends BasePresenter<ICompleteView> {
     public void recordProduct(String productId, final String url, String module_name, String module_order) {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
-        params.put("userId", BaseApplication.getUserId(mContext));
-        params.put("token", BaseApplication.getToken(mContext));
         params.put("productId", productId);
         params.put("module_name", module_name);
         params.put("module_order", module_order);

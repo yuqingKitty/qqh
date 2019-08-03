@@ -8,22 +8,18 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.zdjf.qqh.ui.activity.ChangePwdActivity;
 import com.zdjf.qqh.ui.activity.CustomerServiceActivity;
 import com.zdjf.qqh.ui.activity.HomeTypeProductActivity;
 import com.zdjf.qqh.ui.activity.LoginNewActivity;
 import com.zdjf.qqh.ui.activity.MainActivity;
 import com.zdjf.qqh.ui.activity.MessageCenterActivity;
 import com.zdjf.qqh.ui.activity.MyLoanRecordActivity;
-import com.zdjf.qqh.ui.activity.ProtocolActivity;
-import com.zdjf.qqh.ui.activity.RegisterActivity;
 import com.zdjf.qqh.ui.activity.SetNicknameActivity;
 import com.zdjf.qqh.ui.activity.SettingActivity;
 import com.zdjf.qqh.ui.activity.WebAPPActivity;
 import com.zdjf.qqh.ui.activity.WebActivity;
 
 import static com.zdjf.qqh.data.commons.Constants.CHOOSE_PICTURE;
-import static com.zdjf.qqh.data.commons.Constants.CMSTYPE_INTENT_KEY;
 import static com.zdjf.qqh.data.commons.Constants.EXTRA_TYPE_ID;
 import static com.zdjf.qqh.data.commons.Constants.PHOTO_REQUEST_RESULT;
 import static com.zdjf.qqh.data.commons.Constants.TITLE_INTENT_KEY;
@@ -63,36 +59,6 @@ public class IntentUtil {
      */
     public static void toSettingActivity(Activity context) {
         context.startActivity(new Intent(context, SettingActivity.class));
-    }
-
-    /**
-     * 跳转修改密码界面
-     *
-     * @param context
-     */
-    public static void toChangePwdActivity(Activity context) {
-        context.startActivity(new Intent(context, ChangePwdActivity.class));
-    }
-
-    /**
-     * 跳转注册界面
-     *
-     * @param context
-     */
-    public static void toRegisterActivity(Activity context) {
-        context.startActivity(new Intent(context, RegisterActivity.class));
-    }
-
-    /**
-     * 跳转协议
-     *
-     * @param context
-     */
-    public static void toProtocolActivity(Activity context, String cmsType, String title) {
-        Intent intent = new Intent(context, ProtocolActivity.class);
-        intent.putExtra(CMSTYPE_INTENT_KEY, cmsType);
-        intent.putExtra(TITLE_INTENT_KEY, title);
-        context.startActivity(intent);
     }
 
     /**

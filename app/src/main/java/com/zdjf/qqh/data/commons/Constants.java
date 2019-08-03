@@ -29,16 +29,6 @@ public class Constants {
      * 保存userId
      */
     public static final String USER_ID_KEY = "USER_ID_KEY";
-    /**
-     * 注册协议类型
-     */
-    public static final String REGIST_CMSTYPE = "REGIST";
-    /**
-     * 公司简介
-     */
-    public static final String SYSTEM_CMSTYPE = "SYSTEM";
-
-    public static final String CMSTYPE_INTENT_KEY = "cmsType";
     public static final String TITLE_INTENT_KEY = "title";
 
     public static final String PHOTO_JPG_FORMAT = ".jpg";
@@ -65,7 +55,6 @@ public class Constants {
      * 阿里云上传文件路径地址
      */
     public static final String USER_IMG = "dc/head_img/"; //用户头像地址
-    public static final String FEEDBACK_IMG = "dc/feed_back/"; //用户反馈地址
 
     public enum moduleName {
         TypeProduct("0"), Banner("1"), Notice("2"), Type("3"), Recommend("4"), ScrollBottom("5"), MyLoanRecord("6"), Service("7"), Setting("8"), MessageCenter("9"), Complete("10");

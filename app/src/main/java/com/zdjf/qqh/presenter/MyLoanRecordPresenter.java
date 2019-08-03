@@ -129,8 +129,6 @@ public class MyLoanRecordPresenter extends BasePresenter<IMyLoanRecordView> {
     public void recordProduct(String MessageId, final String url, String module_name, String module_order) {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
-        params.put("userId", BaseApplication.getUserId(mContext));
-        params.put("token", BaseApplication.getToken(mContext));
         params.put("MessageId", MessageId);
         params.put("module_name", module_name);
         params.put("module_order", module_order);

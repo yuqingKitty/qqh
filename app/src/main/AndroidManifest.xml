@@ -52,18 +52,9 @@
             android:name="com.zdjf.qqh.ui.activity.SettingActivity"
             android:screenOrientation="portrait" />
         <!-- 修改密码-->
-        <activity
-            android:name="com.zdjf.qqh.ui.activity.ChangePwdActivity"
-            android:screenOrientation="portrait" />
         <!-- 重置密码-->
         <!-- 注册界面-->
-        <activity
-            android:name="com.zdjf.qqh.ui.activity.RegisterActivity"
-            android:screenOrientation="portrait" />
         <!-- 协议界面-->
-        <activity
-            android:name="com.zdjf.qqh.ui.activity.ProtocolActivity"
-            android:screenOrientation="portrait" />
         <!-- 意见反馈-->
         <!-- 消息中心-->
         <activity
@@ -74,9 +65,6 @@
             android:name="com.zdjf.qqh.ui.activity.MyLoanRecordActivity"
             android:screenOrientation="portrait" />
         <!-- 关于客服-->
-        <activity
-            android:name="com.zdjf.qqh.ui.activity.AboutUsActivity"
-            android:screenOrientation="portrait" />
         <!-- 首页类型产品列表-->
         <activity
             android:name="com.zdjf.qqh.ui.activity.HomeTypeProductActivity"

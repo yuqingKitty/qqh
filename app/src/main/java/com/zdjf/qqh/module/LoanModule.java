@@ -32,16 +32,20 @@ import okhttp3.RequestBody;
 public class LoanModule {
     public static final LoanService LOAN_SERVICE = MainFactory.getComicServiceInstance();
     private RxAppCompatActivity rxAppCompatActivity;
+    private String uid;
+    private String token;
 
     public LoanModule(Activity context) {
         rxAppCompatActivity = (RxAppCompatActivity) context;
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
     }
 
     /**
      * 获取首页头部信息
      */
     public void getHomeData(Map<String, Object> params, Observer observer) {
-        Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeData(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeData(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         homeObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -51,7 +55,7 @@ public class LoanModule {
 
     // 产品列表
     public void getHomeProductList(Map<String, Object> params, Observer observer) {
-        Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeProductList(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         homeObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -66,8 +70,8 @@ public class LoanModule {
      * @param observer
      */
     public void getLoanSortLabelList(Map<String, Object> params, Observer observer) {
-        Observable<CompleteBean> homeObservable = LOAN_SERVICE.getLoanSortLabelList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
-        homeObservable.subscribeOn(Schedulers.io())
+        Observable<CompleteBean> loanObservable = LOAN_SERVICE.getLoanSortLabelList(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
+        loanObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
@@ -81,22 +85,8 @@ public class LoanModule {
      * @param observer
      */
     public void getLoanProductList(Map<String, Object> params, Observer observer) {
-        Observable<CompleteBean> homeObservable = LOAN_SERVICE.getLoanProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
-        homeObservable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(observer);
-    }
-
-    /**
-     * 注册
-     *
-     * @param observer
-     */
-    public void userRegister(Map<String, Object> params, Observer observer) {
-        Observable<BaseBean> registerObservable = LOAN_SERVICE.register(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
-        registerObservable.subscribeOn(Schedulers.io())
+        Observable<CompleteBean> loanObservable = LOAN_SERVICE.getLoanProductList(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
+        loanObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
@@ -110,7 +100,7 @@ public class LoanModule {
      * @param observer
      */
     public void sendSms(Map<String, Object> params, Observer observer) {
-        Observable<BaseBean> observable = LOAN_SERVICE.getSendSms(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<BaseBean> observable = LOAN_SERVICE.getSendSms(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -125,7 +115,7 @@ public class LoanModule {
      * @param observer
      */
     public void userLogin(Map<String, Object> params, Observer observer) {
-        Observable<LoginBean> observable = LOAN_SERVICE.login(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<LoginBean> observable = LOAN_SERVICE.login(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -140,7 +130,7 @@ public class LoanModule {
      * @param observer
      */
     public void logout(Map<String, Object> params, Observer observer) {
-        Observable<LoginBean> observable = LOAN_SERVICE.logout(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<LoginBean> observable = LOAN_SERVICE.logout(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -155,52 +145,7 @@ public class LoanModule {
      * @param observer
      */
     public void getUserInfo(Map<String, Object> params, Observer observer) {
-        Observable<LoginBean> observable = LOAN_SERVICE.getUserInfo(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
-        observable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(observer);
-    }
-
-    /**
-     * 修改密码
-     *
-     * @param params
-     * @param observer
-     */
-    public void changePwd(Map<String, Object> params, Observer observer) {
-        Observable<BaseBean> observable = LOAN_SERVICE.editPassword(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
-        observable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(observer);
-    }
-
-    /**
-     * 重置密码
-     *
-     * @param params
-     * @param observer
-     */
-    public void resetPassword(Map<String, Object> params, Observer observer) {
-        Observable<BaseBean> observable = LOAN_SERVICE.resetPassword(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
-        observable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(observer);
-    }
-
-    /**
-     * 获取协议
-     *
-     * @param params
-     * @param observer
-     */
-    public void cms(Map<String, Object> params, Observer observer) {
-        Observable<ProtocolBean> observable = LOAN_SERVICE.cms(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<LoginBean> observable = LOAN_SERVICE.getUserInfo(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -214,7 +159,7 @@ public class LoanModule {
      * @param observer
      */
     public void service(Observer observer) {
-        Observable<ServiceBean> observable = LOAN_SERVICE.service(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity));
+        Observable<ServiceBean> observable = LOAN_SERVICE.service(BaseApplication.CHANNEL, uid, token);
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -228,21 +173,7 @@ public class LoanModule {
      * @param observer
      */
     public void uploadHead(Map<String, Object> params, Observer observer) {
-        Observable<BaseBean> observable = LOAN_SERVICE.uploadHeadIcon(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
-        observable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
-                .subscribe(observer);
-    }
-
-    /**
-     * 提交反馈
-     *
-     * @param observer
-     */
-    public void submitFeedBack(Map<String, Object> params, Observer observer) {
-        Observable<BaseBean> observable = LOAN_SERVICE.feedBack(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<BaseBean> observable = LOAN_SERVICE.uploadHeadIcon(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -257,7 +188,7 @@ public class LoanModule {
      * @param observer
      */
     public void toStatistics(Map<String, Object> params, Observer observer) {
-        Observable<StatisticsBean> observable = LOAN_SERVICE.toStatistics(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<StatisticsBean> observable = LOAN_SERVICE.toStatistics(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -272,7 +203,7 @@ public class LoanModule {
      * @param observer
      */
     public void toStayTime(Map<String, Object> params, Observer observer) {
-        Observable<BaseBean> observable = LOAN_SERVICE.toStayTime(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<BaseBean> observable = LOAN_SERVICE.toStayTime(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -287,7 +218,7 @@ public class LoanModule {
      * @param observer
      */
     public void sysUpdated(Map<String, Object> params, Observer observer) {
-        Observable<UploadBean> observable = LOAN_SERVICE.sysUpdated(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<UploadBean> observable = LOAN_SERVICE.sysUpdated(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -302,7 +233,7 @@ public class LoanModule {
      * @param observer
      */
     public void setNickname(Map<String, Object> params, Observer observer) {
-        Observable<BaseBean> observable = LOAN_SERVICE.editNickname(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<BaseBean> observable = LOAN_SERVICE.editNickname(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -320,7 +251,7 @@ public class LoanModule {
      * @param observer
      */
     public void getMyLoanRecordList(Map<String, Object> params, Observer observer) {
-        Observable<MyLoanRecordBean> observable = LOAN_SERVICE.getMyLoanRecordList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<MyLoanRecordBean> observable = LOAN_SERVICE.getMyLoanRecordList(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -334,7 +265,7 @@ public class LoanModule {
      * @param observer
      */
     public void getMyRecommendProductList(Map<String, Object> params, Observer observer) {
-        Observable<MyLoanRecordBean> observable = LOAN_SERVICE.getMyRecommendProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<MyLoanRecordBean> observable = LOAN_SERVICE.getMyRecommendProductList(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -348,7 +279,7 @@ public class LoanModule {
      * @param observer
      */
     public void getMessageCenterList(Map<String, Object> params, Observer observer) {
-        Observable<MessageCenterBean> observable = LOAN_SERVICE.getMessageCenterList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<MessageCenterBean> observable = LOAN_SERVICE.getMessageCenterList(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -362,7 +293,7 @@ public class LoanModule {
      * @param observer
      */
     public void getHomeTypeAdList(Map<String, Object> params, Observer observer) {
-        Observable<HomeTypeProductBean> observable = LOAN_SERVICE.getHomeTypeAdList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<HomeTypeProductBean> observable = LOAN_SERVICE.getHomeTypeAdList(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -376,7 +307,7 @@ public class LoanModule {
      * @param observer
      */
     public void getHomeTypeProductList(Map<String, Object> params, Observer observer) {
-        Observable<HomeTypeProductBean> observable = LOAN_SERVICE.getHomeTypeProductList(BaseApplication.CHANNEL, BaseApplication.getUserId(rxAppCompatActivity), getRequestBody(params));
+        Observable<HomeTypeProductBean> observable = LOAN_SERVICE.getHomeTypeProductList(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

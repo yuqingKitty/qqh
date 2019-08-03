@@ -34,8 +34,6 @@ public class SettingPresenter extends BasePresenter<ISettingView> {
             @Override
             public void onSuccess(PutObjectRequest request, PutObjectResult result) {
                 Map<String, Object> params = new HashMap<>();
-                params.put("userId", BaseApplication.getUserId(mContext));
-                params.put("token", BaseApplication.getToken(mContext));
                 params.put("image", ImageUtil.getAliyunLink(USER_IMG, file.getName()));
                 mModel.uploadHead(params, new DisposableObserver<BaseBean>() {
                     @Override
@@ -95,12 +93,7 @@ public class SettingPresenter extends BasePresenter<ISettingView> {
      */
     public void getUserInfo() {
         obtainView().showLoading();
-        String userId = BaseApplication.getUserId(mContext);
-        String token = BaseApplication.getToken(mContext);
-        Map<String, Object> params = new HashMap<>();
-        params.put("uid", userId);
-        params.put("token", token);
-        mModel.getUserInfo(params, new DisposableObserver<LoginBean>() {
+        mModel.getUserInfo(new HashMap<String, Object>(), new DisposableObserver<LoginBean>() {
 
             @Override
             public void onNext(LoginBean bean) {
@@ -128,12 +121,7 @@ public class SettingPresenter extends BasePresenter<ISettingView> {
      */
     public void logout() {
         obtainView().showLoading();
-        String userId = BaseApplication.getUserId(mContext);
-        String token = BaseApplication.getToken(mContext);
-        Map<String, Object> params = new HashMap<>();
-        params.put("uid", userId);
-        params.put("token", token);
-        mModel.logout(params, new DisposableObserver<BaseBean>() {
+        mModel.logout(new HashMap<String, Object>(), new DisposableObserver<BaseBean>() {
             @Override
             public void onNext(BaseBean baseBean) {
                 if (parse(mContext, baseBean)) {

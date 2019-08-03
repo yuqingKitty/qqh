@@ -149,7 +149,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements I
         showToast(t);
     }
 
-    @OnClick({R.id.head_view_layout, R.id.edit_pwd, R.id.logout_view, R.id.set_nickname_layout})
+    @OnClick({R.id.head_view_layout, R.id.logout_view, R.id.set_nickname_layout})
     void click(View view) {
         switch (view.getId()) {
             case R.id.head_view_layout:
@@ -219,10 +219,6 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements I
                 if (!dialog.isShowing()) {
                     dialog.show();
                 }
-                break;
-            case R.id.edit_pwd:
-                //点击修改密码
-                IntentUtil.toChangePwdActivity(this);
                 break;
             case R.id.logout_view:
                 //退出登陆

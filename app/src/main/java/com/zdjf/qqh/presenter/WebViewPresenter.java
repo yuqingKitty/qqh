@@ -23,10 +23,6 @@ public class WebViewPresenter extends BasePresenter<IWebView> {
      */
     public void stayTime(String id) {
         Map<String, Object> params = new HashMap<>();
-        String userId = BaseApplication.getUserId(mContext);
-        String token = BaseApplication.getToken(mContext);
-        params.put("userId", userId);
-        params.put("token", token);
         params.put("statisticsDetailId", id);
 
         mModel.toStayTime(params, new DisposableObserver() {
