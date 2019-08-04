@@ -59,20 +59,14 @@ import static com.gyf.barlibrary.OSUtils.isMIUI;
  * 设置界面
  */
 public class SettingActivity extends BaseActivity<SettingPresenter> implements ISettingView<LoginBean> {
-    private RxBus rxBus;
-    /**
-     * 用户头像
-     */
     @BindView(R.id.head_view)
     ImageView mHeadView;
-    /**
-     * 用户手机号
-     */
+    @BindView(R.id.nickname_tv)
+    TextView mUserName;
     @BindView(R.id.phone_num)
     TextView mPhoneNum;
 
-    @BindView(R.id.nickname_tv)
-    TextView mUserName;
+    private RxBus rxBus;
     private ActionSheetDialog dialog;
 
     private static File photoPath;//图片保存目录
@@ -149,7 +143,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements I
         showToast(t);
     }
 
-    @OnClick({R.id.head_view_layout, R.id.logout_view, R.id.set_nickname_layout})
+    @OnClick({R.id.head_view_layout, R.id.set_nickname_layout, R.id.logout_view})
     void click(View view) {
         switch (view.getId()) {
             case R.id.head_view_layout:
@@ -220,6 +214,10 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements I
                     dialog.show();
                 }
                 break;
+            case R.id.set_nickname_layout:
+                //设置用户名
+                IntentUtil.toSetNickname(this);
+                break;
             case R.id.logout_view:
                 //退出登陆
                 new CustomDialog(SettingActivity.this).builder().setTitle(getResources().getString(R.string.default_dialog_title)).setMsg(getResources().getString(R.string.logout_msg)).setNegativeButton("", null)
@@ -229,10 +227,6 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements I
                                 mPresenter.logout();
                             }
                         }).show();
-                break;
-            case R.id.set_nickname_layout:
-                //设置用户名
-                IntentUtil.toSetNickname(this);
                 break;
         }
     }

@@ -34,7 +34,7 @@ public class SettingPresenter extends BasePresenter<ISettingView> {
             @Override
             public void onSuccess(PutObjectRequest request, PutObjectResult result) {
                 Map<String, Object> params = new HashMap<>();
-                params.put("image", ImageUtil.getAliyunLink(USER_IMG, file.getName()));
+                params.put("imageIcon", ImageUtil.getAliyunLink(USER_IMG, file.getName()));
                 mModel.uploadHead(params, new DisposableObserver<BaseBean>() {
                     @Override
                     public void onNext(BaseBean baseBean) {

@@ -151,7 +151,8 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
             TextView tv_home_type = typeView.findViewById(R.id.tv_home_type);
             GlideImageLoader.setImg(mContext, typeBean.iconPath, iv_home_type, R.mipmap.home_type_first, R.mipmap.home_type_first);
             tv_home_type.setText(typeBean.name);
-            typeView.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f));
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+            typeView.setLayoutParams(layoutParams);
             ll_home_type.addView(typeView);
             typeView.setOnClickListener(new OnClickListener() {
                 @Override
