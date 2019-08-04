@@ -62,22 +62,17 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         mTopView.setTitleBold();
-        mPresenter.loadHeadData();
-        mPresenter.initProductListData();
-        mPresenter.getSysUpdated();
-
-        //设置刷新监听
-        mRefreshLayout.setOnRefreshListener(this);
-        mRefreshLayout.setColorSchemeColors(mActivity.getResources().getColor(R.color.colorPrimary));
 
         mHeaderView = new HomeHeaderView(mActivity);
-        mHeaderView.setListener( this, this);
-
         homeLoanProductListAdapter = new HomeProductListAdapter(mActivity, new ArrayList<HomeBean.ProductBean>());
         homeLoanProductListAdapter.addHeaderView(mHeaderView);
         mHomeRecycleView.setLayoutManager(new LinearLayoutManager(mActivity));
         mHomeRecycleView.setAdapter(homeLoanProductListAdapter);
+
         homeLoanProductListAdapter.setOnLoadMoreListener(this, mHomeRecycleView);
+        mRefreshLayout.setOnRefreshListener(this);
+        mRefreshLayout.setColorSchemeColors(mActivity.getResources().getColor(R.color.colorPrimary));
+        mHeaderView.setListener( this, this);
         mHomeRecycleView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -85,7 +80,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
                         , ((HomeBean.ProductBean) adapter.getData().get(position)).link, Constants.moduleName.TypeProduct.getName(), -1);
             }
         });
-        homeLoanProductListAdapter.disableLoadMoreIfNotFullPage();
         View errorView = getLayoutInflater().inflate(R.layout.view_error, (ViewGroup) mHomeRecycleView.getParent(), false);
         errorView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +88,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
             }
         });
         homeLoanProductListAdapter.setEmptyView(errorView);
+
+        mPresenter.loadHeadData();
+        mPresenter.initProductListData();
+        mPresenter.getSysUpdated();
     }
 
     @Override

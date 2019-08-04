@@ -164,11 +164,14 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
             });
         }
 
+        // 今日推荐
         if (recommendProductBeans.size() > 0) {
             recommendProductList.clear();
             recommendProductList.addAll(recommendProductBeans);
             homeRecommendProductAdapter.notifyDataSetChanged();
         }
+        homeRecommendRecyclerView.setFocusable(false);
+        homeRecommendRecyclerView.setFocusableInTouchMode(false);
     }
 
     @Override
