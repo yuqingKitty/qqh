@@ -172,12 +172,12 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (clickHomeHeadListener == null)
-            return;
         switch (v.getId()) {
             case R.id.tv_loan_all:
                 // 全部
-                clickHomeHeadListener.onLoanAllClicked();
+                if (clickHomeHeadListener != null){
+                    clickHomeHeadListener.onLoanAllClicked();
+                }
                 break;
             default:
                 break;
@@ -192,22 +192,5 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
         void onLoanAllClicked();
     }
 
-    public void startScroll() {
-        if (mFlipperView != null) {
-            mFlipperView.startFlipping();
-        }
-        if (mBanner != null) {
-            mBanner.start();
-        }
-    }
-
-    public void stopScroll() {
-        if (mFlipperView != null && mFlipperView.isFlipping()) {
-            mFlipperView.stopFlipping();
-        }
-        if (mBanner != null) {
-            mBanner.stopAutoPlay();
-        }
-    }
 }
 

@@ -165,7 +165,7 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/user/editNickname")
+    @POST("app/user/editNickName")
     Observable<BaseBean> editNickname(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**

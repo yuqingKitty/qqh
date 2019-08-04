@@ -26,7 +26,7 @@ public class SetNicknamePresenter extends BasePresenter<ISetNicknameView> {
     public void editNickname(final String nickname) {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
-        params.put("nickname", nickname);
+        params.put("nickName", nickname);
         mModel.setNickname(params, new DisposableObserver<BaseBean>() {
             @Override
             public void onNext(BaseBean baseBean) {

@@ -102,19 +102,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-//        if (!hidden && mActivity != null) {
-//            mActivity.initStatusBar(true);
-//            if (mHeaderView != null) {
-//                mHeaderView.startScroll();
-//            }
-//        } else if (hidden && mHeaderView != null) {
-//            mHeaderView.stopScroll();
-//        }
-    }
-
-    @Override
     public void fillHeadData(HomeBean data) {
         adList = data.getAdvertisementList();
         mHeaderView.setData(data.getAdvertisementList(), data.getSystemNotifyList(), data.getProdTypeList(), data.getProdRecommendList());
@@ -151,18 +138,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     }
 
     @Override
-    public void onHeadRefreshFinish() {
-        mRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
-    public void getHomeProductListFinish() {
-        if (mLoading != null) {
-            mLoading.dismissLoading();
-        }
-    }
-
-    @Override
     public void onRecordSuccess(String url, String id) {
         IntentUtil.toAppWebView(mActivity, url, id);
     }
@@ -186,16 +161,12 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
 
     @Override
     public void showLoading() {
-        if (mLoading != null && !mLoading.isShowing()) {
-            mLoading.show();
-        }
+        mLoading.show();
     }
 
     @Override
     public void hideLoading() {
-        if (mLoading != null) {
-            mLoading.dismissLoading();
-        }
+        mLoading.dismissLoading();
     }
 
     @Override

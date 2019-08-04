@@ -50,14 +50,12 @@ public class HomePresenter extends BasePresenter<IHomeView> {
                 LogUtil.e(e.toString());
                 obtainView().ShowToast("网络异常");
                 obtainView().hideLoading();
-                obtainView().onHeadRefreshFinish();
                 obtainView().showErrorView("");
             }
 
             @Override
             public void onComplete() {
-                obtainView().onHeadRefreshFinish();
-                obtainView().hideLoading();
+               obtainView().hideLoading();
             }
         });
     }
@@ -123,7 +121,7 @@ public class HomePresenter extends BasePresenter<IHomeView> {
 
             @Override
             public void onComplete() {
-                obtainView().getHomeProductListFinish();
+                obtainView().hideLoading();
             }
         });
     }

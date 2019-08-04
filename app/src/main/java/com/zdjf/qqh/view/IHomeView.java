@@ -8,8 +8,6 @@ import java.util.List;
 public interface IHomeView<T extends BaseBean> extends IBaseView {
     void fillHeadData(T data); // 加载头部数据
 
-    void onHeadRefreshFinish();
-
     /**
      * 加载列表成功
      */
@@ -34,8 +32,6 @@ public interface IHomeView<T extends BaseBean> extends IBaseView {
      * 加载更多失败
      */
     void loadMordProductFail();
-
-    void getHomeProductListFinish();
 
     void showErrorView(String throwable);
 
