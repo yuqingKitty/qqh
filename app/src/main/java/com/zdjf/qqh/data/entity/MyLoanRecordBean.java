@@ -5,10 +5,10 @@ import java.util.List;
 /**
  * 我的申请记录
  */
-public class MyLoanRecordBean {
+public class MyLoanRecordBean extends BaseBean{
 
-    public List<MyLoanBean> myLoanList;
-    public List<MyRecommendProductBean> myRecommendProductList;
+    public List<MyLoanBean> productAccessList;
+    public List<MyRecommendProductBean> productList;
 
     public class MyLoanBean {
         public String id;

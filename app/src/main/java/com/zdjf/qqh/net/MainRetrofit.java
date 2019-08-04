@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import com.zdjf.qqh.data.commons.Urls;
 import com.zdjf.qqh.utils.HttpsUtil;
 import com.zdjf.qqh.utils.LogUtil;
-import com.zdjf.qqh.utils.Tools;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -47,8 +46,6 @@ class MainRetrofit {
                     public okhttp3.Response intercept(@NonNull Chain chain) throws IOException {
                         okhttp3.Response orginalResponse = chain.proceed(chain.request());
                         return orginalResponse.newBuilder()
-                                .addHeader("platform", "ANDROID")
-                                .addHeader("uniqueNo", Tools.getDeviceId())
                                 .body(new ProgressResponseBody(orginalResponse.body(), new ProgressListener() {
                                     @Override
                                     public void onProgress(long progress, long total, boolean done) {

@@ -90,6 +90,7 @@
     <string name="interest_sort">按利率排序</string>
     <string name="amount_sort">按额度排序</string>
     <string name="loan_record">申请记录</string>
+    <string name="my_loan_record">我的申请记录</string>
     <string name="message_center">消息中心</string>
     <string name="my_service">专属客服</string>
     <string name="apply_now">立即申请</string>

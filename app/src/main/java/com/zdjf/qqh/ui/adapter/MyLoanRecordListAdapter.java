@@ -24,7 +24,7 @@ public class MyLoanRecordListAdapter extends BaseAdapter<MyLoanRecordBean.MyLoan
     protected void convert(final BaseViewHolder helper, MyLoanRecordBean.MyLoanBean item) {
         helper.setText(R.id.tv_loan_name, item.name)
                 .setText(R.id.tv_loan_time, FormatUtil.long2StrDate(item.createDate));
-        GlideImageLoader.setImg(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_product_icon),
+        GlideImageLoader.setImg(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_loan_icon),
                 R.mipmap.icon_product_default, R.mipmap.icon_product_default);
     }
 
