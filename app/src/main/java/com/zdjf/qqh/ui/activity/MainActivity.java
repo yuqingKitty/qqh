@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.zdjf.qqh.R;
 import com.zdjf.qqh.data.entity.RxBusMessage;
 import com.zdjf.qqh.ui.base.BaseFragmentActivity;
+import com.zdjf.qqh.utils.IntentUtil;
 import com.zdjf.qqh.utils.ToastCompat;
 import com.zdjf.qqh.utils.rxbus.RxBus;
 import com.umeng.analytics.MobclickAgent;
@@ -128,18 +129,4 @@ public class MainActivity extends BaseFragmentActivity {
         rxBus.addSubscription(this, disposable);
     }
 
-    public void setFragment(int pos){
-        selectTab(pos);
-        switch (pos){
-            case 0:
-                mHomeBtn.setChecked(true);
-                break;
-            case 1:
-                mCompleteBtn.setChecked(true);
-                break;
-            case 2:
-                mMineBtn.setChecked(true);
-                break;
-        }
-    }
 }

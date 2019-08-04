@@ -51,11 +51,6 @@
         <activity
             android:name="com.zdjf.qqh.ui.activity.SettingActivity"
             android:screenOrientation="portrait" />
-        <!-- 修改密码-->
-        <!-- 重置密码-->
-        <!-- 注册界面-->
-        <!-- 协议界面-->
-        <!-- 意见反馈-->
         <!-- 消息中心-->
         <activity
             android:name="com.zdjf.qqh.ui.activity.MessageCenterActivity"
@@ -64,7 +59,6 @@
         <activity
             android:name="com.zdjf.qqh.ui.activity.MyLoanRecordActivity"
             android:screenOrientation="portrait" />
-        <!-- 关于客服-->
         <!-- 首页类型产品列表-->
         <activity
             android:name="com.zdjf.qqh.ui.activity.HomeTypeProductActivity"

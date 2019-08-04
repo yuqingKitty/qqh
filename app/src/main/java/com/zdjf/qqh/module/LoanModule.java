@@ -158,8 +158,8 @@ public class LoanModule {
      *
      * @param observer
      */
-    public void service(Observer observer) {
-        Observable<ServiceBean> observable = LOAN_SERVICE.service(BaseApplication.CHANNEL, uid, token);
+    public void service(Map<String, Object> params, Observer observer) {
+        Observable<ServiceBean> observable = LOAN_SERVICE.service(BaseApplication.CHANNEL, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

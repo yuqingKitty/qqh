@@ -61,6 +61,28 @@ public interface LoanService {
     Observable<CompleteBean> getLoanProductList(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**
+     * 首页类型页面-广告
+     * @param channel
+     * @param userId
+     * @param body
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=UTF-8"})
+    @POST("app/pub/getAd")
+    Observable<HomeTypeProductBean> getHomeTypeAdList(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
+
+    /**
+     * 首页类型页面-产品列表
+     * @param channel
+     * @param userId
+     * @param body
+     * @return
+     */
+    @Headers({"Content-type:application/json;charset=UTF-8"})
+    @POST("app/prod/list")
+    Observable<HomeTypeProductBean> getHomeTypeProductList(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
+
+    /**
      * 获取验证码
      *
      * @param body
@@ -106,8 +128,8 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/pub/cs")
-    Observable<ServiceBean> service(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token);
+    @POST("app/user/getCusServ")
+    Observable<ServiceBean> service(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**
      * 上传头像
@@ -154,7 +176,7 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/pub/myLoanRecordList")
+    @POST("app/user/getProductAccessList")
     Observable<MyLoanRecordBean> getMyLoanRecordList(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**
@@ -165,7 +187,7 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/pub/myRecommendProductList")
+    @POST("app/prod/list")
     Observable<MyLoanRecordBean> getMyRecommendProductList(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**
@@ -176,30 +198,7 @@ public interface LoanService {
      * @return
      */
     @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/pub/getMessageList")
+    @POST("app/prod/list")
     Observable<MessageCenterBean> getMessageCenterList(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
-
-
-    /**
-     * 首页类型页面-广告
-     * @param channel
-     * @param userId
-     * @param body
-     * @return
-     */
-    @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/pub/getHomeTypeAdList")
-    Observable<HomeTypeProductBean> getHomeTypeAdList(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
-
-    /**
-     * 首页类型页面-产品列表
-     * @param channel
-     * @param userId
-     * @param body
-     * @return
-     */
-    @Headers({"Content-type:application/json;charset=UTF-8"})
-    @POST("api/app/fast2/pub/getHomeTypeProductList")
-    Observable<HomeTypeProductBean> getHomeTypeProductList(@Header("source") String channel, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
 }

@@ -2,7 +2,6 @@ package com.zdjf.qqh.presenter;
 
 import android.app.Activity;
 
-import com.zdjf.qqh.application.BaseApplication;
 import com.zdjf.qqh.data.entity.HomeTypeProductBean;
 import com.zdjf.qqh.data.entity.StatisticsBean;
 import com.zdjf.qqh.ui.base.BasePresenter;
@@ -17,7 +16,7 @@ import io.reactivex.observers.DisposableObserver;
 
 public class HomeTypeProductPresenter extends BasePresenter<IHomeTypeProductView> {
     private int pageNumber = 1;
-    private int pageSize = 20;
+    private int pageSize = 10;
 
     public HomeTypeProductPresenter(Activity context, IHomeTypeProductView view) {
         super(context, view);
@@ -48,7 +47,7 @@ public class HomeTypeProductPresenter extends BasePresenter<IHomeTypeProductView
             @Override
             public void onNext(HomeTypeProductBean homeTypeProductBean) {
                 if (parse(mContext, homeTypeProductBean)) {
-                    List<HomeTypeProductBean.TypeProductBean> listBean = homeTypeProductBean.typeProductBeanList;
+                    List<HomeTypeProductBean.TypeProductBean> listBean = homeTypeProductBean.productList;
                     if (listBean != null && listBean.size() > 0) {
                         if (pageNumber == 1) {
                             //刷新完成
@@ -94,14 +93,16 @@ public class HomeTypeProductPresenter extends BasePresenter<IHomeTypeProductView
     /**
      * 获取广告位
      */
-    public void getHomeTypeAdList(int type) {
+    public void getHomeTypeAdList(int typeId) {
         Map<String, Object> params = new HashMap<>();
-        params.put("typeId", type);
+        params.put("adType", 5);
+        params.put("adKind", 1);
+        params.put("typeId", typeId);
         mModel.getHomeTypeAdList(params, new DisposableObserver<HomeTypeProductBean>() {
             @Override
             public void onNext(HomeTypeProductBean homeTypeProductBean) {
                 if (parse(mContext, homeTypeProductBean)) {
-                    List<HomeTypeProductBean.BannerBean> listBean = homeTypeProductBean.adList;
+                    List<HomeTypeProductBean.BannerBean> listBean = homeTypeProductBean.advertisementList;
                     if (listBean != null && listBean.size() > 0) {
                         obtainView().loadTypeAdDataSuccess(listBean);
                     }

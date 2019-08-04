@@ -17,7 +17,7 @@ import io.reactivex.observers.DisposableObserver;
 
 public class MyLoanRecordPresenter extends BasePresenter<IMyLoanRecordView> {
     private int pageNumber = 1;
-    private int pageSize = 20;
+    private int pageSize = 5;
 
     public MyLoanRecordPresenter(Activity context, IMyLoanRecordView view) {
         super(context, view);

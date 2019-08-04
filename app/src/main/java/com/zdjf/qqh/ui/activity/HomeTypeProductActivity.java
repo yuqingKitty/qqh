@@ -12,12 +12,14 @@ import com.zdjf.qqh.R;
 import com.zdjf.qqh.application.BaseApplication;
 import com.zdjf.qqh.data.commons.Constants;
 import com.zdjf.qqh.data.entity.HomeTypeProductBean;
+import com.zdjf.qqh.data.entity.RxBusMessage;
 import com.zdjf.qqh.presenter.HomeTypeProductPresenter;
 import com.zdjf.qqh.ui.adapter.HomeTypeProductListAdapter;
 import com.zdjf.qqh.ui.base.BaseActivity;
 import com.zdjf.qqh.ui.customview.HomeTypeAdHeader;
 import com.zdjf.qqh.ui.customview.TopBarView;
 import com.zdjf.qqh.utils.IntentUtil;
+import com.zdjf.qqh.utils.rxbus.RxBus;
 import com.zdjf.qqh.view.IHomeTypeProductView;
 
 import java.util.ArrayList;
@@ -26,10 +28,12 @@ import java.util.List;
 import butterknife.BindView;
 
 import static com.zdjf.qqh.data.commons.Constants.EXTRA_TYPE_ID;
+import static com.zdjf.qqh.data.commons.Constants.RXBUS_TO_COMPLETE_KEY;
 import static com.zdjf.qqh.data.commons.Constants.TITLE_INTENT_KEY;
 
 public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresenter> implements IHomeTypeProductView,
-        BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, OnBannerListener {
+        BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener,
+        HomeTypeAdHeader.ClickTypeAllListener, OnBannerListener {
     @BindView(R.id.refresh_home_type_product)
     SwipeRefreshLayout refresh_home_type_product;
     @BindView(R.id.rv_home_type_product)
@@ -38,7 +42,7 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
     private HomeTypeAdHeader homeTypeAdHeader;
     private HomeTypeProductListAdapter homeTypeProductListAdapter;
     private List<HomeTypeProductBean.BannerBean> bannerBeanList = new ArrayList<>();
-    private int type;
+    private int typeId;
 
     @Override
     protected void initPresenter(Intent intent) {
@@ -54,7 +58,7 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
     protected void initView() {
         if (getIntent() != null){
             String title = getIntent().getStringExtra(TITLE_INTENT_KEY);
-            type = getIntent().getIntExtra(EXTRA_TYPE_ID, 0);
+            typeId = getIntent().getIntExtra(EXTRA_TYPE_ID, 0);
             ((TopBarView) findViewById(R.id.top_view)).setTitleContent(title);
         }
         ((TopBarView) findViewById(R.id.top_view)).setTitleBold();
@@ -68,8 +72,8 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
         homeTypeProductListAdapter.setOnLoadMoreListener(this, rv_home_type_product);
         refresh_home_type_product.setOnRefreshListener(this);
         refresh_home_type_product.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
-        homeTypeAdHeader.setListener(this);
-        mPresenter.initData(type);
+        homeTypeAdHeader.setListener(this, this);
+        mPresenter.initData(typeId);
         if (homeTypeAdHeader != null) {
             homeTypeAdHeader.startScroll();
         }
@@ -134,12 +138,12 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
 
     @Override
     public void onLoadMoreRequested() {
-        mPresenter.loadMoreData(type);
+        mPresenter.loadMoreData(typeId);
     }
 
     @Override
     public void onRefresh() {
-        mPresenter.initTypeProductListData(type);
+        mPresenter.initTypeProductListData(typeId);
     }
 
     @Override
@@ -158,6 +162,12 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
     protected void onDestroy() {
         super.onDestroy();
         homeTypeAdHeader.stopScroll();
+    }
+
+    @Override
+    public void onTypeAllClicked() {
+        RxBus.getInstanceBus().post(new RxBusMessage<>(RXBUS_TO_COMPLETE_KEY));
+        finish();
     }
 
 }

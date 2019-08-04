@@ -157,7 +157,7 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
                 @Override
                 public void onClick(View v) {
                     if (clickHomeHeadListener != null) {
-                        clickHomeHeadListener.onTypeClicked(typeBean.name, Integer.valueOf(typeBean.locationNo));
+                        clickHomeHeadListener.onTypeClicked(typeBean.name, Integer.valueOf(typeBean.id));
                     }
                 }
             });

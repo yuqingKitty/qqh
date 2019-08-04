@@ -12,14 +12,15 @@ import com.zdjf.qqh.R;
 import com.zdjf.qqh.application.BaseApplication;
 import com.zdjf.qqh.data.commons.Constants;
 import com.zdjf.qqh.data.entity.HomeBean;
+import com.zdjf.qqh.data.entity.RxBusMessage;
 import com.zdjf.qqh.data.entity.UploadBean;
 import com.zdjf.qqh.presenter.HomePresenter;
-import com.zdjf.qqh.ui.activity.MainActivity;
 import com.zdjf.qqh.ui.adapter.HomeProductListAdapter;
 import com.zdjf.qqh.ui.base.BaseFragment;
 import com.zdjf.qqh.ui.customview.HomeHeaderView;
 import com.zdjf.qqh.ui.customview.TopBarView;
 import com.zdjf.qqh.utils.IntentUtil;
+import com.zdjf.qqh.utils.rxbus.RxBus;
 import com.zdjf.qqh.utils.updateapp.UpdateDialogFragment;
 import com.zdjf.qqh.view.IHomeView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -31,8 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
+import static com.zdjf.qqh.data.commons.Constants.RXBUS_TO_COMPLETE_KEY;
 import static com.zdjf.qqh.utils.updateapp.UpdateDialogFragment.INTENT_KEY;
 
 /**
@@ -103,14 +104,14 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden && mActivity != null) {
-            mActivity.initStatusBar(true);
-            if (mHeaderView != null) {
-                mHeaderView.startScroll();
-            }
-        } else if (hidden && mHeaderView != null) {
-            mHeaderView.stopScroll();
-        }
+//        if (!hidden && mActivity != null) {
+//            mActivity.initStatusBar(true);
+//            if (mHeaderView != null) {
+//                mHeaderView.startScroll();
+//            }
+//        } else if (hidden && mHeaderView != null) {
+//            mHeaderView.stopScroll();
+//        }
     }
 
     @Override
@@ -207,11 +208,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         homeLoanProductListAdapter.loadMoreFail();
     }
 
-    @OnClick(R.id.top_view)
-    void topClick() {
-        mHomeRecycleView.smoothScrollToPosition(0);
-    }
-
     /**
      * 刷新
      */
@@ -223,13 +219,15 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
 
     @Override
     public void onTypeClicked(String title, int typeId) {
-        IntentUtil.toHomeTypeProductActivity(getActivity(), title, typeId);
+        if (BaseApplication.isLogin(mActivity, true, false)) {
+            IntentUtil.toHomeTypeProductActivity(getActivity(), title, typeId);
+        }
     }
 
     @Override
     public void onLoanAllClicked() {
         // 点击了热门贷款全部
-        ((MainActivity)getActivity()).setFragment(1);
+        RxBus.getInstanceBus().post(new RxBusMessage<>(RXBUS_TO_COMPLETE_KEY));
     }
 
     @Override

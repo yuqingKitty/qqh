@@ -14,5 +14,39 @@
         app:indicator_drawable_selected="@drawable/indicator_drawable_selected"
         app:indicator_drawable_unselected="@drawable/indicator_drawable_unselected" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <ImageView
+            android:id="@+id/iv_loan_tag"
+            android:layout_width="@dimen/dp4"
+            android:layout_height="@dimen/dp_14"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_centerVertical="true"
+            android:background="@color/color_FFC71D"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_loan_tag"
+            android:layout_marginLeft="@dimen/dp6"
+            android:text="@string/hot_loan"
+            android:textColor="@color/color_181001"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_type_loan_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/dp_16"
+            android:text="@string/all"
+            android:textColor="@color/color_181001"
+            android:textSize="@dimen/sp_13"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

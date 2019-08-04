@@ -21,14 +21,13 @@ public class MyLoanRecommendProductAdapter extends BaseAdapter<MyLoanRecordBean.
 
     @Override
     protected void convert(BaseViewHolder helper, final MyLoanRecordBean.MyRecommendProductBean item) {
+        GlideImageLoader.setImg(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_product_icon),
+                R.mipmap.icon_product_default, R.mipmap.icon_product_default);
         helper.setText(R.id.tv_product_name, item.name)
-                .setText(R.id.tv_product_tag, item.tagDesc)
-                .setText(R.id.tv_loan_range, item.loanRange)
-                .setText(R.id.tv_loan_term, "借款期限"+item.loanTerm)
-                .setText(R.id.tv_market_phrases, item.marketPhrases);
-
-        GlideImageLoader.setRoundedCorner(mContext, item.logoURL, (ImageView) helper.getView(R.id.iv_product_icon), 10);
-
+                .setText(R.id.tv_product_tag, item.prodLoanFeature)
+                .setText(R.id.tv_loan_range, item.prodLoanRange)
+                .setText(R.id.tv_loan_term, "借款期限" + item.prodLoanTerm)
+                .setText(R.id.tv_market_phrases, item.prodLoanTime + " " + item.prodLoanInterest);
     }
 }
 

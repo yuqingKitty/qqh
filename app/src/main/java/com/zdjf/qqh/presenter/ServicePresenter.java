@@ -7,6 +7,8 @@ import com.zdjf.qqh.ui.base.BasePresenter;
 import com.zdjf.qqh.utils.LogUtil;
 import com.zdjf.qqh.view.IServiceView;
 
+import java.util.HashMap;
+
 import io.reactivex.observers.DisposableObserver;
 
 /**
@@ -19,7 +21,7 @@ public class ServicePresenter extends BasePresenter<IServiceView> {
 
     public void getData() {
         obtainView().showLoading();
-        mModel.service(new DisposableObserver<ServiceBean>() {
+        mModel.service(new HashMap<String, Object>(), new DisposableObserver<ServiceBean>() {
 
             @Override
             public void onNext(ServiceBean serviceBean) {

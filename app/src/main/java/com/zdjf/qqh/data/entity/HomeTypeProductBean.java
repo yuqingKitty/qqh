@@ -3,32 +3,28 @@ package com.zdjf.qqh.data.entity;
 import java.util.List;
 
 public class HomeTypeProductBean extends BaseBean {
-    public List<BannerBean> adList;
-    public List<TypeProductBean> typeProductBeanList;
+    public List<BannerBean> advertisementList;
+    public List<TypeProductBean> productList;
 
     public class BannerBean {
+        public String id;
         public String index;
-        /**
-         * 图片地址
-         */
         public String imageURL;
-        /**
-         * 链接跳转地址
-         */
-        public String srcURL;
-        public String width;
-        public String height;
+        public String srcURL; // 链接跳转地址
+        public String productId;
     }
 
     public class TypeProductBean {
         public String id;
-        public String logoURL;
+        public String productId;
+        public String logoUrl;
         public String name;
-        public String tagDesc;
-        public String loanRange;
-        public String loanTerm;
-        public String marketPhrases;
         public String link;
+        public String prodLoanRange;
+        public String prodLoanTerm;
+        public String prodLoanInterest;
+        public String prodLoanTime;
+        public String prodLoanFeature;
     }
 
 }

@@ -55,7 +55,6 @@ public class HomeBean extends BaseBean {
         public String logoUrl;
         public String name;
         public String link;
-        public String applyProductDesc;  // 今日申请人数
         public String prodLoanRange;
         public String prodLoanTerm;
         public String prodLoanInterest;

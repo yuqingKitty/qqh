@@ -12,20 +12,23 @@ public class MyLoanRecordBean {
 
     public class MyLoanBean {
         public String id;
-        public String productLogoUrl;
-        public String productName;
-        public long productApplyTime;
+        public String productId;
+        public String logoUrl;
+        public String name;
+        public long createDate;
     }
 
     public class MyRecommendProductBean {
         public String id;
-        public String logoURL;
+        public String productId;
+        public String logoUrl;
         public String name;
-        public String tagDesc;
-        public String loanRange;
-        public String loanTerm;
-        public String marketPhrases;
         public String link;
+        public String prodLoanRange;
+        public String prodLoanTerm;
+        public String prodLoanInterest;
+        public String prodLoanTime;
+        public String prodLoanFeature;
     }
 }
 
