@@ -75,9 +75,9 @@ public class CustomerServiceActivity extends BaseActivity<ServicePresenter> impl
 
     @Override
     public void getDataSuccess(ServiceBean bean) {
-        tv_service_name.setText(bean.name);
-        tv_service_number.setText("工号：" + bean.workNumber);
-        tv_service_level.setText("职位：" + bean.level);
+        tv_service_name.setText(bean.jobName);
+        tv_service_number.setText("工号：" + bean.jobCode);
+        tv_service_level.setText("职位：" + bean.jobPosition);
         tv_weixin.setText("微信号：" + bean.weixin);
         GlideImageLoader.setImg(this, bean.qrCode, iv_qr_code, R.mipmap.bitmap_wechat, R.mipmap.bitmap_wechat);
         mContentLayout.setVisibility(View.VISIBLE);
