@@ -9,13 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:src="@mipmap/icon_product_default" />
+        android:src="@mipmap/icon_today_recommend" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/iv_recommend_icon"
         android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginTop="@dimen/dp_17"
         android:layout_toRightOf="@id/iv_recommend_icon"
         android:orientation="vertical">
 

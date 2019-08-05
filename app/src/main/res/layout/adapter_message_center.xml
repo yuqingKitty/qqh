@@ -63,7 +63,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="@dimen/dp_16"
-            android:src="@mipmap/icon_arrow_right"/>
+            android:src="@mipmap/icon_arrow_down"/>
 
     </RelativeLayout>
 

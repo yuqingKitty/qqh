@@ -7,6 +7,7 @@ public class UserBean {
     private String nickName;
     private String phone;
     private String imageIcon;
+    private String phoneMask;
 
     public String getNickName() {
         return nickName;
@@ -32,7 +33,11 @@ public class UserBean {
         this.imageIcon = imageIcon;
     }
 
-    public String getDecryptPhone() {
-        return phone.substring(0, 3) + "****" + phone.substring(phone.length() - 4, phone.length());
+    public String getPhoneMask() {
+        return phoneMask;
+    }
+
+    public void setPhoneMask(String phoneMask) {
+        this.phoneMask = phoneMask;
     }
 }

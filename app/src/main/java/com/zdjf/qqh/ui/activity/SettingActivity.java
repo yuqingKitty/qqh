@@ -391,7 +391,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements I
         if (userBean == null) {
             return;
         }
-        mPhoneNum.setText(userBean.getDecryptPhone());
+        mPhoneNum.setText(userBean.getPhoneMask());
         String userName = userBean.getNickName();
         mUserName.setText(TextUtils.isEmpty(userName) ? "未设置昵称" : userName);
         GlideImageLoader.setCircleImg(SettingActivity.this, userBean.getImageIcon(), mHeadView, R.mipmap.setup_head, R.mipmap.setup_head);

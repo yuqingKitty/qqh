@@ -119,7 +119,7 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
     private void fillData() {
         if (mUserBean != null) {
             String userName = mUserBean.getNickName();
-            mUserName.setText(TextUtils.isEmpty(userName) ? mUserBean.getDecryptPhone() : userName);
+            mUserName.setText(TextUtils.isEmpty(userName) ? mUserBean.getPhoneMask() : userName);
             GlideImageLoader.setCircleImg(mActivity, mUserBean.getImageIcon(), mUserHead, R.mipmap.icon_img_default, R.mipmap.icon_img_default);
         } else {
             mUserName.setText("立即登录");
@@ -153,7 +153,7 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
                     case RXBUS_NICKNAME_SUCCESS_KEY://昵称设置成功
                         mUserBean = BaseApplication.getUserBean(mActivity);
                         String userName = mUserBean.getNickName();
-                        mUserName.setText(TextUtils.isEmpty(userName) ? mUserBean.getDecryptPhone() : userName);
+                        mUserName.setText(TextUtils.isEmpty(userName) ? mUserBean.getPhoneMask() : userName);
                         break;
                 }
             }
