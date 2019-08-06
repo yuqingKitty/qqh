@@ -153,7 +153,7 @@ public interface LoanService {
      * 获取消息中心
      */
     @Headers({"Content-type:application/json;charset=UTF-8", "platform:ANDROID"})
-    @POST("app/prod/list")
+    @POST("app/user/getPushMessage")
     Observable<MessageCenterBean> getMessageCenterList(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
 }

@@ -17,7 +17,7 @@ import io.reactivex.observers.DisposableObserver;
 
 public class MessageCenterPresenter extends BasePresenter<IMessageCenterView> {
     private int pageNumber = 1;
-    private int pageSize = 20;
+    private int pageSize = 10;
 
     public MessageCenterPresenter(Activity context, IMessageCenterView view) {
         super(context, view);

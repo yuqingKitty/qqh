@@ -10,10 +10,10 @@ public class MessageCenterBean extends BaseBean {
 
     public class MessageBean {
         public String id;
-        public String messageIconUrl; // 消息图标URL
-        public String messageTitle;  // 消息标题
-        public String messageSubTitle; // 消息副标题
-        public String messageDesc; // 消息描述
-        public int isOfficial; // 是否是官方
+        public String iconURL; // 消息图标URL
+        public String title;  // 消息标题
+        public String summary; // 消息副标题
+        public String content; // 消息描述
+        public String label;
     }
 }

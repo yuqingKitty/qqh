@@ -25,24 +25,19 @@ public class MessageCenterAdapter extends BaseAdapter<MessageCenterBean.MessageB
 
     @Override
     protected void convert(final BaseViewHolder helper, MessageCenterBean.MessageBean item) {
-        helper.setText(R.id.tv_message_title, item.messageTitle)
-                .setText(R.id.tv_message_sub_title, item.messageSubTitle)
-                .setText(R.id.tv_message_desc, item.messageDesc);
-        if (item.isOfficial == 1){
-            helper.setGone(R.id.tv_message_official, true);
-        } else {
-            helper.setGone(R.id.tv_message_official, false);
-        }
+        helper.setText(R.id.tv_message_title, item.title)
+                .setText(R.id.tv_message_label, item.label)
+                .setText(R.id.tv_message_sub_title, item.summary)
+                .setText(R.id.tv_message_desc, item.content);
         helper.setGone(R.id.tv_message_desc, false);
 
-        GlideImageLoader.setRoundedCorner(mContext, item.messageIconUrl, (ImageView) helper.getView(R.id.iv_message_icon), 10);
-
+        GlideImageLoader.setRoundedCorner(mContext, item.iconURL, (ImageView) helper.getView(R.id.iv_message_icon), 10);
 
 
         helper.getView(R.id.iv_message_arrow).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (helper.getView(R.id.tv_message_desc).getVisibility() == View.VISIBLE){
+                if (helper.getView(R.id.tv_message_desc).getVisibility() == View.VISIBLE) {
                     // 显示到不显示
                     helper.setImageResource(R.id.iv_message_arrow, R.mipmap.icon_arrow_down);
                     helper.setGone(R.id.tv_message_desc, false);
