@@ -33,6 +33,11 @@ public class Constants {
 
     public static final String PHOTO_JPG_FORMAT = ".jpg";
     public static final String EXTRA_TYPE_ID = "extra_type_id";
+
+    /**
+     * 极光预取号成功与否，是否可以一键登录
+     */
+    public static final String SP_KEY_CAN_JIGUANNG_LOGIN = "CAN_JIGUANNG_LOGIN";
     /**
      * 选择照片回调
      */

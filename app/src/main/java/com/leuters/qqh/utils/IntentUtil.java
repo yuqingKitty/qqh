@@ -1,9 +1,13 @@
 package com.leuters.qqh.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import com.leuters.qqh.application.BaseApplication;
 import com.leuters.qqh.ui.activity.CustomerServiceActivity;
 import com.leuters.qqh.ui.activity.HomeTypeProductActivity;
 import com.leuters.qqh.ui.activity.LoginNewActivity;
@@ -15,9 +19,13 @@ import com.leuters.qqh.ui.activity.SettingActivity;
 import com.leuters.qqh.ui.activity.WebAPPActivity;
 import com.leuters.qqh.ui.activity.WebActivity;
 
+import cn.jiguang.verifysdk.api.JVerificationInterface;
+import cn.jiguang.verifysdk.api.VerifyListener;
+
 import static com.leuters.qqh.data.commons.Constants.CHOOSE_PICTURE;
 import static com.leuters.qqh.data.commons.Constants.EXTRA_TYPE_ID;
 import static com.leuters.qqh.data.commons.Constants.PHOTO_REQUEST_RESULT;
+import static com.leuters.qqh.data.commons.Constants.SP_KEY_CAN_JIGUANNG_LOGIN;
 import static com.leuters.qqh.data.commons.Constants.TITLE_INTENT_KEY;
 
 /**
@@ -38,16 +46,6 @@ public class IntentUtil {
     }
 
     /**
-     * 跳转登录界面
-     *
-     * @param context
-     */
-    public static void toLoginActivity(Activity context) {
-        context.startActivity(new Intent(context, LoginNewActivity.class));
-
-    }
-
-    /**
      * 跳转设置界面
      *
      * @param context
@@ -58,6 +56,7 @@ public class IntentUtil {
 
     /**
      * 申请记录
+     *
      * @param context
      */
     public static void toMyLoanRecordActivity(Activity context) {
@@ -66,6 +65,7 @@ public class IntentUtil {
 
     /**
      * 消息中心
+     *
      * @param context
      */
     public static void toMessageCenterActivity(Activity context) {
@@ -138,6 +138,7 @@ public class IntentUtil {
 
     /**
      * 跳转首页类型
+     *
      * @param context
      * @param title
      * @param type
@@ -149,5 +150,39 @@ public class IntentUtil {
         context.startActivity(intent);
     }
 
+    /**
+     * 跳转登录界面
+     *
+     * @param context
+     */
+    public static void toLoginActivity(Activity context) {
+        Log.e("yuq", "---" + (boolean) SPUtil.get(context, SP_KEY_CAN_JIGUANNG_LOGIN, false));
+        boolean verifyEnable = JVerificationInterface.checkVerifyEnable(context);
+        boolean isCanJiguangLogin = (boolean) SPUtil.get(context, SP_KEY_CAN_JIGUANNG_LOGIN, false);
+        if (verifyEnable && isCanJiguangLogin){
+            // 满足极光一键登录的条件
+            loginAuth(context);
+        }else {
+            context.startActivity(new Intent(context, LoginNewActivity.class));
+        }
+    }
+
+
+    private static void loginAuth(Context context) {
+        JVerificationInterface.setCustomUIWithConfig(BaseApplication.getUIConfig(context));
+        JVerificationInterface.loginAuth(context, true, new VerifyListener() {
+            @Override
+            public void onResult(final int code, final String content, final String operator) {
+                Log.e("yuq", "[" + code + "]message=" + content + ", operator=" + operator);
+                Bundle bundle = new Bundle();
+//                bundle.putInt(LOGIN_CODE, code);
+//                bundle.putString(LOGIN_CONTENT, content);
+//                bundle.putString(LOGIN_OPERATOR, operator);
+//                savedLoginState = bundle;
+//                //这里通过static bundle传递数据是为了防止出现授权页方向和MainActivity不相同时，MainActivity被销毁重新初始化导致回调数据无法展示到MainActivity
+//                dismissLoadingDialog();
+            }
+        });
+    }
 
 }

@@ -25,6 +25,12 @@ android {
         doNotStrip '*/mips64/*.so'
     }
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
     signingConfigs {
         //debug版签名配置
         debug {

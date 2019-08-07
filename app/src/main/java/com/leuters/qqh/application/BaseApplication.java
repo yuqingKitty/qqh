@@ -3,24 +3,37 @@ package com.leuters.qqh.application;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.leuters.qqh.R;
 import com.leuters.qqh.data.entity.UserBean;
+import com.leuters.qqh.ui.activity.LoginNewActivity;
 import com.leuters.qqh.ui.customview.swipeback.ActivityLifecycleHelper;
 import com.leuters.qqh.utils.GsonUtil;
 import com.leuters.qqh.utils.IntentUtil;
 import com.leuters.qqh.utils.LogUtil;
 import com.leuters.qqh.utils.SPUtil;
+import com.leuters.qqh.utils.ScreenUtil;
 import com.leuters.qqh.utils.ToastCompat;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
+import cn.jiguang.verifysdk.api.JVerificationInterface;
+import cn.jiguang.verifysdk.api.JVerifyUIClickCallback;
+import cn.jiguang.verifysdk.api.JVerifyUIConfig;
+import cn.jiguang.verifysdk.api.PreLoginListener;
 import cn.jpush.android.api.JPushInterface;
 
 import static com.leuters.qqh.data.commons.Constants.HIDE_LOG;
 import static com.leuters.qqh.data.commons.Constants.IS_RELEASE;
 import static com.leuters.qqh.data.commons.Constants.LOGIN_SAVE_KEY;
+import static com.leuters.qqh.data.commons.Constants.SP_KEY_CAN_JIGUANNG_LOGIN;
 import static com.leuters.qqh.data.commons.Constants.TOKEN_KEY;
 import static com.leuters.qqh.data.commons.Constants.USER_ID_KEY;
 import static com.leuters.qqh.utils.LogUtil.NOTHING;
@@ -51,8 +64,8 @@ public class BaseApplication extends Application {
         registerActivityLifecycleCallbacks(ActivityLifecycleHelper.build());
 
         JPushInterface.init(this);
-//        JVerificationInterface.setDebugMode(true);
-//        JVerificationInterface.init(this);
+        JVerificationInterface.init(this);
+        getJiGuangPreLoginState();
     }
 
     public static BaseApplication getContext() {
@@ -159,5 +172,74 @@ public class BaseApplication extends Application {
         }
         return !(TextUtils.isEmpty(getToken(context)) || TextUtils.isEmpty(getUserId(context)));
     }
+
+    private void getJiGuangPreLoginState() {
+        boolean verifyEnable = JVerificationInterface.checkVerifyEnable(this); // SDK判断网络环境是否支持
+        if (!verifyEnable) {
+            Log.e("yuq", "当前网络环境不支持认证");
+            return;
+        }
+        JVerificationInterface.preLogin(this, 5000, new PreLoginListener() {
+            @Override
+            public void onResult(final int code, final String content) {
+                Log.e("yuq", "[" + code + "]message=" + content);
+                if (code == 7000){
+                    // 7000代表获取成功，其他为失败，详见错误码描述
+                    SPUtil.put(getApplicationContext(), SP_KEY_CAN_JIGUANNG_LOGIN, true);
+                } else {
+                    SPUtil.put(getApplicationContext(), SP_KEY_CAN_JIGUANNG_LOGIN, false);
+                }
+            }
+        });
+    }
+
+    public static JVerifyUIConfig getUIConfig(Context context) {
+        JVerifyUIConfig.Builder configBuilder = new JVerifyUIConfig.Builder();
+
+        TextView loginTextView = new TextView(context);
+        loginTextView.setText("其他号码登录");
+        loginTextView.setTextColor(context.getResources().getColor(R.color.color_FFC71D));
+        RelativeLayout.LayoutParams mLayoutParams = new RelativeLayout.LayoutParams
+                (RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        mLayoutParams.setMargins(0, ScreenUtil.dp2px(context, 400.0f), 0, 0);
+        mLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+        loginTextView.setLayoutParams(mLayoutParams);
+
+
+        configBuilder
+                .setNavColor(0xffffffff)
+                .setNavReturnImgPath("umcsdk_return_bg")
+                .setLogoWidth(83)
+                .setLogoHeight(83)
+                .setLogoHidden(false)
+                .setNumberColor(0xff181001)
+                .setLogBtnText("本机号码一键登录")
+                .setLogBtnTextColor(0xffffffff)
+                .setLogBtnImgPath("umcsdk_login_btn_bg")
+                .setLogBtnHeight(42)
+                .setLogBtnTextSize(16)
+                .setAppPrivacyColor(0xffa8a8a8, 0xffffc71d)
+                .setUncheckedImgPath("umcsdk_uncheck_image")
+                .setCheckedImgPath("umcsdk_check_image")
+                .setSloganTextColor(0xffcacaca)
+                .setLogoOffsetY(50)
+                .setLogoImgPath("logo_cm")
+                .setNumFieldOffsetY(190)
+                .setSloganOffsetY(250)
+                .setLogBtnOffsetY(275)
+                .setNumberSize(20)
+                .setPrivacyState(true)
+                .setNavTransparent(true)
+                .addCustomView(loginTextView, true, new JVerifyUIClickCallback() {
+                    @Override
+                    public void onClicked(Context context, View view) {
+                        context.startActivity(new Intent(context, LoginNewActivity.class));
+                    }
+                })
+                .setPrivacyOffsetY(35)
+                .setPrivacyTextCenterGravity(true);
+        return configBuilder.build();
+    }
+
 
 }
