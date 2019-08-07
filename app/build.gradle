@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.dsl.SigningConfig
-
 apply plugin: 'com.android.application'
 
 android {
@@ -27,36 +25,62 @@ android {
         doNotStrip '*/mips64/*.so'
     }
 
-    buildTypes {
-        release {
-            //混淆
-            minifyEnabled true
-            zipAlignEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationVariants.all { variant ->    //批量修改Apk名字
-                variant.outputs.all { output ->
-                    if (!variant.buildType.isDebuggable()) {
-                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
-                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
-                    }
-                }
-            }
-            signingConfig getSignInfo("../app/sign.properties")
-        }
+    signingConfigs {
+        //debug版签名配置
         debug {
+            storeFile file(SIGN_STORE_FILE)
+            storePassword SIGN_STORE_PWD
+            keyAlias SIGN_KEY_ALIAS
+            keyPassword SIGH_KEY_PWD
+        }
+
+        //发布版签名配置
+        release {
+            //密钥文件路径
+            storeFile file(SIGN_STORE_FILE)
+            //密钥文件密码
+            storePassword SIGN_STORE_PWD
+            //key别名
+            keyAlias SIGN_KEY_ALIAS
+            //key密码
+            keyPassword SIGH_KEY_PWD
+        }
+    }
+
+    buildTypes {
+        debug {
+            multiDexEnabled true
             minifyEnabled false
             zipAlignEnabled true
+            shrinkResources false
+            signingConfig signingConfigs.debug
+
+//            applicationVariants.all { variant ->    //批量修改Apk名字
+//                variant.outputs.all { output ->
+//                    if (!variant.buildType.isDebuggable()) {
+//                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
+//                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
+//                    }
+//                }
+//            }
+        }
+
+        release {
+            multiDexEnabled true
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            applicationVariants.all { variant ->    //批量修改Apk名字
-                variant.outputs.all { output ->
-                    if (!variant.buildType.isDebuggable()) {
-                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
-                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
-                    }
-                }
-            }
-//            signingConfig getSignInfo("../app/sign.properties")
+//            applicationVariants.all { variant ->    //批量修改Apk名字
+//                variant.outputs.all { output ->
+//                    if (!variant.buildType.isDebuggable()) {
+//                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
+//                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
+//                    }
+//                }
+//            }
         }
     }
 
@@ -88,23 +112,7 @@ android {
     }
 }
 
-def getSignInfo(propFileName) {
-    SigningConfig signingConfig = new SigningConfig("signInfo")
-    File propFile = file(propFileName)
-    if (propFile.exists()) {
-        Properties props = new Properties()
-        props.load(new FileInputStream(propFile))
-        signingConfig.storeFile = file(props['STORE_FILE'])
-        signingConfig.storePassword = props['STORE_PASSWORD']
-        signingConfig.keyAlias = props['KEY_ALIAS']
-        signingConfig.keyPassword = props['KEY_PASSWORD']
-        println('signConfig is exits')
-    } else {
-        println('sign config is null')
-        signingConfig = null
-    }
-    return signingConfig
-}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -156,7 +164,7 @@ dependencies {
     implementation 'com.just.agentweb:download:4.0.2'
 
     // 极光推送
-    compile 'cn.jiguang.sdk:jpush:3.3.4'  // 此处以JPush 3.3.4 版本为例。
-    compile 'cn.jiguang.sdk:jcore:2.1.2'  // 此处以JCore 2.1.2 版本为例。
+    implementation 'cn.jiguang.sdk:jpush:3.3.4'  // 此处以JPush 3.3.4 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.1.2'  // 此处以JCore 2.1.2 版本为例。
 
 }

@@ -38,12 +38,12 @@ public class MessageCenterAdapter extends BaseAdapter<MessageCenterBean.MessageB
             @Override
             public void onClick(View v) {
                 if (helper.getView(R.id.tv_message_desc).getVisibility() == View.VISIBLE) {
-                    // 显示到不显示
-                    helper.setImageResource(R.id.iv_message_arrow, R.mipmap.icon_arrow_down);
+                    // 显示到不显示 down
+                    helper.setImageResource(R.id.iv_message_arrow, R.mipmap.icon_arrow_right);
                     helper.setGone(R.id.tv_message_desc, false);
                 } else {
-                    // 不显示到显示
-                    helper.setImageResource(R.id.iv_message_arrow, R.mipmap.icon_arrow_up);
+                    // 不显示到显示 up
+                    helper.setImageResource(R.id.iv_message_arrow, R.mipmap.icon_arrow_right);
                     helper.setGone(R.id.tv_message_desc, true);
                 }
             }

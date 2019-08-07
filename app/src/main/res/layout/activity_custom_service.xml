@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dp_23"
-                android:src="@mipmap/icon_custom_service" />
+                android:src="@mipmap/icon_arrow_right" />
 
             <LinearLayout
                 android:layout_width="match_parent"
