@@ -111,7 +111,7 @@ public interface LoanService {
      * 上传头像
      */
     @Headers({"Content-type:application/json;charset=UTF-8", "platform:ANDROID"})
-    @POST("app/user/uploadHeadIcon")
+    @POST("app/user/UploadHeadIcon")
     Observable<BaseBean> uploadHeadIcon(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**
