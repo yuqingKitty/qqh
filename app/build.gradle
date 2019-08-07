@@ -5,7 +5,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.zdjf.qqh"
+        applicationId "com.leuters.qqh"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
@@ -17,7 +17,7 @@ android {
         }
         manifestPlaceholders = [
                 JPUSH_PKGNAME : applicationId,
-                JPUSH_APPKEY : "3b358fb90496332a74f0f5f6", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_APPKEY : "885304411d3a88c4000a56b2", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
     }
@@ -158,9 +158,5 @@ dependencies {
     // 极光推送
     compile 'cn.jiguang.sdk:jpush:3.3.4'  // 此处以JPush 3.3.4 版本为例。
     compile 'cn.jiguang.sdk:jcore:2.1.2'  // 此处以JCore 2.1.2 版本为例。
-
-//    // 极光认证
-//    compile 'cn.jiguang.sdk:jverification:2.3.2'  // 此处以2.3.0 版本为例。
-//    compile 'cn.jiguang.sdk:jcore:2.0.1'  // 此处以JCore 2.0.1 版本为例。
 
 }

@@ -6,7 +6,7 @@
     android:background="@color/color_FFFFFF"
     android:orientation="vertical">
 
-    <com.zdjf.qqh.ui.customview.TopBarView
+    <com.leuters.qqh.ui.customview.TopBarView
         android:id="@+id/top_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:layout_marginTop="@dimen/dp_48"
         android:orientation="vertical">
 
-        <com.zdjf.qqh.ui.customview.LoginInputView
+        <com.leuters.qqh.ui.customview.LoginInputView
             android:id="@+id/liv_login_phone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_64"
@@ -64,7 +64,7 @@
                 android:textColor="@color/color_FFFFFF"
                 android:textSize="@dimen/sp_13" />
 
-            <com.zdjf.qqh.ui.customview.LoginInputView
+            <com.leuters.qqh.ui.customview.LoginInputView
                 android:id="@+id/liv_login_code"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

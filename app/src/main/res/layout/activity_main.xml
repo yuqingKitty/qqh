@@ -11,19 +11,19 @@
 
         <fragment
             android:id="@+id/fm_home"
-            android:name="com.zdjf.qqh.ui.fragment.HomeFragment"
+            android:name="com.leuters.qqh.ui.fragment.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <fragment
             android:id="@+id/fm_com"
-            android:name="com.zdjf.qqh.ui.fragment.CompleteFragment"
+            android:name="com.leuters.qqh.ui.fragment.CompleteFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <fragment
             android:id="@+id/fm_mine"
-            android:name="com.zdjf.qqh.ui.fragment.MineFragment"
+            android:name="com.leuters.qqh.ui.fragment.MineFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>

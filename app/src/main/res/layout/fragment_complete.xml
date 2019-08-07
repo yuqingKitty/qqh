@@ -6,7 +6,7 @@
     android:background="@color/color_FFFFFF"
     android:orientation="vertical">
 
-    <com.zdjf.qqh.ui.customview.TopBarView
+    <com.leuters.qqh.ui.customview.TopBarView
         android:id="@+id/top_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
