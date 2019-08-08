@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,13 +26,12 @@ import com.umeng.commonsdk.UMConfigure;
 import cn.jiguang.verifysdk.api.JVerificationInterface;
 import cn.jiguang.verifysdk.api.JVerifyUIClickCallback;
 import cn.jiguang.verifysdk.api.JVerifyUIConfig;
-import cn.jiguang.verifysdk.api.PreLoginListener;
+import cn.jiguang.verifysdk.api.RequestCallback;
 import cn.jpush.android.api.JPushInterface;
 
 import static com.leuters.qqh.data.commons.Constants.HIDE_LOG;
 import static com.leuters.qqh.data.commons.Constants.IS_RELEASE;
 import static com.leuters.qqh.data.commons.Constants.LOGIN_SAVE_KEY;
-import static com.leuters.qqh.data.commons.Constants.SP_KEY_CAN_JIGUANNG_LOGIN;
 import static com.leuters.qqh.data.commons.Constants.TOKEN_KEY;
 import static com.leuters.qqh.data.commons.Constants.USER_ID_KEY;
 import static com.leuters.qqh.utils.LogUtil.NOTHING;
@@ -41,6 +39,7 @@ import static com.leuters.qqh.utils.LogUtil.VERBOSE;
 import static com.leuters.qqh.utils.ScreenUtil.isMeizuFlymeOS;
 
 public class BaseApplication extends Application {
+
     public static boolean isMeizu = false;
     public static String CHANNEL = "";
     private static UserBean mUserInfo;
@@ -63,9 +62,14 @@ public class BaseApplication extends Application {
         UMConfigure.setEncryptEnabled(IS_RELEASE);
         registerActivityLifecycleCallbacks(ActivityLifecycleHelper.build());
 
-        JPushInterface.init(this);
-        JVerificationInterface.init(this);
-        getJiGuangPreLoginState();
+        JPushInterface.init(this); // 初始化极光推送
+        // 初始化 一键登录sdk
+        JVerificationInterface.init(this, new RequestCallback<String>() {
+            @Override
+            public void onResult(int i, String s) {
+               LogUtil.d("BaseApplication","code = " + i + " msg = " + s);
+            }
+        });
     }
 
     public static BaseApplication getContext() {
@@ -173,26 +177,11 @@ public class BaseApplication extends Application {
         return !(TextUtils.isEmpty(getToken(context)) || TextUtils.isEmpty(getUserId(context)));
     }
 
-    private void getJiGuangPreLoginState() {
-        boolean verifyEnable = JVerificationInterface.checkVerifyEnable(this); // SDK判断网络环境是否支持
-        if (!verifyEnable) {
-            Log.e("yuq", "当前网络环境不支持认证");
-            return;
-        }
-        JVerificationInterface.preLogin(this, 5000, new PreLoginListener() {
-            @Override
-            public void onResult(final int code, final String content) {
-                Log.e("yuq", "[" + code + "]message=" + content);
-                if (code == 7000){
-                    // 7000代表获取成功，其他为失败，详见错误码描述
-                    SPUtil.put(getApplicationContext(), SP_KEY_CAN_JIGUANNG_LOGIN, true);
-                } else {
-                    SPUtil.put(getApplicationContext(), SP_KEY_CAN_JIGUANNG_LOGIN, false);
-                }
-            }
-        });
-    }
-
+    /**
+     * 获取极光一键登录自定义UI
+     * @param context
+     * @return
+     */
     public static JVerifyUIConfig getUIConfig(Context context) {
         JVerifyUIConfig.Builder configBuilder = new JVerifyUIConfig.Builder();
 

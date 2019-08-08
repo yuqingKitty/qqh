@@ -1,5 +1,6 @@
 package com.leuters.qqh.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +34,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.leuters.qqh.data.commons.Constants.RXBUS_LOGOUT_SUCCESS_KEY;
 import static com.leuters.qqh.data.commons.Constants.RXBUS_TO_COMPLETE_KEY;
 import static com.leuters.qqh.utils.updateapp.UpdateDialogFragment.INTENT_KEY;
 
@@ -92,6 +94,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         mPresenter.loadHeadData();
         mPresenter.initProductListData();
         mPresenter.getSysUpdated();
+        if (BaseApplication.isLogin((Activity) getContext(), false, false)){
+            // 登录状态验证token
+            mPresenter.verifyUserToken();
+        }
     }
 
     @Override
@@ -150,6 +156,17 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         bundle.putSerializable(INTENT_KEY, uploadBean);
         UpdateDialogFragment updateDialogFragment = UpdateDialogFragment.newInstance(bundle);
         updateDialogFragment.show(getChildFragmentManager(), "");
+    }
+
+    @Override
+    public void verifyTokenSuccess() {
+
+    }
+
+    @Override
+    public void verifyTokenFailed() {
+        BaseApplication.ClearUser(mActivity);
+        RxBus.getInstanceBus().post(new RxBusMessage<>(RXBUS_LOGOUT_SUCCESS_KEY));
     }
 
     @Override

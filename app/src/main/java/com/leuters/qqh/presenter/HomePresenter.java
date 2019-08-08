@@ -2,6 +2,7 @@ package com.leuters.qqh.presenter;
 
 import android.app.Activity;
 
+import com.leuters.qqh.data.entity.BaseBean;
 import com.leuters.qqh.data.entity.HomeBean;
 import com.leuters.qqh.data.entity.StatisticsBean;
 import com.leuters.qqh.data.entity.UploadBean;
@@ -186,6 +187,29 @@ public class HomePresenter extends BasePresenter<IHomeView> {
             @Override
             public void onComplete() {
 
+            }
+        });
+    }
+
+    public void verifyUserToken() {
+        mModel.getTokenState(new HashMap<String, Object>(), new DisposableObserver<BaseBean>() {
+            @Override
+            public void onNext(BaseBean baseBean) {
+                if (baseBean.getStatus() == 0) {
+                    obtainView().verifyTokenSuccess();
+                } else {
+                    obtainView().verifyTokenFailed();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                obtainView().ShowToast("网络异常");
+                obtainView().verifyTokenFailed();
+            }
+
+            @Override
+            public void onComplete() {
             }
         });
     }

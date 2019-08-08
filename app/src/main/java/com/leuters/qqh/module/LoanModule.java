@@ -317,4 +317,18 @@ public class LoanModule {
                 .subscribe(observer);
     }
 
+    /**
+     * token验证
+     * @param params
+     * @param observer
+     */
+    public void getTokenState(Map<String, Object> params, Observer observer) {
+        Observable<BaseBean> observable = LOAN_SERVICE.getTokenState(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
+        observable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(rxAppCompatActivity.bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(observer);
+    }
+
 }

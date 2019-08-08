@@ -15,7 +15,7 @@
             android:layout_height="@dimen/dp_64"
             android:layout_marginLeft="@dimen/dp_16"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_arrow_right"/>
+            android:src="@mipmap/icon_msg_default"/>
 
         <TextView
             android:id="@+id/tv_message_title"
@@ -63,7 +63,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="@dimen/dp_16"
-            android:src="@mipmap/icon_arrow_right"/>
+            android:src="@mipmap/icon_arrow_down"/>
 
     </RelativeLayout>
 

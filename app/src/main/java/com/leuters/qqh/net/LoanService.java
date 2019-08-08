@@ -49,7 +49,7 @@ public interface LoanService {
     Observable<CompleteBean> getLoanSortLabelList(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**
-     * 贷款大全
+     * 贷款大全产品
      */
     @Headers({"Content-type:application/json;charset=UTF-8", "platform:ANDROID"})
     @POST("app/prod/list")
@@ -155,5 +155,12 @@ public interface LoanService {
     @Headers({"Content-type:application/json;charset=UTF-8", "platform:ANDROID"})
     @POST("app/user/getPushMessage")
     Observable<MessageCenterBean> getMessageCenterList(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
+
+    /**
+     * 验证token
+     */
+    @Headers({"Content-type:application/json;charset=UTF-8", "platform:ANDROID"})
+    @POST("app/user/getTokenState")
+    Observable<BaseBean> getTokenState(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
 }

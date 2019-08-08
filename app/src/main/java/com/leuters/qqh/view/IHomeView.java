@@ -47,4 +47,11 @@ public interface IHomeView<T extends BaseBean> extends IBaseView {
      * 检测更新
      */
     void checkUpdate(String srcURL, int appEnForce, String title, String name);
+
+
+    // 验证成功
+    void verifyTokenSuccess();
+
+    // 验证失败
+    void verifyTokenFailed();
 }

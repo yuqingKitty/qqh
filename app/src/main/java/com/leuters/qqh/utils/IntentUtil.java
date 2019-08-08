@@ -168,19 +168,20 @@ public class IntentUtil {
     }
 
 
-    private static void loginAuth(Context context) {
+    private static void loginAuth(final Activity context) {
         JVerificationInterface.setCustomUIWithConfig(BaseApplication.getUIConfig(context));
         JVerificationInterface.loginAuth(context, true, new VerifyListener() {
             @Override
             public void onResult(final int code, final String content, final String operator) {
+                // code: 返回码，6000代表loginToken获取成功，6001代表loginToken获取失败，其他返回码详见描述
+                // content：返回码的解释信息，若获取成功，内容信息代表loginToken。
+                // operator：成功时为对应运营商，CM代表中国移动，CU代表中国联通，CT代表中国电信。失败时可能为null
                 Log.e("yuq", "[" + code + "]message=" + content + ", operator=" + operator);
-                Bundle bundle = new Bundle();
-//                bundle.putInt(LOGIN_CODE, code);
-//                bundle.putString(LOGIN_CONTENT, content);
-//                bundle.putString(LOGIN_OPERATOR, operator);
-//                savedLoginState = bundle;
-//                //这里通过static bundle传递数据是为了防止出现授权页方向和MainActivity不相同时，MainActivity被销毁重新初始化导致回调数据无法展示到MainActivity
-//                dismissLoadingDialog();
+                if (code == 6000){
+                    // 验证接口
+                    BaseApplication.setToken(context, content);
+                    TokenVerifyUtil.verifyUserInfo(context);
+                }
             }
         });
     }

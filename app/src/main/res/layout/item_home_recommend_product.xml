@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_75"
+    android:layout_height="@dimen/dp_58"
     android:background="@color/color_FFFFFF">
 
     <ImageView
@@ -14,8 +14,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp_12"
-        android:layout_marginTop="@dimen/dp_17"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_toRightOf="@id/iv_recommend_icon"
         android:orientation="vertical">
 
@@ -25,14 +25,14 @@
             android:layout_height="wrap_content"
             android:text="即用钱"
             android:textColor="@color/color_181001"
-            android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_14"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_recommend_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginTop="@dimen/dp2"
             android:text="想象不到的惊喜"
             android:textColor="@color/color_A8A8A8"
             android:textSize="@dimen/sp_13" />
@@ -43,8 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dp_23"
+        android:layout_centerVertical="true"
         android:drawableRight="@mipmap/icon_arrow_right"
         android:drawablePadding="@dimen/dp4"
         android:text="@string/get_money"
