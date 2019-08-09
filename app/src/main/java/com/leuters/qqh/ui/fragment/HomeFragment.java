@@ -15,6 +15,7 @@ import com.leuters.qqh.data.commons.Constants;
 import com.leuters.qqh.data.entity.HomeBean;
 import com.leuters.qqh.data.entity.RxBusMessage;
 import com.leuters.qqh.data.entity.UploadBean;
+import com.leuters.qqh.data.entity.VerifyUserTokenBean;
 import com.leuters.qqh.presenter.HomePresenter;
 import com.leuters.qqh.ui.adapter.HomeProductListAdapter;
 import com.leuters.qqh.ui.base.BaseFragment;
@@ -161,8 +162,9 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     }
 
     @Override
-    public void verifyTokenSuccess() {
-
+    public void verifyTokenSuccess(VerifyUserTokenBean verifyUserTokenBean) {
+        BaseApplication.setToken(mActivity, verifyUserTokenBean.token);
+        BaseApplication.setUserId(mActivity, verifyUserTokenBean.uid);
     }
 
     @Override

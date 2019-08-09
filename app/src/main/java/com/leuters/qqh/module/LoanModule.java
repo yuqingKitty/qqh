@@ -13,6 +13,7 @@ import com.leuters.qqh.data.entity.MyLoanRecordBean;
 import com.leuters.qqh.data.entity.ServiceBean;
 import com.leuters.qqh.data.entity.StatisticsBean;
 import com.leuters.qqh.data.entity.UploadBean;
+import com.leuters.qqh.data.entity.VerifyUserTokenBean;
 import com.leuters.qqh.net.LoanService;
 import com.leuters.qqh.net.MainFactory;
 import com.leuters.qqh.utils.GsonUtil;
@@ -323,7 +324,7 @@ public class LoanModule {
      * @param observer
      */
     public void getTokenState(Map<String, Object> params, Observer observer) {
-        Observable<BaseBean> observable = LOAN_SERVICE.getTokenState(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
+        Observable<VerifyUserTokenBean> observable = LOAN_SERVICE.getTokenState(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.leuters.qqh.R;
+import com.leuters.qqh.application.BaseApplication;
 import com.leuters.qqh.data.commons.Constants;
 import com.leuters.qqh.data.entity.CompleteBean;
 import com.leuters.qqh.presenter.CompletePresenter;
@@ -85,8 +86,10 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         //点击某一项
-        CompleteBean.ProductBean bean = (CompleteBean.ProductBean) adapter.getData().get(position);
-        mPresenter.recordProduct(bean.id, Constants.moduleName.PROD_TOTAL.getName(), bean.link);
+        if (BaseApplication.isLogin(mActivity, true, false)) {
+            CompleteBean.ProductBean bean = (CompleteBean.ProductBean) adapter.getData().get(position);
+            mPresenter.recordProduct(bean.id, Constants.moduleName.PROD_TOTAL.getName(), bean.link);
+        }
     }
 
     @Override

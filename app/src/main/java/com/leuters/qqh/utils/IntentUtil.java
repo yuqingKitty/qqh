@@ -156,7 +156,6 @@ public class IntentUtil {
      * @param context
      */
     public static void toLoginActivity(Activity context) {
-        Log.e("yuq", "---" + (boolean) SPUtil.get(context, SP_KEY_CAN_JIGUANNG_LOGIN, false));
         boolean verifyEnable = JVerificationInterface.checkVerifyEnable(context);
         boolean isCanJiguangLogin = (boolean) SPUtil.get(context, SP_KEY_CAN_JIGUANNG_LOGIN, false);
         if (verifyEnable && isCanJiguangLogin){

@@ -10,6 +10,7 @@ import com.leuters.qqh.data.entity.MyLoanRecordBean;
 import com.leuters.qqh.data.entity.ServiceBean;
 import com.leuters.qqh.data.entity.StatisticsBean;
 import com.leuters.qqh.data.entity.UploadBean;
+import com.leuters.qqh.data.entity.VerifyUserTokenBean;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -161,6 +162,6 @@ public interface LoanService {
      */
     @Headers({"Content-type:application/json;charset=UTF-8", "platform:ANDROID"})
     @POST("app/user/getTokenState")
-    Observable<BaseBean> getTokenState(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
+    Observable<VerifyUserTokenBean> getTokenState(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
 }

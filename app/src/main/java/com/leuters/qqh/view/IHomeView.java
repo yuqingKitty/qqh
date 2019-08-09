@@ -2,6 +2,7 @@ package com.leuters.qqh.view;
 
 import com.leuters.qqh.data.entity.BaseBean;
 import com.leuters.qqh.data.entity.HomeBean;
+import com.leuters.qqh.data.entity.VerifyUserTokenBean;
 
 import java.util.List;
 
@@ -50,7 +51,7 @@ public interface IHomeView<T extends BaseBean> extends IBaseView {
 
 
     // 验证成功
-    void verifyTokenSuccess();
+    void verifyTokenSuccess(VerifyUserTokenBean verifyUserTokenBean);
 
     // 验证失败
     void verifyTokenFailed();

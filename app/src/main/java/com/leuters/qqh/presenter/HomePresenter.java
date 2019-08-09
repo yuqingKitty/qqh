@@ -1,11 +1,10 @@
 package com.leuters.qqh.presenter;
 
 import android.app.Activity;
-
-import com.leuters.qqh.data.entity.BaseBean;
 import com.leuters.qqh.data.entity.HomeBean;
 import com.leuters.qqh.data.entity.StatisticsBean;
 import com.leuters.qqh.data.entity.UploadBean;
+import com.leuters.qqh.data.entity.VerifyUserTokenBean;
 import com.leuters.qqh.ui.base.BasePresenter;
 import com.leuters.qqh.utils.APKVersionCodeUtil;
 import com.leuters.qqh.utils.LogUtil;
@@ -55,7 +54,7 @@ public class HomePresenter extends BasePresenter<IHomeView> {
 
             @Override
             public void onComplete() {
-               obtainView().hideLoading();
+                obtainView().hideLoading();
             }
         });
     }
@@ -191,13 +190,15 @@ public class HomePresenter extends BasePresenter<IHomeView> {
     }
 
     public void verifyUserToken() {
-        mModel.getTokenState(new HashMap<String, Object>(), new DisposableObserver<BaseBean>() {
+        mModel.getTokenState(new HashMap<String, Object>(), new DisposableObserver<VerifyUserTokenBean>() {
             @Override
-            public void onNext(BaseBean baseBean) {
-                if (baseBean.getStatus() == 0) {
-                    obtainView().verifyTokenSuccess();
-                } else {
-                    obtainView().verifyTokenFailed();
+            public void onNext(VerifyUserTokenBean verifyUserTokenBean) {
+                if (parse(mContext, verifyUserTokenBean)) {
+                    if (verifyUserTokenBean.getStatus() == 0) {
+                        obtainView().verifyTokenSuccess(verifyUserTokenBean);
+                    } else {
+                        obtainView().verifyTokenFailed();
+                    }
                 }
             }
 
