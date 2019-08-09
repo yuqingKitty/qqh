@@ -129,20 +129,19 @@ public class HomePresenter extends BasePresenter<IHomeView> {
     /**
      * 产品点击统计
      */
-    public void recordProduct(String productId, final String url, String module_name, String module_order) {
+    public void recordProduct(String productId, String moduleName, final String link) {
         obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
         params.put("productId", productId);
-        params.put("module_name", module_name);
-        params.put("module_order", module_order);
+        params.put("moduleName", moduleName);
 
-        mModel.toStatistics(params, new DisposableObserver<StatisticsBean>() {
+        mModel.toStatisticClickProduct(params, new DisposableObserver<StatisticsBean>() {
 
 
             @Override
             public void onNext(StatisticsBean statisticsBean) {
                 if (parse(mContext, statisticsBean)) {
-                    obtainView().onRecordSuccess(url, statisticsBean.getStatisticsDetailId());
+                    obtainView().onRecordSuccess(link, statisticsBean.id);
                 }
             }
 

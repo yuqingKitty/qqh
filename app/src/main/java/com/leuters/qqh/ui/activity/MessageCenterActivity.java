@@ -88,12 +88,6 @@ public class MessageCenterActivity extends BaseActivity<MessageCenterPresenter> 
         ll_message_empty.setVisibility(View.VISIBLE);
     }
 
-
-    @Override
-    public void onRecordSuccess(String url, String id) {
-
-    }
-
     @Override
     public void ShowToast(String t) {
         showToast(t);

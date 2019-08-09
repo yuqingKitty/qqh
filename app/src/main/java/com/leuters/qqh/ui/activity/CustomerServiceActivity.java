@@ -78,7 +78,7 @@ public class CustomerServiceActivity extends BaseActivity<ServicePresenter> impl
         tv_service_name.setText(bean.jobName);
         tv_service_number.setText("工号：" + bean.jobCode);
         tv_service_level.setText("职位：" + bean.jobPosition);
-        tv_weixin.setText("微信号：" + bean.weixin);
+        tv_weixin.setText("微信号：" + bean.weChat);
         GlideImageLoader.setImg(this, bean.qrCode, iv_qr_code, R.mipmap.bitmap_wechat, R.mipmap.bitmap_wechat);
         mContentLayout.setVisibility(View.VISIBLE);
         mNotNetLayout.setVisibility(View.GONE);

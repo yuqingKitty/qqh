@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.youth.banner.listener.OnBannerListener;
@@ -31,9 +32,8 @@ import static com.leuters.qqh.data.commons.Constants.EXTRA_TYPE_ID;
 import static com.leuters.qqh.data.commons.Constants.RXBUS_TO_COMPLETE_KEY;
 import static com.leuters.qqh.data.commons.Constants.TITLE_INTENT_KEY;
 
-public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresenter> implements IHomeTypeProductView,
-        BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener,
-        HomeTypeAdHeader.ClickTypeAllListener, OnBannerListener {
+public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresenter> implements IHomeTypeProductView, BaseQuickAdapter.OnItemClickListener,
+        BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, HomeTypeAdHeader.ClickTypeAllListener, OnBannerListener {
     @BindView(R.id.refresh_home_type_product)
     SwipeRefreshLayout refresh_home_type_product;
     @BindView(R.id.rv_home_type_product)
@@ -68,6 +68,7 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
         homeTypeProductListAdapter.addHeaderView(homeTypeAdHeader);
         rv_home_type_product.setLayoutManager(new LinearLayoutManager(this));
         rv_home_type_product.setAdapter(homeTypeProductListAdapter);
+        homeTypeProductListAdapter.setOnItemClickListener(this);
 
         homeTypeProductListAdapter.setOnLoadMoreListener(this, rv_home_type_product);
         refresh_home_type_product.setOnRefreshListener(this);
@@ -77,6 +78,13 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
         if (homeTypeAdHeader != null) {
             homeTypeAdHeader.startScroll();
         }
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        //点击某一项
+        HomeTypeProductBean.TypeProductBean bean = (HomeTypeProductBean.TypeProductBean) adapter.getData().get(position);
+        mPresenter.recordProduct(bean.id, Constants.moduleName.PROD_TYPE.getName(), bean.link);
     }
 
     @Override
@@ -118,7 +126,7 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
 
     @Override
     public void onRecordSuccess(String url, String id) {
-
+        IntentUtil.toAppWebView(this, url, id);
     }
 
     @Override
@@ -148,11 +156,10 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
 
     @Override
     public void OnBannerClick(int position) {
-        if (BaseApplication.isLogin(this, true, true)) {
+        if (BaseApplication.isLogin(this, true, false)) {
             if (bannerBeanList!= null && bannerBeanList.size() > position) {
                 if (!TextUtils.isEmpty(bannerBeanList.get(position).srcURL)) {
-                    IntentUtil.toAppWebView(this, bannerBeanList.get(position).srcURL, "");
-                    mPresenter.simpleRecord("", Constants.moduleName.Banner.getName(), "");
+                    mPresenter.recordProduct(bannerBeanList.get(position).productId, Constants.moduleName.PROD_TYPE_AD.getName(), bannerBeanList.get(position).srcURL);
                 }
             }
         }

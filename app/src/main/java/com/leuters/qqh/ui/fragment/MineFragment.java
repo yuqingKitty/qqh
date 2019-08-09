@@ -86,28 +86,24 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
                 //设置
                 if (BaseApplication.isLogin(mActivity, true, true)) {
                     toSettingActivity(mActivity);
-//                    mPresenter.simpleRecord("", Constants.moduleName.Setting.getName(), "");
                 }
                 break;
             case R.id.tv_loan_record:
                 //申请记录
                 if (BaseApplication.isLogin(mActivity, true, true)) {
                     toMyLoanRecordActivity(mActivity);
-//                    mPresenter.simpleRecord("", Constants.moduleName.MyLoanRecord.getName(), "");
                 }
                 break;
             case R.id.tv_message_center:
                 // 消息中心
                 if (BaseApplication.isLogin(mActivity, true, true)) {
                     toMessageCenterActivity(mActivity);
-//                    mPresenter.simpleRecord("", Constants.moduleName.MessageCenter.getName(), "");
                 }
                 break;
             case R.id.tv_my_service:
                 if (BaseApplication.isLogin(mActivity, true, true)) {
                     //客服
                     toServiceActivity(mActivity);
-//                    mPresenter.simpleRecord("", Constants.moduleName.Service.getName(), "");
                 }
                 break;
             default:
@@ -119,10 +115,10 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
         if (mUserBean != null) {
             String userName = mUserBean.getNickName();
             mUserName.setText(TextUtils.isEmpty(userName) ? mUserBean.getPhoneMask() : userName);
-            GlideImageLoader.setCircleImg(mActivity, mUserBean.getImageIcon(), mUserHead, R.mipmap.icon_img_default, R.mipmap.icon_img_default);
+            GlideImageLoader.setImg(mActivity, mUserBean.getImageIcon(), mUserHead, R.mipmap.icon_img_default, R.mipmap.icon_img_default);
         } else {
             mUserName.setText("立即登录");
-            GlideImageLoader.setCircleImg(mActivity, R.mipmap.icon_img_default, mUserHead);
+            GlideImageLoader.setImg(mActivity, R.mipmap.icon_img_default, mUserHead);
         }
     }
 
@@ -147,7 +143,7 @@ public class MineFragment extends BaseFragment<MinePresenter> implements IMineVi
                         if (mUserBean != null) {
                             mUserBean.setImageIcon(rxBusMessage.getMsg());
                         }
-                        GlideImageLoader.setCircleImg(mActivity, mUserBean.getImageIcon(), mUserHead, R.mipmap.icon_img_default, R.mipmap.icon_img_default);
+                        GlideImageLoader.setImg(mActivity, mUserBean.getImageIcon(), mUserHead, R.mipmap.icon_img_default, R.mipmap.icon_img_default);
                         break;
                     case RXBUS_NICKNAME_SUCCESS_KEY://昵称设置成功
                         mUserBean = BaseApplication.getUserBean(mActivity);

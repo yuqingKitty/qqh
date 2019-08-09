@@ -31,7 +31,8 @@ public class MessageCenterAdapter extends BaseAdapter<MessageCenterBean.MessageB
                 .setText(R.id.tv_message_desc, item.content);
         helper.setGone(R.id.tv_message_desc, false);
 
-        GlideImageLoader.setRoundedCorner(mContext, item.iconURL, (ImageView) helper.getView(R.id.iv_message_icon), 10);
+        GlideImageLoader.setImg(mContext, item.iconURL, (ImageView) helper.getView(R.id.iv_message_icon),
+                R.mipmap.icon_msg_default, R.mipmap.icon_msg_default);
 
 
         helper.getView(R.id.iv_message_arrow).setOnClickListener(new View.OnClickListener() {

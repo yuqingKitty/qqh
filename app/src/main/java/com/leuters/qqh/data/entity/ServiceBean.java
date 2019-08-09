@@ -6,6 +6,6 @@ public class ServiceBean extends BaseBean {
     public String jobCode;
     public String jobPosition;
     public String qrCode;
-    public String weixin;
+    public String weChat;
 
 }

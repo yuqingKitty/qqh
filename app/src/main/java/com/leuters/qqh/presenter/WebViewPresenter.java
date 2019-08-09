@@ -22,7 +22,7 @@ public class WebViewPresenter extends BasePresenter<IWebView> {
      */
     public void stayTime(String id) {
         Map<String, Object> params = new HashMap<>();
-        params.put("statisticsDetailId", id);
+        params.put("prodAccessId", id);
 
         mModel.toStayTime(params, new DisposableObserver() {
             @Override

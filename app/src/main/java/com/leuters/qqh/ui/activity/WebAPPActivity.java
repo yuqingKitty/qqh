@@ -29,7 +29,7 @@ import static com.leuters.qqh.utils.IntentUtil.STATISTICS_ID;
 public class WebAPPActivity extends BaseAgentWebActivity implements IWebView {
     TopBarView mTopView;
     View mRootView;
-    private String StatisticsId = "";
+    private String statisticsId = "";
 
     @Override
     protected void initPresenter(Intent intent) {
@@ -44,7 +44,7 @@ public class WebAPPActivity extends BaseAgentWebActivity implements IWebView {
     @Override
     protected void initView() {
         mTopView = findViewById(R.id.top_view);
-        StatisticsId = getIntent().getStringExtra(STATISTICS_ID);
+        statisticsId = getIntent().getStringExtra(STATISTICS_ID);
         AndroidBug54971Workaround.assistActivity(findViewById(R.id.web_main), this);
     }
 
@@ -95,8 +95,8 @@ public class WebAPPActivity extends BaseAgentWebActivity implements IWebView {
 
     @Override
     protected void onDestroy() {
-        if (!TextUtils.isEmpty(StatisticsId)) {
-            mPresenter.stayTime(StatisticsId);
+        if (!TextUtils.isEmpty(statisticsId)) {
+            mPresenter.stayTime(statisticsId);
         }
         super.onDestroy();
     }

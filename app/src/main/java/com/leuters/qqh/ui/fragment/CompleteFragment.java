@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -87,7 +86,7 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         //点击某一项
         CompleteBean.ProductBean bean = (CompleteBean.ProductBean) adapter.getData().get(position);
-        mPresenter.recordProduct(bean.id, bean.link, Constants.moduleName.Complete.getName(), "");
+        mPresenter.recordProduct(bean.id, Constants.moduleName.PROD_TOTAL.getName(), bean.link);
     }
 
     @Override
@@ -125,7 +124,6 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
     }
 
     private void resetSortLabel(int pos, CompleteBean.ProductSortLabel productSortLabel) {
-        Log.e("yuq", "pos"+pos);
         for (int i = 0; i < sortLabelList.size(); i++){
             TextView textView = sortLabelList.get(i);
             if (i == pos){

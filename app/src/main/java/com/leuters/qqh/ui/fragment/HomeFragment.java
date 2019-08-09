@@ -74,12 +74,14 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         homeLoanProductListAdapter.setOnLoadMoreListener(this, mHomeRecycleView);
         mRefreshLayout.setOnRefreshListener(this);
         mRefreshLayout.setColorSchemeColors(mActivity.getResources().getColor(R.color.colorPrimary));
-        mHeaderView.setListener( this, this);
+        mHeaderView.setListener(this, this);
         mHomeRecycleView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-                onRecommendProductClick(((HomeBean.ProductBean) adapter.getData().get(position)).id
-                        , ((HomeBean.ProductBean) adapter.getData().get(position)).link, Constants.moduleName.TypeProduct.getName(), -1);
+                if (BaseApplication.isLogin(mActivity, true, false)) {
+                    mPresenter.recordProduct(((HomeBean.ProductBean) adapter.getData().get(position)).id, Constants.moduleName.HOMEPAGE_PROD.getName(),
+                            ((HomeBean.ProductBean) adapter.getData().get(position)).link);
+                }
             }
         });
         View errorView = getLayoutInflater().inflate(R.layout.view_error, (ViewGroup) mHomeRecycleView.getParent(), false);
@@ -94,7 +96,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         mPresenter.loadHeadData();
         mPresenter.initProductListData();
         mPresenter.getSysUpdated();
-        if (BaseApplication.isLogin((Activity) getContext(), false, false)){
+        if (BaseApplication.isLogin((Activity) getContext(), false, false)) {
             // 登录状态验证token
             mPresenter.verifyUserToken();
         }
@@ -217,10 +219,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     }
 
     @Override
-    public void onRecommendProductClick(String productId, String url, String moduleName, int moduleOrder) {
-        //记录点击的产品
+    public void onRecommendProductClick(String productId, String url) {
+        //记录今日产推荐产品
         if (BaseApplication.isLogin(mActivity, true, true)) {
-            mPresenter.recordProduct(productId, url, moduleName, moduleOrder + "");
+            mPresenter.recordProduct(productId, Constants.moduleName.HOMEPAGE_PROD_RECOMMEND.getName(), url);
         }
     }
 
@@ -245,11 +247,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
      */
     @Override
     public void OnBannerClick(int position) {
-        if (BaseApplication.isLogin(mActivity, true, true)) {
+        if (BaseApplication.isLogin(mActivity, true, false)) {
             if (adList != null && adList.size() > position) {
                 if (!TextUtils.isEmpty(adList.get(position).srcURL)) {
-                    IntentUtil.toAppWebView(mActivity, adList.get(position).srcURL, "");
-                    mPresenter.simpleRecord("", Constants.moduleName.Banner.getName(), "");
+                    mPresenter.recordProduct(adList.get(position).productId, Constants.moduleName.HOMEPAGE_AD.getName(), adList.get(position).srcURL);
                 }
             }
         }

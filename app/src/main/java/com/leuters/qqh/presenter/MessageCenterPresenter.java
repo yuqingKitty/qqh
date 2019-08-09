@@ -84,41 +84,4 @@ public class MessageCenterPresenter extends BasePresenter<IMessageCenterView> {
         getData(pageNumber, pageSize);
     }
 
-
-    /**
-     * 产品点击统计
-     */
-    public void recordMessage(String MessageId, final String url, String module_name, String module_order) {
-        obtainView().showLoading();
-        Map<String, Object> params = new HashMap<>();
-        params.put("MessageId", MessageId);
-        params.put("module_name", module_name);
-        params.put("module_order", module_order);
-
-        mModel.toStatistics(params, new DisposableObserver<StatisticsBean>() {
-
-
-            @Override
-            public void onNext(StatisticsBean statisticsBean) {
-                if (parse(mContext, statisticsBean)) {
-                    obtainView().onRecordSuccess(url, statisticsBean.getStatisticsDetailId());
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtil.e(e.toString());
-                obtainView().ShowToast("网络异常");
-                obtainView().hideLoading();
-            }
-
-            @Override
-            public void onComplete() {
-                obtainView().hideLoading();
-            }
-        });
-    }
-
-
-
 }

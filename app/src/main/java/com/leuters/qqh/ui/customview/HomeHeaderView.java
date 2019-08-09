@@ -87,8 +87,8 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
                 if (BaseApplication.isLogin((Activity) mContext, true, true)) {
                     if (recommendProductList != null && recommendProductList.size() > position) {
                         if (clickHomeHeadListener != null) {
-                            clickHomeHeadListener.onRecommendProductClick(((HomeBean.RecommendProductBean) adapter.getData().get(position)).productId, ((HomeBean.RecommendProductBean) adapter.getData().get(position)).link,
-                                    Constants.moduleName.Recommend.getName(), position);
+                            clickHomeHeadListener.onRecommendProductClick(((HomeBean.RecommendProductBean) adapter.getData().get(position)).id,
+                                    ((HomeBean.RecommendProductBean) adapter.getData().get(position)).link);
                         }
                     }
                 }
@@ -191,7 +191,7 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
     public interface ClickHomeHeadListener {
         void onTypeClicked(String title, int type);
 
-        void onRecommendProductClick(String productId, String url, String moduleName, int moduleOrder);
+        void onRecommendProductClick(String productId, String url);
 
         void onLoanAllClicked();
     }

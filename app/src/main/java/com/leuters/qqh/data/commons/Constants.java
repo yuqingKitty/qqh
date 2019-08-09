@@ -14,8 +14,7 @@ public class Constants {
     /**
      * 定义SD卡存储的根路径
      */
-    public static final String ROOT_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()
-            + "/qqh_market";
+    public static final String ROOT_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/qqh_market";
     public final static String FILE_PATH = ROOT_PATH + "/file";
     /**
      * 保存用户信息
@@ -62,7 +61,13 @@ public class Constants {
     public static final String USER_IMG = "dc/head_img/"; //用户头像地址
 
     public enum moduleName {
-        TypeProduct("0"), Banner("1"), Notice("2"), Type("3"), Recommend("4"), ScrollBottom("5"), MyLoanRecord("6"), Service("7"), Setting("8"), MessageCenter("9"), Complete("10");
+        HOMEPAGE_AD("HOMEPAGE_AD"),
+        HOMEPAGE_PROD_RECOMMEND("HOMEPAGE_PROD_RECOMMEND"),
+        HOMEPAGE_PROD("HOMEPAGE_PROD"),
+        PROD_TOTAL("PROD_TOTAL"),
+        PROD_TYPE_AD("PROD_TYPE_AD"),
+        PROD_TYPE("PROD_TYPE"),
+        PROD_ACCESS("PROD_TYPE");
 
         private String name;
 

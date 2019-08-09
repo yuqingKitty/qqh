@@ -20,7 +20,6 @@ public class MyLoanRecordBean extends BaseBean{
 
     public class MyRecommendProductBean {
         public String id;
-        public String productId;
         public String logoUrl;
         public String name;
         public String link;

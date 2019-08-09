@@ -30,11 +30,4 @@ public interface IMessageCenterView extends IBaseView {
      */
     void clearData();
 
-    /**
-     * 记录成功
-     *
-     * @param url
-     * @param id
-     */
-    void onRecordSuccess(String url, String id);
 }

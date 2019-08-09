@@ -189,8 +189,8 @@ public class LoanModule {
      * @param params
      * @param observer
      */
-    public void toStatistics(Map<String, Object> params, Observer observer) {
-        Observable<StatisticsBean> observable = LOAN_SERVICE.toStatistics(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
+    public void toStatisticClickProduct(Map<String, Object> params, Observer observer) {
+        Observable<StatisticsBean> observable = LOAN_SERVICE.toStatisticClickProduct(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

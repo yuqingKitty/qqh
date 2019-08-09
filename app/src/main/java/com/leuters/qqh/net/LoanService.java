@@ -111,21 +111,21 @@ public interface LoanService {
      * 上传头像
      */
     @Headers({"Content-type:application/json;charset=UTF-8", "platform:ANDROID"})
-    @POST("app/user/UploadHeadIcon")
+    @POST("app/user/uploadHeadIcon")
     Observable<BaseBean> uploadHeadIcon(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**
      * 用户点击统计
      */
     @Headers({"Content-type:application/json;charset=UTF-8", "platform:ANDROID"})
-    @POST("api/app/fast2/user/toStatistics")
-    Observable<StatisticsBean> toStatistics(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
+    @POST("app/user/addProdAccess")
+    Observable<StatisticsBean> toStatisticClickProduct(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**
      * 统计产品时长
      */
     @Headers({"Content-type:application/json;charset=UTF-8", "platform:ANDROID"})
-    @POST("api/app/fast2/user/toStayTime")
+    @POST("app/user/calcProdARTime")
     Observable<BaseBean> toStayTime(@Header("source") String channel, @Header("uniqueNo") String uniqueNo, @Header("uid") String userId, @Header("token") String token, @Body RequestBody body);
 
     /**

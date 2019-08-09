@@ -16,7 +16,6 @@ public class HomeTypeProductBean extends BaseBean {
 
     public class TypeProductBean {
         public String id;
-        public String productId;
         public String logoUrl;
         public String name;
         public String link;

@@ -36,6 +36,7 @@
             android:layout_toRightOf="@id/iv_message_icon"
             android:layout_marginLeft="@dimen/dp_12"
             android:layout_marginTop="@dimen/dp6"
+            android:layout_marginRight="@dimen/dp_10"
             android:text="取钱花秘籍"
             android:textColor="@color/color_717171"
             android:textSize="@dimen/sp_13" />

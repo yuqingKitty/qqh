@@ -41,7 +41,6 @@ public class HomeBean extends BaseBean {
     // 推荐产品
     public class RecommendProductBean {
         public String id;
-        public String productId;
         public String logoUrl;
         public String name;
         public String des;
@@ -51,7 +50,6 @@ public class HomeBean extends BaseBean {
     // 产品
     public class ProductBean {
         public String id;
-        public String productId;
         public String logoUrl;
         public String name;
         public String link;
