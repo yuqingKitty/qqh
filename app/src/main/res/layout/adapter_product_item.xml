@@ -7,12 +7,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_47">
+        android:layout_height="@dimen/dp_42">
 
         <ImageView
             android:id="@+id/iv_product_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/dp10"
             android:layout_marginLeft="@dimen/dp_16"
@@ -56,14 +56,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_75">
+        android:layout_height="@dimen/dp_65">
 
         <LinearLayout
             android:id="@+id/ll_loan_range"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_16"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp7"
             android:orientation="vertical">
 
             <TextView
@@ -72,16 +72,16 @@
                 android:layout_height="wrap_content"
                 android:text="1000~5000"
                 android:textColor="@color/color_FC564A"
-                android:textSize="@dimen/sp_18"
+                android:textSize="@dimen/sp_16"
                 android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp4"
+                android:layout_marginTop="@dimen/dp6"
                 android:text="@string/most_loan"
                 android:textColor="@color/color_717171"
-                android:textSize="@dimen/sp_13"/>
+                android:textSize="@dimen/sp_12"/>
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +90,7 @@
             android:layout_toRightOf="@id/ll_loan_range"
             android:layout_toLeftOf="@id/tv_apply"
             android:layout_alignBottom="@id/ll_loan_range"
-            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginLeft="@dimen/dp6"
             android:orientation="vertical">
 
             <TextView
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:text="借款期限3～12月"
                 android:textColor="@color/color_181001"
-                android:textSize="@dimen/sp_16"
+                android:textSize="@dimen/sp_14"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textStyle="bold"/>
@@ -108,26 +108,26 @@
                 android:id="@+id/tv_market_phrases"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp4"
+                android:layout_marginTop="@dimen/dp6"
                 android:text="2天放贷 日利率0.03%"
                 android:textColor="@color/color_717171"
-                android:textSize="@dimen/sp_13"
+                android:textSize="@dimen/sp_12"
                 android:maxLines="1"
                 android:ellipsize="end"/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_apply"
-            android:layout_width="@dimen/dp_88"
-            android:layout_height="@dimen/dp_36"
+            android:layout_width="@dimen/dp_76"
+            android:layout_height="@dimen/dp_30"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/dp_17"
             android:layout_marginRight="@dimen/dp_16"
+            android:layout_centerVertical="true"
             android:background="@drawable/loan_tag_selected_bg"
             android:gravity="center"
             android:text="@string/apply_now"
             android:textColor="@color/color_FFFFFF"
-            android:textSize="@dimen/sp_14"/>
+            android:textSize="@dimen/sp_13"/>
 
     </RelativeLayout>
 

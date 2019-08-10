@@ -65,6 +65,7 @@ public class CompletePresenter extends BasePresenter<ICompleteView> {
     }
 
     private void getData(final int number, final int pageSize, int sortRule) {
+        obtainView().showLoading();
         Map<String, Object> params = new HashMap<>();
         params.put("pageNo", number);
         params.put("pageSize", pageSize);
@@ -100,10 +101,12 @@ public class CompletePresenter extends BasePresenter<ICompleteView> {
                 LogUtil.e(e.toString());
                 obtainView().ShowToast("网络异常");
                 obtainView().loadMordFail();
+                obtainView().hideLoading();
             }
 
             @Override
             public void onComplete() {
+                obtainView().hideLoading();
             }
         });
 

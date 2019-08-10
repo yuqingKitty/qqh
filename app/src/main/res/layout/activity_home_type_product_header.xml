@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/iv_loan_tag"
-            android:layout_marginLeft="@dimen/dp6"
+            android:layout_marginLeft="@dimen/dp8"
             android:text="@string/hot_loan"
             android:textColor="@color/color_181001"
             android:textSize="@dimen/sp_16"
