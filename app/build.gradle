@@ -55,14 +55,14 @@ android {
             shrinkResources false
             signingConfig signingConfigs.debug
 
-//            applicationVariants.all { variant ->    //批量修改Apk名字
-//                variant.outputs.all { output ->
-//                    if (!variant.buildType.isDebuggable()) {
-//                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
-//                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
-//                    }
-//                }
-//            }
+            applicationVariants.all { variant ->    //批量修改Apk名字
+                variant.outputs.all { output ->
+                    if (!variant.buildType.isDebuggable()) {
+                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
+                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
+                    }
+                }
+            }
         }
 
         release {
@@ -73,14 +73,14 @@ android {
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-//            applicationVariants.all { variant ->    //批量修改Apk名字
-//                variant.outputs.all { output ->
-//                    if (!variant.buildType.isDebuggable()) {
-//                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
-//                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
-//                    }
-//                }
-//            }
+            applicationVariants.all { variant ->    //批量修改Apk名字
+                variant.outputs.all { output ->
+                    if (!variant.buildType.isDebuggable()) {
+                        //输出apk名称为：应用名-版本名-渠道名-发布类型.apk
+                        outputFileName = "qqh-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
+                    }
+                }
+            }
         }
     }
 
