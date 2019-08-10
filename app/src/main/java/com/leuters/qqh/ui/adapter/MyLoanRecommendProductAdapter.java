@@ -21,8 +21,7 @@ public class MyLoanRecommendProductAdapter extends BaseAdapter<MyLoanRecordBean.
 
     @Override
     protected void convert(BaseViewHolder helper, final MyLoanRecordBean.MyRecommendProductBean item) {
-        GlideImageLoader.setImg(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_product_icon),
-                R.mipmap.icon_product_default, R.mipmap.icon_product_default);
+        GlideImageLoader.setRoundedCorner(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_product_icon), 4);
         helper.setText(R.id.tv_product_name, item.name)
                 .setText(R.id.tv_product_tag, item.prodLoanFeature)
                 .setText(R.id.tv_loan_range, item.prodLoanRange)

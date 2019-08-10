@@ -88,8 +88,8 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_login"
+    <TextView
+        android:id="@+id/tv_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
         android:layout_marginLeft="@dimen/dp_45"

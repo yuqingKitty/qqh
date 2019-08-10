@@ -29,8 +29,8 @@ public class LoginNewActivity extends BaseActivity<LoginNewPresenter> implements
     LoginInputView liv_login_code;
     @BindView(R.id.tv_get_code)
     TextView tv_get_code;
-    @BindView(R.id.btn_login)
-    Button btn_login;
+    @BindView(R.id.tv_login)
+    TextView tv_login;
 
     private boolean isPhoneEmpty = true, isCodeEmpty = true;//手机号，验证码是否为空
     private String mPhone, mCode;//手机号码，密码，验证码
@@ -57,10 +57,10 @@ public class LoginNewActivity extends BaseActivity<LoginNewPresenter> implements
         liv_login_phone.setMaxLength(13);
         liv_login_code.setMaxLength(7);
 
-        btn_login.setEnabled(false);
+        tv_login.setEnabled(false);
     }
 
-    @OnClick({R.id.tv_get_code, R.id.btn_login})
+    @OnClick({R.id.tv_get_code, R.id.tv_login})
     void click(View view) {
         mPhone = liv_login_phone.getEditRegisterPhone().replace(" ", "");
         mCode = liv_login_code.getEditRegisterPhone().replace(" ", "");
@@ -69,7 +69,7 @@ public class LoginNewActivity extends BaseActivity<LoginNewPresenter> implements
                 // 请求验证码
                 mPresenter.getLoginSms(mPhone);
                 break;
-            case R.id.btn_login:
+            case R.id.tv_login:
                 mPresenter.login(mPhone, mCode);
                 break;
         }
@@ -140,9 +140,9 @@ public class LoginNewActivity extends BaseActivity<LoginNewPresenter> implements
 
         }
         if (!isPhoneEmpty && !isCodeEmpty) {
-            btn_login.setEnabled(true);
+            tv_login.setEnabled(true);
         } else {
-            btn_login.setEnabled(false);
+            tv_login.setEnabled(false);
         }
     }
 

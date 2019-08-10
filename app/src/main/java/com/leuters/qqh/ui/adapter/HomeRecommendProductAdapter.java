@@ -27,7 +27,7 @@ public class HomeRecommendProductAdapter extends BaseQuickAdapter<HomeBean.Recom
     protected void convert(BaseViewHolder helper, HomeBean.RecommendProductBean item) {
         helper.setText(R.id.tv_recommend_name, item.name)
                 .setText(R.id.tv_recommend_intro, item.des);
-        GlideImageLoader.setImg(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_recommend_icon),
+        GlideImageLoader.setRoundedCorner(mContext, item.logoUrl, (ImageView) helper.getView(R.id.iv_recommend_icon),
                 R.mipmap.icon_today_recommend, R.mipmap.icon_today_recommend);
     }
 }

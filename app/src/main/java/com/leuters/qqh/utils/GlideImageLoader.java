@@ -118,7 +118,7 @@ public class GlideImageLoader extends ImageLoader {
 
     public static void setRoundedCorner(Context context, String url, ImageView imageView, int placeholder, int error) {
         if (context != null && !((Activity) context).isDestroyed()) {
-            Glide.with(context).load(url).apply(RequestOptions.bitmapTransform(new RoundedCorners(dp2px(context, 12))).placeholder(placeholder).error(error)).into(imageView);
+            Glide.with(context).load(url).apply(RequestOptions.bitmapTransform(new RoundedCorners(dp2px(context, 5))).placeholder(placeholder).error(error)).into(imageView);
         }
     }
 
