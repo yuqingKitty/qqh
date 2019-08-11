@@ -62,7 +62,7 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
     private LinearLayout mLlClose;
     private UploadBean mUpdateApp;
     //默认色
-    private int mDefaultColor = 0xff39c1e9;
+    private int mDefaultColor = 0xffFFC71D;
     private int mDefaultPicResId = R.mipmap.lib_update_app_top_bg;
     private ImageView mTopIv;
     private TextView mIgnore;
@@ -142,23 +142,22 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
     }
 
     private void initView(View view) {
-        //提示内容
-        mContentTextView = view.findViewById(R.id.tv_update_info);
-        //标题
-        mTitleTextView = view.findViewById(R.id.tv_title);
-        //更新按钮
-        mUpdateOkButton = view.findViewById(R.id.btn_ok);
-        //进度条
-        mNumberProgressBar = view.findViewById(R.id.npb);
-        //关闭按钮
-        mIvClose = view.findViewById(R.id.iv_close);
-        //关闭按钮+线 的整个布局
-        mLlClose = view.findViewById(R.id.ll_close);
         //顶部图片
         mTopIv = view.findViewById(R.id.iv_top);
+        //标题
+        mTitleTextView = view.findViewById(R.id.tv_title);
+        //提示内容
+        mContentTextView = view.findViewById(R.id.tv_update_info);
+        //更新按钮
+        mUpdateOkButton = view.findViewById(R.id.btn_ok);
         //忽略
         mIgnore = view.findViewById(R.id.tv_ignore);
-
+        //进度条
+        mNumberProgressBar = view.findViewById(R.id.npb);
+        //关闭按钮+线 的整个布局
+        mLlClose = view.findViewById(R.id.ll_close);
+        //关闭按钮
+        mIvClose = view.findViewById(R.id.iv_close);
     }
 
     @Override
@@ -176,30 +175,16 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
         if (mUpdateApp != null) {
             //弹出对话框
             final String dialogTitle = mUpdateApp.getTitle();
-            final String newVersion = "";
-            final String targetSize = "";
-            final String updateLog = mUpdateApp.getName();
-
-            String msg = "";
-
-            if (!TextUtils.isEmpty(targetSize)) {
-                msg = "新版本大小：" + targetSize + "\n\n";
-            }
-
-            if (!TextUtils.isEmpty(updateLog)) {
-                msg += updateLog;
-            }
-
-            //更新内容
-            mContentTextView.setText(msg);
             //标题
-            mTitleTextView.setText(TextUtils.isEmpty(dialogTitle) ? String.format("是否升级到%s版本？", newVersion) : dialogTitle);
+            mTitleTextView.setText(dialogTitle);
+            //更新内容
+            mContentTextView.setText(mUpdateApp.getName());
+
             //强制更新
             if (mUpdateApp.getAppEnForce() == 1) {
                 mLlClose.setVisibility(View.GONE);
             } else {
-                //不是强制更新时，才生效
-                mIgnore.setVisibility(View.GONE);
+                mLlClose.setVisibility(View.VISIBLE);
             }
 
             initEvents();

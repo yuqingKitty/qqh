@@ -22,7 +22,7 @@ public class UploadBean extends BaseBean implements Serializable {
      */
     public static class SysNoticeBean implements Serializable {
         private String title;
-        private String name;
+        private String noticeName;
         private String srcURL;
         private String buttonText;
 
@@ -38,12 +38,12 @@ public class UploadBean extends BaseBean implements Serializable {
             this.title = title;
         }
 
-        public String getName() {
-            return name;
+        public String getNoticeName() {
+            return noticeName;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setNoticeName(String noticeName) {
+            this.noticeName = noticeName;
         }
 
         public String getSrcURL() {

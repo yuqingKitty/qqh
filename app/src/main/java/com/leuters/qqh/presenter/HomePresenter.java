@@ -172,7 +172,8 @@ public class HomePresenter extends BasePresenter<IHomeView> {
             public void onNext(UploadBean updateBean) {
                 if (parse(mContext, updateBean)) {
                     if (updateBean.getSysNoticeVO() != null) {
-                        obtainView().checkUpdate(updateBean.getSysNoticeVO().getSrcURL(), updateBean.getAppEnForce(), updateBean.getSysNoticeVO().getTitle(), updateBean.getSysNoticeVO().getName());
+                        obtainView().checkUpdate(updateBean.getSysNoticeVO().getSrcURL(), updateBean.getAppEnForce(),
+                                updateBean.getSysNoticeVO().getTitle(), updateBean.getSysNoticeVO().getNoticeName());
                     }
                 }
             }
