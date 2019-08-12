@@ -63,9 +63,6 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
     private UploadBean mUpdateApp;
     //默认色
     private int mDefaultColor = 0xffFFC71D;
-    private int mDefaultPicResId = R.mipmap.lib_update_app_top_bg;
-    private ImageView mTopIv;
-    private TextView mIgnore;
     public static String INTENT_KEY = "INTENT_KEY";
     File apkFile;
 
@@ -123,6 +120,7 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
             WindowManager.LayoutParams lp = dialogWindow.getAttributes();
             if (mContext != null) {
                 DisplayMetrics displayMetrics = mContext.getResources().getDisplayMetrics();
+                lp.width = (int) (displayMetrics.widthPixels * 0.8f);
                 lp.height = (int) (displayMetrics.heightPixels * 0.8f);
             }
             dialogWindow.setAttributes(lp);
@@ -142,16 +140,12 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
     }
 
     private void initView(View view) {
-        //顶部图片
-        mTopIv = view.findViewById(R.id.iv_top);
         //标题
         mTitleTextView = view.findViewById(R.id.tv_title);
         //提示内容
         mContentTextView = view.findViewById(R.id.tv_update_info);
         //更新按钮
         mUpdateOkButton = view.findViewById(R.id.btn_ok);
-        //忽略
-        mIgnore = view.findViewById(R.id.tv_ignore);
         //进度条
         mNumberProgressBar = view.findViewById(R.id.npb);
         //关闭按钮+线 的整个布局
@@ -195,28 +189,22 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
      * 初始化主题色
      */
     private void initTheme() {
-        setDialogTheme(mDefaultColor, mDefaultPicResId);
+        setDialogTheme(mDefaultColor);
     }
 
     /**
      * 设置
      *
      * @param color    主色
-     * @param topResId 图片
      */
-    private void setDialogTheme(int color, int topResId) {
-        mTopIv.setImageResource(topResId);
-        mUpdateOkButton.setBackground(DrawableUtil.getDrawable(dip2px(4, mContext), color));
+    private void setDialogTheme(int color) {
         mNumberProgressBar.setProgressTextColor(color);
         mNumberProgressBar.setReachedBarColor(color);
-        //随背景颜色变化
-        mUpdateOkButton.setTextColor(ColorUtil.isTextColorDark(color) ? Color.BLACK : Color.WHITE);
     }
 
     private void initEvents() {
         mUpdateOkButton.setOnClickListener(this);
         mIvClose.setOnClickListener(this);
-        mIgnore.setOnClickListener(this);
     }
 
     @Override
@@ -246,9 +234,6 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
 //                // 通知用户
 //                mUpdateDialogFragmentListener.onUpdateNotifyDialogCancel(mUpdateApp);
 //            }
-            dismiss();
-        } else if (i == R.id.tv_ignore) {
-//            AppUpdateUtil.saveIgnoreVersion(getActivity(), mUpdateApp.getNewVersion());
             dismiss();
         }
     }

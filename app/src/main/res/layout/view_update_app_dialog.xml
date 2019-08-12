@@ -5,102 +5,97 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:background="@mipmap/lib_update_app_top_bg">
+
+        <TextView
+            android:id="@+id/tv_new_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_48"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:text="发现新版本"
+            android:textColor="@color/color_181001"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_new_version"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginLeft="@dimen/dp_32"
+            android:text="V1.1.2"
+            android:textColor="@color/color_181001"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:layout_marginTop="@dimen/dp_35"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:scrollbars="none">
+
+            <TextView
+                android:id="@+id/tv_update_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_717171"
+                android:textSize="@dimen/sp_14" />
+        </ScrollView>
+
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="@dimen/dp_147"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:background="@drawable/login_btn_selected_bg"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="立即更新"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="@dimen/sp_16" />
+
+        <com.leuters.qqh.utils.updateapp.NumberProgressBar
+            android:id="@+id/npb"
+            style="@style/UpdateAppNumberProgressBar_Red"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_10"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/ll_top"
+        android:id="@+id/ll_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <View
+            android:id="@+id/line"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="#d8d8d8"
+            android:visibility="visible" />
+
         <ImageView
-            android:id="@+id/iv_top"
+            android:id="@+id/iv_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/lib_update_app_top_bg" />
+            android:src="@mipmap/lib_update_app_close" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/lib_update_app_info_bg"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:scrollbars="none">
-
-                <TextView
-                    android:id="@+id/tv_update_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#666"
-                    android:textSize="14sp" />
-            </ScrollView>
-
-
-            <Button
-                android:id="@+id/btn_ok"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minHeight="40dp"
-                android:text="升级"
-                android:textColor="@android:color/white"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/tv_ignore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="忽略此版本"
-                android:textColor="#666"
-                android:textSize="14sp"
-                android:visibility="gone" />
-
-            <com.leuters.qqh.utils.updateapp.NumberProgressBar
-                android:id="@+id/npb"
-                style="@style/UpdateAppNumberProgressBar_Red"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <View
-                android:id="@+id/line"
-                android:layout_width="1dp"
-                android:layout_height="50dp"
-                android:background="#d8d8d8"
-                android:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/iv_close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/lib_update_app_close" />
-
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

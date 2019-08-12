@@ -82,6 +82,7 @@
 
 
     <string name="loan_top">贷款头条</string>
+    <string name="loan_hot">热门</string>
     <string name="get_money">去领钱</string>
     <string name="hot_loan">热门贷款</string>
     <string name="all">全部</string>
