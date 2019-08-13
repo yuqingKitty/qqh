@@ -9,8 +9,6 @@ import android.view.View;
 import com.leuters.qqh.R;
 import com.leuters.qqh.application.BaseApplication;
 import com.leuters.qqh.utils.APKVersionCodeUtil;
-import com.gyf.barlibrary.BarHide;
-import com.gyf.barlibrary.ImmersionBar;
 import com.umeng.analytics.MobclickAgent;
 
 import java.lang.ref.WeakReference;
@@ -34,7 +32,6 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
         setContentView(R.layout.activity_splash);
-        ImmersionBar.with(this).hideBar(BarHide.FLAG_HIDE_BAR).init();
         //获取渠道
         BaseApplication.CHANNEL = APKVersionCodeUtil.getAppMetaData(this, "UMENG_CHANNEL");
         // 延迟3秒给handler发送信息
