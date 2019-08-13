@@ -22,25 +22,25 @@ public class HomeTypeProductPresenter extends BasePresenter<IHomeTypeProductView
         super(context, view);
     }
 
-    public void initData(int type){
-        initTypeProductListData(type);
-        getHomeTypeAdList(type);
+    public void initData(String typeId){
+        initTypeProductListData(typeId);
+        getHomeTypeAdList();
     }
 
     /**
      * 初始化产品列表数据
      */
-    public void initTypeProductListData(int type) {
+    public void initTypeProductListData(String typeId) {
         pageNumber = 1;
-        getHomeTypeProductList(type, pageNumber, pageSize);
+        getHomeTypeProductList(typeId, pageNumber, pageSize);
     }
 
     /**
      * 获取借款记录数据
      */
-    public void getHomeTypeProductList(int type, final int number, final int pageSize) {
+    public void getHomeTypeProductList(String typeId, final int number, final int pageSize) {
         Map<String, Object> params = new HashMap<>();
-        params.put("typeId", type);
+        params.put("typeId", typeId);
         params.put("pageNo", number);
         params.put("pageSize", pageSize);
         mModel.getHomeTypeProductList(params, new DisposableObserver<HomeTypeProductBean>() {
@@ -86,18 +86,16 @@ public class HomeTypeProductPresenter extends BasePresenter<IHomeTypeProductView
     /**
      * 加载更多
      */
-    public void loadMoreData(int type) {
-        getHomeTypeProductList(type, pageNumber, pageSize);
+    public void loadMoreData(String typeId) {
+        getHomeTypeProductList(typeId, pageNumber, pageSize);
     }
 
     /**
      * 获取广告位
      */
-    public void getHomeTypeAdList(int typeId) {
+    public void getHomeTypeAdList() {
         Map<String, Object> params = new HashMap<>();
-        params.put("adType", 5);
-        params.put("adKind", 1);
-        params.put("typeId", typeId);
+        params.put("adType", 6);
         mModel.getHomeTypeAdList(params, new DisposableObserver<HomeTypeProductBean>() {
             @Override
             public void onNext(HomeTypeProductBean homeTypeProductBean) {

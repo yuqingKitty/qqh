@@ -16,7 +16,6 @@ import android.widget.ViewFlipper;
 
 import com.leuters.qqh.R;
 import com.leuters.qqh.application.BaseApplication;
-import com.leuters.qqh.data.commons.Constants;
 import com.leuters.qqh.data.entity.HomeBean;
 import com.leuters.qqh.ui.adapter.HomeRecommendProductAdapter;
 import com.leuters.qqh.utils.GlideImageLoader;
@@ -158,7 +157,7 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
                 @Override
                 public void onClick(View v) {
                     if (clickHomeHeadListener != null) {
-                        clickHomeHeadListener.onTypeClicked(typeBean.name, Integer.valueOf(typeBean.id));
+                        clickHomeHeadListener.onTypeClicked(typeBean.name, typeBean.id);
                     }
                 }
             });
@@ -189,7 +188,7 @@ public class HomeHeaderView extends LinearLayout implements View.OnClickListener
     }
 
     public interface ClickHomeHeadListener {
-        void onTypeClicked(String title, int type);
+        void onTypeClicked(String title, String typeId);
 
         void onRecommendProductClick(String productId, String url);
 

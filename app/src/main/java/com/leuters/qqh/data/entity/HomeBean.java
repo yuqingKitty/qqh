@@ -33,7 +33,6 @@ public class HomeBean extends BaseBean {
      */
     public class TypeBean {
         public String id;
-        public String locationNo;  // 排序
         public String name; // 类型名字
         public String iconPath;
     }

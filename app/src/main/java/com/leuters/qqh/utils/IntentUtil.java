@@ -138,12 +138,12 @@ public class IntentUtil {
      *
      * @param context
      * @param title
-     * @param type
+     * @param typeId
      */
-    public static void toHomeTypeProductActivity(Activity context, String title, int type) {
+    public static void toHomeTypeProductActivity(Activity context, String title, String typeId) {
         Intent intent = new Intent(context, HomeTypeProductActivity.class);
         intent.putExtra(TITLE_INTENT_KEY, title);
-        intent.putExtra(EXTRA_TYPE_ID, type);
+        intent.putExtra(EXTRA_TYPE_ID, typeId);
         context.startActivity(intent);
     }
 

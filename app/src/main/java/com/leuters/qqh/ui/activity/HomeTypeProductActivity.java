@@ -42,7 +42,7 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
     private HomeTypeAdHeader homeTypeAdHeader;
     private HomeTypeProductListAdapter homeTypeProductListAdapter;
     private List<HomeTypeProductBean.BannerBean> bannerBeanList = new ArrayList<>();
-    private int typeId;
+    private String typeId;
 
     @Override
     protected void initPresenter(Intent intent) {
@@ -58,7 +58,7 @@ public class HomeTypeProductActivity  extends BaseActivity<HomeTypeProductPresen
     protected void initView() {
         if (getIntent() != null){
             String title = getIntent().getStringExtra(TITLE_INTENT_KEY);
-            typeId = getIntent().getIntExtra(EXTRA_TYPE_ID, 0);
+            typeId = getIntent().getStringExtra(EXTRA_TYPE_ID);
             ((TopBarView) findViewById(R.id.top_view)).setTitleContent(title);
         }
         ((TopBarView) findViewById(R.id.top_view)).setTitleBold();

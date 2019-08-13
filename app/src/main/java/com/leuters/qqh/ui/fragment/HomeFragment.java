@@ -208,7 +208,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     }
 
     @Override
-    public void onTypeClicked(String title, int typeId) {
+    public void onTypeClicked(String title, String typeId) {
         if (BaseApplication.isLogin(mActivity, true, false)) {
             IntentUtil.toHomeTypeProductActivity(getActivity(), title, typeId);
         }

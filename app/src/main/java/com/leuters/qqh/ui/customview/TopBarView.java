@@ -170,6 +170,7 @@ public class TopBarView extends AutoRelativeLayout {
         tbLayout = mView.findViewById(R.id.tbv_navigation);
         mTvTitle.setText(mTitle);
         mTvTitle.setTextColor(mTitleColor);
+        mTvTitle.setTextSize(16);
         mLayoutBack.setVisibility(isShowClose == default_close ? GONE : VISIBLE);
         mLayoutBack.setOnClickListener(new OnClickListener() {
             @Override

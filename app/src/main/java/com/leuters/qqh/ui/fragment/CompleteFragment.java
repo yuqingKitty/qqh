@@ -110,7 +110,7 @@ public class CompleteFragment extends BaseFragment<CompletePresenter> implements
                 tv_loan_sort_label.setBackgroundResource(R.drawable.loan_tag_unselected_bg);
                 tv_loan_sort_label.setTextColor(getContext().getResources().getColor(R.color.color_FFC71D));
             }
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
             layoutParams.setMargins(0,0,ScreenUtil.dp2px(getContext(), 20),0);
             sortLabelView.setLayoutParams(layoutParams);
             ll_sort_label.addView(sortLabelView);
