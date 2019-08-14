@@ -20,6 +20,7 @@ import com.leuters.qqh.utils.LogUtil;
 import com.leuters.qqh.utils.SPUtil;
 import com.leuters.qqh.utils.ScreenUtil;
 import com.leuters.qqh.utils.ToastCompat;
+import com.leuters.qqh.utils.Tools;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
@@ -222,7 +223,9 @@ public class BaseApplication extends Application {
                 .addCustomView(loginTextView, true, new JVerifyUIClickCallback() {
                     @Override
                     public void onClicked(Context context, View view) {
-                        context.startActivity(new Intent(context, LoginNewActivity.class));
+                        if (Tools.isCanVisit()) {
+                            context.startActivity(new Intent(context, LoginNewActivity.class));
+                        }
                     }
                 })
                 .setPrivacyOffsetY(35)

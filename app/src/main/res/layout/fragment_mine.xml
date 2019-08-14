@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_158"
         android:background="@color/color_FFC71D"
-        android:paddingTop="@dimen/dp_30">
+        android:paddingTop="@dimen/dp_33">
 
         <RelativeLayout
             android:layout_width="match_parent"

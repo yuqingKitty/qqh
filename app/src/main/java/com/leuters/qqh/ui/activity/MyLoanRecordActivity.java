@@ -26,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 
 public class MyLoanRecordActivity extends BaseActivity<MyLoanRecordPresenter> implements IMyLoanRecordView,
-        BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
     @BindView(R.id.ll_loan_empty)
     LinearLayout ll_loan_empty;
     @BindView(R.id.refresh_loan_record)

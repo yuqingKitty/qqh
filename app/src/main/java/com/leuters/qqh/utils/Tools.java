@@ -9,11 +9,16 @@ import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
+
 import com.leuters.qqh.application.BaseApplication;
 
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.security.MessageDigest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 
 public class Tools {
@@ -174,6 +179,30 @@ public class Tools {
             LogUtil.e("device_info", "getMacAddressWithJavaInterface: " + e.toString());
         }
         return macAddress;
+    }
+
+    public static boolean isCanVisit() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+        String str1 = sdf.format(date);
+        String str2 = "2019-8-19 00:00:00";
+
+        boolean isBigger = false;
+        Date dt1 = null;
+        Date dt2 = null;
+        try {
+            dt1 = sdf.parse(str1);
+            dt2 = sdf.parse(str2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (dt1.getTime() > dt2.getTime()) {
+            isBigger = false;
+        } else if (dt1.getTime() <= dt2.getTime()) {
+            isBigger = true;
+        }
+        return isBigger;
     }
 
 }

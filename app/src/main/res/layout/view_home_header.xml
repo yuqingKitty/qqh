@@ -38,7 +38,7 @@
             android:paddingRight="@dimen/dp4"
             android:paddingTop="@dimen/dp2"
             android:paddingBottom="@dimen/dp2"
-            android:layout_marginLeft="@dimen/dp_14"
+            android:layout_marginLeft="@dimen/dp_10"
             android:background="@drawable/product_tag_bg"
             android:text="@string/loan_hot"
             android:textColor="@color/color_FF6621"
