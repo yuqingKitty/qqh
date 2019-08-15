@@ -35,22 +35,24 @@
 
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
+
+    <com.leuters.qqh.ui.customview.MaxRefreshLayout
         android:id="@+id/refresh_loan_record"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        app:maxHeight="325dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_loan_record"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </com.leuters.qqh.ui.customview.MaxRefreshLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_marginBottom="@dimen/dp10">
         <TextView
             android:id="@+id/tv_recommend_tip"
