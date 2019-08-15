@@ -85,14 +85,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
                 }
             }
         });
-        View errorView = getLayoutInflater().inflate(R.layout.view_error, (ViewGroup) mHomeRecycleView.getParent(), false);
-        errorView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onRefresh();
-            }
-        });
-        homeLoanProductListAdapter.setEmptyView(errorView);
 
         mPresenter.loadHeadData();
         mPresenter.initProductListData();

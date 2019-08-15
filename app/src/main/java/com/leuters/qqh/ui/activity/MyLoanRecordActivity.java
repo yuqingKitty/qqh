@@ -96,9 +96,11 @@ public class MyLoanRecordActivity extends BaseActivity<MyLoanRecordPresenter> im
 
     @Override
     public void loadRecommendProductDataSuccess(List<MyLoanRecordBean.MyRecommendProductBean> data) {
+        int size = data.size() > 2 ? 2 : data.size();
         final List<MyLoanRecordBean.MyRecommendProductBean> myRecommendProductBeanList = new ArrayList<>();
-        myRecommendProductBeanList.add(data.get(0));
-        myRecommendProductBeanList.add(data.get(1));
+        for (int i = 0; i < size; i++){
+            myRecommendProductBeanList.add(data.get(i));
+        }
         MyLoanRecommendProductAdapter myLoanRecommendProductAdapter = new MyLoanRecommendProductAdapter(this, myRecommendProductBeanList);
         rv_recommend_product.setLayoutManager(new LinearLayoutManager(this));
         rv_recommend_product.setAdapter(myLoanRecommendProductAdapter);

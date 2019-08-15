@@ -56,26 +56,26 @@ public class TopBarView extends AutoRelativeLayout {
         isShowClose = ta.getInt(R.styleable.TopBarView_show_close, default_close);
         ta.recycle();
         initData();
-        int height;
-        if (hasNotchInScreen(mContext)) {
-            //华为刘海屏
-            height = getNotchSize(mContext)[1];
-            ViewGroup.LayoutParams layoutParams = tbLayout.getLayoutParams();
-            layoutParams.height += height;
-        } else if (hasNotchInScreenAtOppo(mContext)) {
-            //oppo刘海屏
-            height = 80;
-            ViewGroup.LayoutParams layoutParams = tbLayout.getLayoutParams();
-            layoutParams.height += height;
-        } else if (hasNotchInScreenAtVivo(mContext)) {
-            //vivo刘海屏
-            height = ScreenUtil.dp2px(mContext, 32);
-            ViewGroup.LayoutParams layoutParams = tbLayout.getLayoutParams();
-            layoutParams.height += height;
-        } else {
-            height = ScreenUtil.getStatusHeight(mContext);
-        }
-        tbLayout.setPadding(0, height, 0, 0);
+//        int height;
+//        if (hasNotchInScreen(mContext)) {
+//            //华为刘海屏
+//            height = getNotchSize(mContext)[1];
+//            ViewGroup.LayoutParams layoutParams = tbLayout.getLayoutParams();
+//            layoutParams.height += height;
+//        } else if (hasNotchInScreenAtOppo(mContext)) {
+//            //oppo刘海屏
+//            height = 80;
+//            ViewGroup.LayoutParams layoutParams = tbLayout.getLayoutParams();
+//            layoutParams.height += height;
+//        } else if (hasNotchInScreenAtVivo(mContext)) {
+//            //vivo刘海屏
+//            height = ScreenUtil.dp2px(mContext, 32);
+//            ViewGroup.LayoutParams layoutParams = tbLayout.getLayoutParams();
+//            layoutParams.height += height;
+//        } else {
+//            height = ScreenUtil.getStatusHeight(mContext);
+//        }
+        tbLayout.setPadding(0, ScreenUtil.dp2px(context, 35), 0, 0);
     }
 
     //判断是否是华为刘海屏

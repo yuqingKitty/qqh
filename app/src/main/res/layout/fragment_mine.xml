@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_158"
         android:background="@color/color_FFC71D"
-        android:paddingTop="@dimen/dp_33">
+        android:paddingTop="@dimen/dp_40">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/dp_30">
+            android:layout_marginBottom="@dimen/dp_25">
 
             <ImageView
                 android:id="@+id/mine_head"

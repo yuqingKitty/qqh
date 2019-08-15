@@ -9,9 +9,8 @@ public class Urls {
     /**
      * 生产地址
      */
-//    private static String ReleaseIp = "http://qqh.leuters.com.cn/";
-    private static String ReleaseIp = "http://qqh-test.leuters.com.cn/bf/";
-    //    private static String testIp = "http://192.168.0.106:8381/";
+    private static String ReleaseIp = "http://qqh.leuters.com.cn/bf/";
+//    private static String ReleaseIp = "http://qqh-test.leuters.com.cn/bf/";
     private static String testIp = "http://192.168.0.159:8381/";
     public static String baseUrl = IS_RELEASE ? ReleaseIp : testIp;
 
