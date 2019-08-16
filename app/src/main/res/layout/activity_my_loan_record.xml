@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,6 +18,7 @@
         android:id="@+id/ll_loan_empty"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_250"
+        android:layout_below="@id/top_view"
         android:background="@color/color_FFFFFF"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -36,24 +37,17 @@
 
     </LinearLayout>
 
-
-    <com.leuters.qqh.ui.customview.MaxRefreshLayout
-        android:id="@+id/refresh_loan_record"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/color_FFFFFF"
-        android:layout_weight="1"
-        app:maxHeight="325dp">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_loan_record"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.leuters.qqh.ui.customview.MaxRefreshLayout>
-
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recommend_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_recommend_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rv_recommend_product"
         android:background="@color/color_FFFFFF"
         android:paddingTop="@dimen/dp_10"
         android:paddingBottom="@dimen/dp10">
@@ -82,9 +76,20 @@
             android:background="@color/color_D8D8D8"/>
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_recommend_product"
+    <com.leuters.qqh.ui.customview.MaxRefreshLayout
+        android:id="@+id/refresh_loan_record"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:background="@color/color_FFFFFF"
+        android:layout_below="@id/top_view"
+        android:layout_above="@id/rl_recommend_tip"
+        app:maxHeight="325dp">
 
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_loan_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.leuters.qqh.ui.customview.MaxRefreshLayout>
+
+
+</RelativeLayout>
