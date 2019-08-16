@@ -85,7 +85,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_recommend_product"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_FFFFFF"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
