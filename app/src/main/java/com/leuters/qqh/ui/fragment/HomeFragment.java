@@ -89,10 +89,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         mPresenter.loadHeadData();
         mPresenter.initProductListData();
         mPresenter.getSysUpdated();
-        if (BaseApplication.isLogin((Activity) getContext(), false, false)) {
-            // 登录状态验证token
-            mPresenter.verifyUserToken();
-        }
     }
 
     @Override
@@ -231,6 +227,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
     @Override
     public void onResume() {
         super.onResume();
+        if (BaseApplication.isLogin((Activity) getContext(), false, false)) {
+            // 登录状态验证token
+            mPresenter.verifyUserToken();
+        }
         MobclickAgent.onPageStart(mPageName);
     }
 

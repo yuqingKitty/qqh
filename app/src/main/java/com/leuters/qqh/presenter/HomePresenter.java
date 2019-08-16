@@ -200,6 +200,8 @@ public class HomePresenter extends BasePresenter<IHomeView> {
                     } else {
                         obtainView().verifyTokenFailed();
                     }
+                } else {
+                    obtainView().verifyTokenFailed();
                 }
             }
 
