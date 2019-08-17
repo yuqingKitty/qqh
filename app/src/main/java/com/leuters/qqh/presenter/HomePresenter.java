@@ -1,13 +1,19 @@
+
 package com.leuters.qqh.presenter;
 
 import android.app.Activity;
+
+import com.leuters.qqh.application.BaseApplication;
 import com.leuters.qqh.data.entity.HomeBean;
+import com.leuters.qqh.data.entity.RxBusMessage;
 import com.leuters.qqh.data.entity.StatisticsBean;
 import com.leuters.qqh.data.entity.UploadBean;
 import com.leuters.qqh.data.entity.VerifyUserTokenBean;
 import com.leuters.qqh.ui.base.BasePresenter;
 import com.leuters.qqh.utils.APKVersionCodeUtil;
+import com.leuters.qqh.utils.IntentUtil;
 import com.leuters.qqh.utils.LogUtil;
+import com.leuters.qqh.utils.rxbus.RxBus;
 import com.leuters.qqh.view.IHomeView;
 
 import java.util.HashMap;
@@ -15,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.observers.DisposableObserver;
+
+import static com.leuters.qqh.data.commons.Constants.RXBUS_LOGOUT_SUCCESS_KEY;
 
 public class HomePresenter extends BasePresenter<IHomeView> {
     private int pageNumber = 1;
@@ -196,19 +204,28 @@ public class HomePresenter extends BasePresenter<IHomeView> {
             public void onNext(VerifyUserTokenBean verifyUserTokenBean) {
                 if (parse(mContext, verifyUserTokenBean)) {
                     if (verifyUserTokenBean.getStatus() == 0) {
-                        obtainView().verifyTokenSuccess(verifyUserTokenBean);
+                        BaseApplication.setToken(mContext, verifyUserTokenBean.token);
+                        BaseApplication.setUserId(mContext, verifyUserTokenBean.uid);
                     } else {
-                        obtainView().verifyTokenFailed();
+                        BaseApplication.ClearUser(mContext);
+                        IntentUtil.toLoginActivity(mContext);
+                        obtainView().ShowToast(verifyUserTokenBean.getDes());
+                        RxBus.getInstanceBus().post(new RxBusMessage<>(RXBUS_LOGOUT_SUCCESS_KEY));
                     }
                 } else {
-                    obtainView().verifyTokenFailed();
+                    BaseApplication.ClearUser(mContext);
+                    IntentUtil.toLoginActivity(mContext);
+                    obtainView().ShowToast(verifyUserTokenBean.getDes());
+                    RxBus.getInstanceBus().post(new RxBusMessage<>(RXBUS_LOGOUT_SUCCESS_KEY));
                 }
             }
 
             @Override
             public void onError(Throwable e) {
                 obtainView().ShowToast("网络异常");
-                obtainView().verifyTokenFailed();
+                BaseApplication.ClearUser(mContext);
+                IntentUtil.toLoginActivity(mContext);
+                RxBus.getInstanceBus().post(new RxBusMessage<>(RXBUS_LOGOUT_SUCCESS_KEY));
             }
 
             @Override

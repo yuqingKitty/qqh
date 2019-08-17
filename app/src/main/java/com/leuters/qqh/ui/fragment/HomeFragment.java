@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.leuters.qqh.R;
 import com.leuters.qqh.application.BaseApplication;
@@ -15,7 +14,6 @@ import com.leuters.qqh.data.commons.Constants;
 import com.leuters.qqh.data.entity.HomeBean;
 import com.leuters.qqh.data.entity.RxBusMessage;
 import com.leuters.qqh.data.entity.UploadBean;
-import com.leuters.qqh.data.entity.VerifyUserTokenBean;
 import com.leuters.qqh.presenter.HomePresenter;
 import com.leuters.qqh.ui.adapter.HomeProductListAdapter;
 import com.leuters.qqh.ui.base.BaseFragment;
@@ -35,7 +33,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.leuters.qqh.data.commons.Constants.RXBUS_LOGOUT_SUCCESS_KEY;
 import static com.leuters.qqh.data.commons.Constants.RXBUS_TO_COMPLETE_KEY;
 import static com.leuters.qqh.utils.updateapp.UpdateDialogFragment.INTENT_KEY;
 
@@ -147,18 +144,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeVi
         bundle.putSerializable(INTENT_KEY, uploadBean);
         UpdateDialogFragment updateDialogFragment = UpdateDialogFragment.newInstance(bundle);
         updateDialogFragment.show(getChildFragmentManager(), "");
-    }
-
-    @Override
-    public void verifyTokenSuccess(VerifyUserTokenBean verifyUserTokenBean) {
-        BaseApplication.setToken(mActivity, verifyUserTokenBean.token);
-        BaseApplication.setUserId(mActivity, verifyUserTokenBean.uid);
-    }
-
-    @Override
-    public void verifyTokenFailed() {
-        BaseApplication.ClearUser(mActivity);
-        RxBus.getInstanceBus().post(new RxBusMessage<>(RXBUS_LOGOUT_SUCCESS_KEY));
     }
 
     @Override

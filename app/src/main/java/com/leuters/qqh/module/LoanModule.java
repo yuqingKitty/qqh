@@ -39,15 +39,15 @@ public class LoanModule {
 
     public LoanModule(Activity context) {
         rxAppCompatActivity = (RxAppCompatActivity) context;
-        uid = BaseApplication.getUserId(rxAppCompatActivity);
-        token = BaseApplication.getToken(rxAppCompatActivity);
-        uniqueNo = Tools.getDeviceId();
     }
 
     /**
      * 获取首页头部信息
      */
     public void getHomeData(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeData(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         homeObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -58,6 +58,9 @@ public class LoanModule {
 
     // 产品列表
     public void getHomeProductList(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<HomeBean> homeObservable = LOAN_SERVICE.getHomeProductList(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         homeObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -73,6 +76,9 @@ public class LoanModule {
      * @param observer
      */
     public void getLoanSortLabelList(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<CompleteBean> loanObservable = LOAN_SERVICE.getLoanSortLabelList(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         loanObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -88,6 +94,9 @@ public class LoanModule {
      * @param observer
      */
     public void getLoanProductList(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<CompleteBean> loanObservable = LOAN_SERVICE.getLoanProductList(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         loanObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -103,6 +112,9 @@ public class LoanModule {
      * @param observer
      */
     public void sendSms(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<BaseBean> observable = LOAN_SERVICE.getSendSms(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -118,6 +130,9 @@ public class LoanModule {
      * @param observer
      */
     public void userLogin(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<LoginBean> observable = LOAN_SERVICE.login(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -133,6 +148,9 @@ public class LoanModule {
      * @param observer
      */
     public void logout(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<LoginBean> observable = LOAN_SERVICE.logout(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -148,6 +166,9 @@ public class LoanModule {
      * @param observer
      */
     public void getUserInfo(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<LoginBean> observable = LOAN_SERVICE.getUserInfo(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -162,6 +183,9 @@ public class LoanModule {
      * @param observer
      */
     public void service(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<ServiceBean> observable = LOAN_SERVICE.service(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -176,6 +200,9 @@ public class LoanModule {
      * @param observer
      */
     public void uploadHead(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<BaseBean> observable = LOAN_SERVICE.uploadHeadIcon(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -191,6 +218,9 @@ public class LoanModule {
      * @param observer
      */
     public void toStatisticClickProduct(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<StatisticsBean> observable = LOAN_SERVICE.toStatisticClickProduct(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -206,6 +236,9 @@ public class LoanModule {
      * @param observer
      */
     public void toStayTime(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<BaseBean> observable = LOAN_SERVICE.toStayTime(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -221,6 +254,9 @@ public class LoanModule {
      * @param observer
      */
     public void sysUpdated(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<UploadBean> observable = LOAN_SERVICE.sysUpdated(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -236,6 +272,9 @@ public class LoanModule {
      * @param observer
      */
     public void setNickname(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<BaseBean> observable = LOAN_SERVICE.editNickname(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -254,6 +293,9 @@ public class LoanModule {
      * @param observer
      */
     public void getMyLoanRecordList(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<MyLoanRecordBean> observable = LOAN_SERVICE.getMyLoanRecordList(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -268,6 +310,9 @@ public class LoanModule {
      * @param observer
      */
     public void getMyRecommendProductList(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<MyLoanRecordBean> observable = LOAN_SERVICE.getMyRecommendProductList(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -282,6 +327,9 @@ public class LoanModule {
      * @param observer
      */
     public void getMessageCenterList(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<MessageCenterBean> observable = LOAN_SERVICE.getMessageCenterList(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -296,6 +344,9 @@ public class LoanModule {
      * @param observer
      */
     public void getHomeTypeAdList(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<HomeTypeProductBean> observable = LOAN_SERVICE.getHomeTypeAdList(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -310,6 +361,9 @@ public class LoanModule {
      * @param observer
      */
     public void getHomeTypeProductList(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<HomeTypeProductBean> observable = LOAN_SERVICE.getHomeTypeProductList(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -324,6 +378,9 @@ public class LoanModule {
      * @param observer
      */
     public void getTokenState(Map<String, Object> params, Observer observer) {
+        uid = BaseApplication.getUserId(rxAppCompatActivity);
+        token = BaseApplication.getToken(rxAppCompatActivity);
+        uniqueNo = Tools.getDeviceId();
         Observable<VerifyUserTokenBean> observable = LOAN_SERVICE.getTokenState(BaseApplication.CHANNEL, uniqueNo, uid, token, getRequestBody(params));
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

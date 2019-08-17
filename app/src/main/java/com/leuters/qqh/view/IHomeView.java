@@ -49,10 +49,4 @@ public interface IHomeView<T extends BaseBean> extends IBaseView {
      */
     void checkUpdate(String srcURL, int appEnForce, String title, String name);
 
-
-    // 验证成功
-    void verifyTokenSuccess(VerifyUserTokenBean verifyUserTokenBean);
-
-    // 验证失败
-    void verifyTokenFailed();
 }
