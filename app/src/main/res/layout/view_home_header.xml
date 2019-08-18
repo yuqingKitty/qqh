@@ -25,20 +25,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_16"
-            android:text="@string/loan_top"
-            android:textColor="@color/color_181001"
-            android:textSize="@dimen/sp_15"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:paddingLeft="@dimen/dp4"
             android:paddingRight="@dimen/dp4"
             android:paddingTop="@dimen/dp2"
             android:paddingBottom="@dimen/dp2"
-            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_16"
             android:background="@drawable/product_tag_bg"
             android:text="@string/loan_hot"
             android:textColor="@color/color_FF6621"
@@ -48,7 +39,7 @@
             android:id="@+id/home_view_flipper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginLeft="@dimen/dp10"
             android:autoStart="true"
             android:flipInterval="3000"
             android:inAnimation="@anim/anim_come_in"

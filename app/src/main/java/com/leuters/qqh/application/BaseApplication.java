@@ -68,7 +68,7 @@ public class BaseApplication extends Application {
         JVerificationInterface.init(this, new RequestCallback<String>() {
             @Override
             public void onResult(int i, String s) {
-               LogUtil.d("BaseApplication","code = " + i + " msg = " + s);
+                LogUtil.d("BaseApplication", "code = " + i + " msg = " + s);
             }
         });
     }
@@ -180,6 +180,7 @@ public class BaseApplication extends Application {
 
     /**
      * 获取极光一键登录自定义UI
+     *
      * @param context
      * @return
      */
@@ -223,9 +224,7 @@ public class BaseApplication extends Application {
                 .addCustomView(loginTextView, true, new JVerifyUIClickCallback() {
                     @Override
                     public void onClicked(Context context, View view) {
-                        if (Tools.isCanVisit()) {
-                            context.startActivity(new Intent(context, LoginNewActivity.class));
-                        }
+                        context.startActivity(new Intent(context, LoginNewActivity.class));
                     }
                 })
                 .setPrivacyOffsetY(35)

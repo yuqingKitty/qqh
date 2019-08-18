@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
+
 import com.leuters.qqh.application.BaseApplication;
 import com.leuters.qqh.ui.activity.CustomerServiceActivity;
 import com.leuters.qqh.ui.activity.HomeTypeProductActivity;
@@ -153,15 +154,13 @@ public class IntentUtil {
      * @param context
      */
     public static void toLoginActivity(Activity context) {
-        if (Tools.isCanVisit()) {
-            boolean verifyEnable = JVerificationInterface.checkVerifyEnable(context);
-            boolean isCanJiguangLogin = (boolean) SPUtil.get(context, SP_KEY_CAN_JIGUANNG_LOGIN, false);
-            if (verifyEnable && isCanJiguangLogin) {
-                // 满足极光一键登录的条件
-                loginAuth(context);
-            } else {
-                context.startActivity(new Intent(context, LoginNewActivity.class));
-            }
+        boolean verifyEnable = JVerificationInterface.checkVerifyEnable(context);
+        boolean isCanJiguangLogin = (boolean) SPUtil.get(context, SP_KEY_CAN_JIGUANNG_LOGIN, false);
+        if (verifyEnable && isCanJiguangLogin) {
+            // 满足极光一键登录的条件
+            loginAuth(context);
+        } else {
+            context.startActivity(new Intent(context, LoginNewActivity.class));
         }
     }
 
@@ -174,7 +173,7 @@ public class IntentUtil {
                 // code: 返回码，6000代表loginToken获取成功，6001代表loginToken获取失败，其他返回码详见描述
                 // content：返回码的解释信息，若获取成功，内容信息代表loginToken。
                 // operator：成功时为对应运营商，CM代表中国移动，CU代表中国联通，CT代表中国电信。失败时可能为null
-                if (code == 6000){
+                if (code == 6000) {
                     // 验证接口
                     BaseApplication.setToken(context, content);
                     JiGuangLoginUtil.verifyUserInfo(context);
