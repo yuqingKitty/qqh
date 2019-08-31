@@ -28,7 +28,6 @@
             android:layout_below="@id/tv_new_version"
             android:layout_marginTop="@dimen/dp8"
             android:layout_marginLeft="@dimen/dp_32"
-            android:text="V1.1.2"
             android:textColor="@color/color_181001"
             android:textSize="@dimen/sp_18"
             android:textStyle="bold"/>

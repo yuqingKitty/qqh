@@ -6,6 +6,8 @@
 开发工具：Android Studio 3.4
 项目支持最低Android版本: 4.4
 
+#创建远程分支：git push origin v1.1:v1.1
+
 手动打包最好，先清理下，gradlew clean
 在工程根目录下，使用下面的命令来打包对应的APK：
 gradlew assemble[Flavor][BuildType]  其中Flavor对应渠道，BuildType对应构建方式

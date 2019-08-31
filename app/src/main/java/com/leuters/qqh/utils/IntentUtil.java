@@ -14,8 +14,7 @@ import com.leuters.qqh.ui.activity.MessageCenterActivity;
 import com.leuters.qqh.ui.activity.MyLoanRecordActivity;
 import com.leuters.qqh.ui.activity.SetNicknameActivity;
 import com.leuters.qqh.ui.activity.SettingActivity;
-import com.leuters.qqh.ui.activity.WebAPPActivity;
-import com.leuters.qqh.ui.activity.WebActivity;
+import com.leuters.qqh.ui.activity.WebViewActivity;
 
 import cn.jiguang.verifysdk.api.JVerificationInterface;
 import cn.jiguang.verifysdk.api.VerifyListener;
@@ -86,15 +85,9 @@ public class IntentUtil {
      * @param url
      * @param id
      */
-    public static void toWebView(Activity context, String url, String id) {
-        if (!TextUtils.isEmpty(url.trim())) {
-            WebActivity.startWebView(context, url, id);
-        }
-    }
-
     public static void toAppWebView(Activity context, String url, String id) {
         if (!TextUtils.isEmpty(url.trim())) {
-            Intent intent = new Intent(context, WebAPPActivity.class);
+            Intent intent = new Intent(context, WebViewActivity.class);
             intent.putExtra(INTENT_KEY, url);
             intent.putExtra(STATISTICS_ID, id);
             context.startActivity(intent);

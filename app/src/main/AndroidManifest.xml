@@ -69,16 +69,12 @@
             android:name="com.leuters.qqh.ui.activity.CustomerServiceActivity"
             android:screenOrientation="portrait" />
 
-        <activity
-            android:name="com.leuters.qqh.ui.activity.WebActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- 设置昵称-->
         <activity
             android:name="com.leuters.qqh.ui.activity.SetNicknameActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.leuters.qqh.ui.activity.WebAPPActivity"
+            android:name="com.leuters.qqh.ui.activity.WebViewActivity"
             android:screenOrientation="portrait" />
         <!-- 设计稿尺寸 -->
         <meta-data
