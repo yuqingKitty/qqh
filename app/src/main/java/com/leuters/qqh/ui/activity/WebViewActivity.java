@@ -1,9 +1,11 @@
 package com.leuters.qqh.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.text.TextUtils;
+import android.webkit.DownloadListener;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -64,7 +66,7 @@ public class WebViewActivity extends BaseActivity<WebViewPresenter> implements I
         mWebView.getSettings().setUserAgentString(mWebView.getSettings().getUserAgentString());
         mWebView.getSettings().setDatabaseEnabled(true);  // 应用可以有数据库
         mWebView.getSettings().setAppCacheEnabled(true);  // 应用可以有缓存
-//        mWebView.setDownloadListener(new MyDownLoadListener(this));  // 下载响应
+        mWebView.setDownloadListener(new MyDownLoadListener(this));  // 下载响应
 
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -147,6 +149,22 @@ public class WebViewActivity extends BaseActivity<WebViewPresenter> implements I
     @Override
     public void hideLoading() {
 
+    }
+
+
+    class MyDownLoadListener implements DownloadListener {
+        private Context context;
+
+        public MyDownLoadListener(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+            Uri uri = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            context.startActivity(intent);
+        }
     }
 
 }
