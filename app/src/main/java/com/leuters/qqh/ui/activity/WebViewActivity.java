@@ -124,15 +124,15 @@ public class WebViewActivity extends BaseActivity<WebViewPresenter> implements I
     @Override
     protected void onPause() {
         super.onPause();
+        if (!TextUtils.isEmpty(statisticsId)) {
+            mPresenter.stayTime(statisticsId);
+        }
         MobclickAgent.onPageEnd(pageTitle);
         MobclickAgent.onPause(this); // 基础指标统计，不能遗漏
     }
 
     @Override
     protected void onDestroy() {
-        if (!TextUtils.isEmpty(statisticsId)) {
-            mPresenter.stayTime(statisticsId);
-        }
         super.onDestroy();
     }
 
